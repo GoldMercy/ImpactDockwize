@@ -15,8 +15,8 @@ class CreateBusinessTable extends Migration
     {
         Schema::create('business', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Ondernemer');
-            $table->string('Onderneming');
+            $table->string('Ondernemer')->nullable();
+            $table->string('Onderneming')->nullable();
             $table->integer('Telefoonnummer')->nullable();
             $table->string('Email')->nullable();
             $table->string('Plaats')->nullable();

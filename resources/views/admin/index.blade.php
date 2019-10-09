@@ -24,9 +24,12 @@
                     </tr>
                 </thead>
             @foreach ($businesses as $business)
+
                 <tr>
                     <td>
+                        <a href="/admin/edit/{{$business->id}}">
                 {{ $business->Ondernemer }}
+                        </a>
                     </td>
                     <td>
                 {{ $business->Onderneming }}

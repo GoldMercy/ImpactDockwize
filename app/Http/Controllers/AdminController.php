@@ -43,4 +43,36 @@ class AdminController extends Controller
 
         return(redirect('/admin'));
     }
+
+    public function edit($id)
+    {
+        $business = DB::table('business')->find($id);
+
+        return view('admin.edit', ['business' => $business]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $business = Business::find($id);
+        $business->Ondernemer = $request->Ondernemer;
+        $business->Onderneming = $request->Onderneming;
+        $business->Telefoonnummer = $request->Telefoonnummer;
+        $business->Plaats = $request->Plaats;
+        $business->Email = $request->Email;
+        $business->Idee = $request->Idee;
+        $business->Jaar = $request->Jaar;
+        $business->Doelgroep = $request->Doelgroep;
+        $business->Thema = $request->Thema;
+        $business->Programma = $request->Programma;
+        $business->save();
+
+        return(redirect('/admin'));
+    }
+
+    public function delete($id){
+        $business = Business::find($id);
+        $business->delete();
+
+       return(redirect('/admin'));
+    }
 }
