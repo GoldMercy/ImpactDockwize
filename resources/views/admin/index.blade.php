@@ -3,6 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+        <a href="{{ url('/admin/create') }}">
+        <button type="button" class="btn btn-secondary btn-lg">
+            Toevoegen
+        </button>
+        </a>
             <table class="table table-bordered">
                 <thead>
                     <tr>

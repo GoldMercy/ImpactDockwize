@@ -24,3 +24,7 @@ Route::get('/input', 'PagesController@input');
 Route::get('/output', 'PagesController@output');
 
 Route::get('/admin', 'AdminController@index');
+
+Route::get('/admin/create', 'AdminController@create');
+
+Route::get('/admin/store', 'AdminController@store');
