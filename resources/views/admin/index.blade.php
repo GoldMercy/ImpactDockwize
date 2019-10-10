@@ -2,19 +2,21 @@
 @extends('layouts.navbar')
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="col-sm-1 p-2">
         <a href="{{ url('/admin/create') }}">
-        <button type="button" class="btn btn-secondary btn-lg">
-            Toevoegen
-        </button>
+            <button type="button" class="btn btn-primary">
+                Toevoegen
+            </button>
         </a>
+    </div>
+    <div class="row justify-content-center">
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Ondernemer</th>
                         <th scope="col">Onderneming</th>
+                        <th scope="col">Ondernemer</th>
                         <th scope="col">Telefoonnummer</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">E-mail</th>
                         <th scope="col">Plaats</th>
                         <th scope="col">Idee</th>
                         <th scope="col">Jaar</th>
@@ -28,11 +30,11 @@
                 <tr>
                     <td>
                         <a href="/admin/edit/{{$business->id}}">
-                {{ $business->Ondernemer }}
+                {{ $business->Onderneming }}
                         </a>
                     </td>
                     <td>
-                {{ $business->Onderneming }}
+                {{ $business->Ondernemer }}
                     </td>
                     <td>
                 {{ $business->Telefoonnummer }}

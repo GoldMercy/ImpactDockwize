@@ -33,4 +33,4 @@ Route::get('/admin/edit/{id}', 'AdminController@edit');
 
 Route::get('/admin/update/{id}', 'AdminController@update');
 
-Route::get('/admin/delete/{id}', 'AdminController@update');
+Route::get('/admin/edit/delete/{id}', 'AdminController@delete');

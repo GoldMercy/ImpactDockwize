@@ -46,7 +46,8 @@
             <div class="form-group col-sm-3">
                 <label for="Thema">Thema</label>
                 <select name="Thema" class="form-control">
-                    <option selected>ICT</option>
+                    <option selected>Geen</option>
+                    <option>ICT</option>
                     <option>Dienstverlening</option>
                     <option>Gezondheid</option>
                     <option>Zorg</option>
@@ -55,28 +56,30 @@
             <div class="form-group col-sm-3">
                 <label for="Programma">Programma</label>
                 <select name="Programma" class="form-control">
-                    <option selected>Kickstarter</option>
+                    <option selected>Geen</option>
+                    <option>Kickstarter</option>
                     <option>Accelerator</option>
                     <option>X</option>
                     <option>etc.</option>
                 </select>
             </div>
             </div>
-            <div class="row">
-                <div class="col-sm-1">
+            <div class="d-flex">
+                <div class="p-2">
             <a href="/admin">
                 <button type="button" class="btn btn-secondary">Terug</button>
             </a>
                 </div>
-                <div class="col-sm-1">
-            <button type="submit" class="btn btn-primary">Toevoegen</button>
+                <div class="p-2">
+            <button type="submit" class="btn btn-primary">Aanpassen</button>
                 </div>
-                <a href="/admin/delete/{{$business->id}}">
-                    <div class="col-sm-1">
-                        <button type="button" class="btn btn-secondary">Verwijderen</button>
-                    </div>
-                </a>
+                <div class="ml-auto p-2">
+                    <a href="delete/{{$business->id}}">
+                        <button type="button" class="btn btn-danger">Verwijderen</button>
+                    </a>
+                </div>
             </div>
+
         </form>
 </div>
 
