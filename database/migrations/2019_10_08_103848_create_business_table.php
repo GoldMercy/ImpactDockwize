@@ -15,16 +15,16 @@ class CreateBusinessTable extends Migration
     {
         Schema::create('business', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('Ondernemer');
-            $table->string('Onderneming');
-            $table->integer('Telefoonnummer');
-            $table->string('Email');
-            $table->string('Plaats');
-            $table->string('Idee');
-            $table->integer('Jaar');
-            $table->string('Thema');
-            $table->string('Doelgroep');
-            $table->string('Programma');
+            $table->string('Ondernemer')->nullable();
+            $table->string('Onderneming')->nullable();
+            $table->integer('Telefoonnummer')->nullable();
+            $table->string('Email')->nullable();
+            $table->string('Plaats')->nullable();
+            $table->string('Idee')->nullable();
+            $table->integer('Jaar')->nullable();
+            $table->string('Thema')->nullable();
+            $table->string('Doelgroep')->nullable();
+            $table->string('Programma')->nullable();
         });
     }
 
