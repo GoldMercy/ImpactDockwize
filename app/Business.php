@@ -11,6 +11,7 @@ class Business extends Model
         'Idee', 'Jaar', 'Doelgroep', 'Thema', 'Programma'
     ];
 
+    protected $primaryKey = 'id';
     protected $table = 'business';
     public $timestamps = false;
 

@@ -46,7 +46,8 @@
             <div class="form-group col-sm-3">
                 <label for="Thema">Thema</label>
                 <select name="Thema" class="form-control">
-                    <option selected>ICT</option>
+                    <option selected>Geen</option>
+                    <option>ICT</option>
                     <option>Dienstverlening</option>
                     <option>Gezondheid</option>
                     <option>Zorg</option>
@@ -55,7 +56,8 @@
             <div class="form-group col-sm-3">
                 <label for="Programma">Programma</label>
                 <select name="Programma" class="form-control">
-                    <option selected>Kickstarter</option>
+                    <option selected>Geen</option>
+                    <option>Kickstarter</option>
                     <option>Accelerator</option>
                     <option>X</option>
                     <option>etc.</option>

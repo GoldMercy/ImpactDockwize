@@ -70,8 +70,7 @@ class AdminController extends Controller
     }
 
     public function delete($id){
-        $business = Business::find($id);
-        $business->delete();
+        DB::table('business')->delete($id);
 
        return(redirect('/admin'));
     }
