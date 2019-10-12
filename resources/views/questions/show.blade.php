@@ -2,8 +2,7 @@
 @extends('layouts.navbar')
 @section('content')
 <div class="container">
-    <a href="/questions">
-        <button class='btn btn-primary'>Beheer uw vragen!</button>
-    </a>
+    <h1>{{$question->questionName}}</h1>
+
 </div>
 @endsection
