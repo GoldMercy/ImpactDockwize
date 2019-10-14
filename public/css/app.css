@@ -170,9 +170,13 @@ sup {
 }
 
 a {
-  color: white;
+  color: black;
   text-decoration: none;
   background-color: transparent;
+}
+
+a.sidebar{
+  color:white
 }
 
 a:hover {

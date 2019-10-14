@@ -24,7 +24,7 @@ Route::get('/input', 'PagesController@input');
 Route::get('/output', 'PagesController@output');
 
 
-Route::resource('questions', 'QuestionsController');
+Route::resource('/questions', 'QuestionsController');
 
 Route::get('/admin', 'AdminController@index');
 
