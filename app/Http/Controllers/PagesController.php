@@ -15,7 +15,7 @@ class PagesController extends Controller
     }
 
     public function questions(){
-        return view('questions.add');
+        return view('questions.index');
     }
 
 }

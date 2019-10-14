@@ -14,7 +14,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = Question::orderBy('questionName', 'desc')->get();
+        // $questions = Question::orderBy('questionName', 'desc')->get();
+        $questions = Question::all();
         return view('questions.index')->with('questions', $questions);
     }
 
@@ -68,7 +69,8 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $question = Question::find($id);
+        return view('questions.edit')->with('question', $question);
     }
 
     /**
@@ -80,7 +82,16 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'questionName' => 'required',
+        ]);
+
+        // Pas een vraag aan
+        $question = Question::find($id);
+        $question->questionName = $request->input('questionName');
+        $question->save();
+           
+        return redirect('/questions')->with('success', 'Vraag aangepast!');
     }
 
     /**
@@ -91,6 +102,8 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $question = Question::find($id);
+        $question->delete();
+        return redirect('/questions')->with('success', 'Vraag verwijderd!');
     }
 }

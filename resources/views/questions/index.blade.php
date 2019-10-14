@@ -6,11 +6,15 @@
     <h1>Bekijk uw vragen!</h1>
         @if(count($questions) > 0)
             @foreach($questions as $question)
-                <p><a href="/questions/{$question->$id}">{{$question->questionName}}</a></p> 
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a href="/questions/{{$question->id}}">{{$question->questionName}}</a></li>
+                    </ul>
+                </div> 
             @endforeach
         @else
             <div class="alert alert-danger">
-                {{session('error', 'Geen vragen gevonden!')}}
+                {{session('error', 'Geen vragen gevonden.')}}
             </div>
         @endif
         <a href="/questions/create">
