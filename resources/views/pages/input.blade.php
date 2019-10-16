@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.navbar')
+@extends('layouts.sidebar')
 @section('content')
 <div class="container">
     <a href="/questions">
