@@ -3,7 +3,6 @@
 @section('content')
 <div class="container">
     <h1>{{$question->questionName}}</h1>
-    <h3>{{$answer->answerType}}</h3>
     <hr>
     <a href="/questions/{{$question->id}}/edit" class="btn btn-primary">Aanpassen</a>
     <div class="pullRight">
