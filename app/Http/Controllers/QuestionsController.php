@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
-use App\Answer;
+use App\Answertype;
 
 class QuestionsController extends Controller
 {
@@ -26,10 +26,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        $answers = Answer::pluck('answerType', 'id');
-        $answer = Answer::find('answerType');
-        return view('questions.create', compact('answers'));
-        // return view('questions.create');
+        $answer_type = Answertype::pluck('answerType', 'answer_type_id');
+        return view('questions.create', compact('answer_type'));
     }
 
     /**
@@ -42,14 +40,13 @@ class QuestionsController extends Controller
     {
         $this->validate($request, [
             'questionName' => 'required',
-            'answer_id' => 'required',
+            'answer_type_fk' => 'required',
         ]);
 
         // Maak een vraag
         $question = new Question;
-        $answer = new Answer;
         $question->questionName = $request->input('questionName');
-        $answer->answerType = $request->input('answer_id');
+        $question->answer_type_fk = $request->input('answer_type_fk');
         $question->save();
             
         return redirect('/questions')->with('success', 'Vraag gemaakt!');
@@ -63,7 +60,6 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $answer = Answer::find($id);
         $question = Question::find($id);
         return view('questions.show')->with('question', $question);
     }

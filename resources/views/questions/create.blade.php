@@ -7,12 +7,9 @@
         <div class="form-group">
             {{Form::label('questionName', 'Hoe heet de vraag?')}}
             {{Form::text('questionName', '', ['class' => 'form-control', 'placeholder' => 'Title'])}}
-        </div>
-        <hr>
-        <div class="form-group">
-            <h3>Selecteer vraagtype</h3>
-            {{Form::label('answerType', 'Wat voor vraag is het?')}}
-            {{Form::select('answer_id', $answers, null, ['class' => 'form-control'])}}
+            <hr>
+            {!! Form::Label('', 'Wat voor type vraag is het?') !!}
+            {!! Form::select('answer_type_fk', $answer_type, null, ['class' => 'form-control', 'placeholder' => 'None']) !!}
         </div>
         {{Form::submit('Vraag opslaan', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}

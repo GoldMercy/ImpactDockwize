@@ -14,7 +14,7 @@ class CreateAnswerTypeTable extends Migration
     public function up()
     {
         Schema::create('answer_type', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('answer_type_id');
             $table->string('answerType');
         });
     }
