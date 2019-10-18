@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.navbar')
+@extends('layouts.sidebar')
 @section('content')
 <div class="container">
         <form method="GET" action="/admin/update/{{$business->id}}">
@@ -71,7 +71,10 @@
             </a>
                 </div>
                 <div class="p-2">
-            <button type="submit" class="btn btn-primary">Aanpassen</button>
+            <button type="submit" class="btn btn-primary" name="action" value="edit">Aanpassen</button>
+                </div>
+                <div class="p-2">
+                        <button type="submit" class="btn btn-primary" name="action" value="archive">Nieuw meetpunt</button>
                 </div>
                 <div class="ml-auto p-2">
                     <a href="delete/{{$business->id}}">

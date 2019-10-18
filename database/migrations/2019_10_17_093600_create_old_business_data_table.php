@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateBusinessTable extends Migration
+class CreateOldBusinessDataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateBusinessTable extends Migration
      */
     public function up()
     {
-        Schema::create('business', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('old_business_data', function (Blueprint $table) {
+            $table->BigIncrements('id');
+            $table->integer('business_id');
             $table->string('Ondernemer')->nullable();
             $table->string('Onderneming')->nullable();
             $table->integer('Telefoonnummer')->nullable();
@@ -36,6 +37,6 @@ class CreateBusinessTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business');
+        Schema::dropIfExists('old_business_data');
     }
 }

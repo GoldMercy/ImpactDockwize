@@ -4,15 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Business extends Model
+class OldBusinessData extends Model
 {
     protected $fillable = [
-        'Ondernemer', 'Onderneming', 'Telefoonnummer', 'Plaats', 'Email',
+        'business_id', 'Ondernemer', 'Onderneming', 'Telefoonnummer', 'Plaats', 'Email',
         'Idee', 'Jaar', 'Doelgroep', 'Thema', 'Programma', 'created_at'
     ];
 
     protected $primaryKey = 'id';
-    protected $table = 'business';
+    protected $table = 'old_business_data';
     public $timestamps = false;
-
 }
