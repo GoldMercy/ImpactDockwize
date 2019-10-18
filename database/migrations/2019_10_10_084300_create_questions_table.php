@@ -16,10 +16,7 @@ class CreateQuestionsTable extends Migration
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('questionName');
-            //query: ALTER TABLE `questions` ADD FOREIGN KEY (`answer_type_fk`) REFERENCES `answer_type`(`answer_type_id`) ON DELETE RESTRICT ON UPDATE CASCADE;
-            //datatypes have to be identical, bigint(20) and UNSIGNED
-            $table->integer('answer_type_fk');
-            $table->foreign('answer_type_fk')->references('answer_type_id')->on('answer_type')->onUpdate('cascade');
+            $table->string('answer_type');
             $table->timestamps();
         });
     }
