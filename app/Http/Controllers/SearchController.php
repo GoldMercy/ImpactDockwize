@@ -14,7 +14,7 @@ class SearchController extends Controller
         if($request->ajax())
         {
             $output="";
-            $businesses=DB::table('old_business_data')->where('Onderneming','LIKE','%'.$request->search."%")->get();
+            $businesses=DB::table('old_business_data')->where('Onderneming','LIKE','%'.$request->search."%")->orWhere('Ondernemer','LIKE','%'.$request->search."%")->get();
             if($businesses)
             {
                 foreach ($businesses as $key => $business) {
