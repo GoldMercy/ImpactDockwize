@@ -3,12 +3,14 @@
 @section('content')
 <div class="container">
     <h1>{{$question->questionName}}</h1>
-    <hr>
-    <a href="/questions/{{$question->id}}/edit" class="btn btn-primary">Aanpassen</a>
-    
-    {!!Form::open(['action'=> ['QuestionsController@destroy', $question->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
-        {{Form::hidden('_method', 'DELETE')}}
-        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-    {!!Form::close()!!}
+    <h4>{{$question->answer_type}}</h4>
+    <div class="row">
+        <a href="/questions/edit/{{$question->id}}">
+            <button type="button" class="btn btn-primary">Pas de vraag aan</button>
+        </a>
+        <a href="/questions">
+            <button type="button" class="btn btn-secondary">Ga terug</button>
+        </a>
+    </div>
 </div>
 @endsection

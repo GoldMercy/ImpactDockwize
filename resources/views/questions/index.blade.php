@@ -8,7 +8,7 @@
             @foreach($questions as $question)
                 <div class="card">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="/questions/{{$question->id}}">{{$question->questionName}}</a></li>
+                        <li class="list-group-item"><a href="/questions/show/{{$question->id}}">{{$question->questionName}}</a></li>
                     </ul>
                 </div> 
             @endforeach

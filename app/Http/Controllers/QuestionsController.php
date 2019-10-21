@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Question;
+use App\Answertype;
+use Illuminate\Support\Facades\DB;
 
 class QuestionsController extends Controller
 {
@@ -14,8 +16,7 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        // $questions = Question::orderBy('questionName', 'desc')->get();
-        $questions = Question::all();
+        $questions = DB::table('questions')->paginate(20);
         return view('questions.index')->with('questions', $questions);
     }
 
@@ -37,15 +38,11 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'questionName' => 'required',
-        ]);
-
-        // Maak een vraag
         $question = new Question;
-        $question->questionName = $request->input('questionName');
+        $question->questionName = $request->questionName;
+        $question->answer_type = $request->answer_type;
         $question->save();
-            
+
         return redirect('/questions')->with('success', 'Vraag gemaakt!');
     }
 
@@ -82,13 +79,9 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'questionName' => 'required',
-        ]);
-
-        // Pas een vraag aan
         $question = Question::find($id);
-        $question->questionName = $request->input('questionName');
+        $question->questionName = $request->questionName;
+        $question->answer_type = $request->answer_type;
         $question->save();
            
         return redirect('/questions')->with('success', 'Vraag aangepast!');
@@ -100,7 +93,7 @@ class QuestionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
         $question = Question::find($id);
         $question->delete();
