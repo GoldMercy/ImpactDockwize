@@ -10,6 +10,7 @@
         }
 
         #sidebar{
+            top: 0px;
             position: fixed;
             width: 200px;
             height: 100%;
@@ -85,6 +86,7 @@
         <li><a href="{{ url('/input') }}">Input</a></li>
         <li><a href="{{ url('/output') }}">Output</a></li>
         <li><a href="{{ url('/admin') }}">Admin</a></li>
+        <li><a href="{{ url('/searching') }}">History</a></li>
         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

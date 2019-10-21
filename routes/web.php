@@ -40,3 +40,6 @@ Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
 
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 
+Route::get('/searching','SearchController@index');
+Route::get('/search','SearchController@search');
+

@@ -12,6 +12,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        date_default_timezone_set('Europe/Amsterdam');
     }
 
     public function index()
@@ -40,7 +41,7 @@ class AdminController extends Controller
         $business->Doelgroep = $request->Doelgroep;
         $business->Thema = $request->Thema;
         $business->Programma = $request->Programma;
-        $business->created_at = date('d-m-y h:i:s');
+        $business->created_at = date('y-m-d h:i:s');
         $business->save();
 
         return(redirect('/admin'));
