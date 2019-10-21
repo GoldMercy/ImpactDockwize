@@ -23,6 +23,17 @@ Route::get('/input', 'PagesController@input');
 
 Route::get('/output', 'PagesController@output');
 
+Route::get('/surveys', 'SurveyController@index');
+
+Route::get('/surveys/create', 'SurveyController@create');
+
+Route::get('/surveys/store', 'SurveyController@store');
+
+Route::get('/surveys/edit/{id}', 'SurveyController@edit');
+
+Route::get('/surveys/update/{id}', 'SurveyController@update');
+
+Route::get('/surveys/edit/delete/{id}', 'SurveyController@delete');
 
 Route::resource('/questions', 'QuestionsController');
 

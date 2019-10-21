@@ -10,6 +10,7 @@
         }
 
         #sidebar{
+            z-index: 1001;
             position: fixed;
             width: 200px;
             height: 100%;

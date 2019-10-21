@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.navbar')
+@extends('layouts.sidebar')
 @section('content')
 {{-- <head> <script src="https://kit.fontawesome.com/11ccc7b6bb.js" crossorigin="anonymous"></script></head> <i class="fas fa-edit"></i> --}}
 <div class="container">
