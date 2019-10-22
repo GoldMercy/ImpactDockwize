@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnswerTypeTable extends Migration
+class CreateCardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateAnswerTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('answer_type', function (Blueprint $table) {
-            $table->bigIncrements('answer_type_id');
-            $table->string('answerType');
+        Schema::create('Cards', function (Blueprint $table) {
+            $table->bigIncrements('card_id');
+            $table->string('card_question');
+            $table->mediumText('card_response');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +28,6 @@ class CreateAnswerTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('answer_type');
+        Schema::dropIfExists('Cards');
     }
 }

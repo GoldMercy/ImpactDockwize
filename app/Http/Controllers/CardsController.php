@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Question;
+use App\Card;
 use Illuminate\Support\Facades\DB;
 
-class QuestionsController extends Controller
+class CardsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = DB::table('questions')->paginate(20);
-        return view('questions.index')->with('questions', $questions);
+        $cards = DB::table('cards')->paginate(20);
+        return view('cards.index')->with('cards', $cards);
     }
 
     /**
@@ -26,7 +26,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        return view('cards.create');
     }
 
     /**
@@ -37,12 +37,12 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        $question = new Question;
-        $question->question_name = $request->question_name;
-        $question->answer_type = $request->answer_type;
-        $question->save();
+        $card = new Card;
+        $card->card_question = $request->card_question;
+        $card->card_response = $request->card_response;
+        $card->save();
 
-        return redirect('/questions')->with('success', 'Vraag gemaakt!');
+        return redirect('/cards')->with('success', 'Kaart gemaakt!');
     }
 
     /**
@@ -53,8 +53,8 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = Question::find($id);
-        return view('questions.show')->with('question', $question);
+        $card = Card::find($id);
+        return view('cards.show')->with('card', $card);
     }
 
     /**
@@ -65,8 +65,8 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        $question = Question::find($id);
-        return view('questions.edit')->with('question', $question);
+        $card = Card::find($id);
+        return view('cards.edit')->with('card', $card);
     }
 
     /**
@@ -78,13 +78,12 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $question = Question::find($id);
-        $question->question_name = $request->question_name;
-        $question->answer_type = $request->answer_type;
-        $question->save();
-        
-           
-        return redirect('/questions')->with('success', 'Vraag aangepast!');
+        $card = Card::find($card_id);
+        $card->card_question = $request->card_question;
+        $card->card_response = $request->card_response;
+        $card->save();
+
+        return redirect('/cards')->with('success', 'Kaart aangepast!');
     }
 
     /**
@@ -95,8 +94,8 @@ class QuestionsController extends Controller
      */
     public function delete($id)
     {
-        $question = Question::find($id);
-        $question->delete();
-        return redirect('/questions')->with('success', 'Vraag verwijderd!');
+        $card = Card::find($id);
+        $card->delete();
+        return redirect('/cards')->with('success', 'Kaart verwijderd!');
     }
 }

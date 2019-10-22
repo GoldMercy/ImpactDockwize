@@ -23,6 +23,14 @@ Route::get('/input', 'PagesController@input');
 
 Route::get('/output', 'PagesController@output');
 
+Route::get('/cards', 'CardsController@index');
+Route::get('/cards/create', 'CardsController@create');
+Route::get('/cards/store', 'CardsController@store');
+Route::get('/cards/edit/{id}', 'CardsController@edit');
+Route::get('/cards/show/{id}', 'CardsController@show');
+Route::get('/cards/update/{id}', 'CardsController@update');
+Route::get('/cards/edit/delete/{id}', 'CardsController@delete');
+
 Route::get('/questions', 'QuestionsController@index');
 Route::get('/questions/create', 'QuestionsController@create');
 Route::get('/questions/store', 'QuestionsController@store');
