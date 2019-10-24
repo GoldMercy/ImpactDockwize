@@ -9,5 +9,9 @@
     <a href="/cards">
         <button class='btn btn-primary'>Beheer uw fysiek ingevoerde kaartjes!</button>
     </a>
+
+    <a href="/scaleqs">
+        <button class='btn btn-primary'>Voer een schalenvraag in!</button>
+    </a>
 </div>
 @endsection

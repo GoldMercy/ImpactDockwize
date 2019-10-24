@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\CardsController;
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -22,6 +24,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/input', 'PagesController@input');
 
 Route::get('/output', 'PagesController@output');
+
+Route::get('/scaleqs', 'ScaleQsController@index');
+Route::get('/scaleqs/create', 'ScaleQsController@create');
+Route::get('/store', 'ScaleQsController@store');
+Route::get('/scaleqs/edit/{id}', 'ScaleQsController@edit');
+Route::get('/scaleqs/show/{id}', 'ScaleQsController@show');
+Route::get('/scaleqs/update/{id}', 'ScaleQsController@update');
+Route::get('/scaleqs/edit/delete/{id}', 'ScaleQsController@delete');
 
 Route::get('/cards', 'CardsController@index');
 Route::get('/cards/create', 'CardsController@create');

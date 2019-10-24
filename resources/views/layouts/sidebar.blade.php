@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hide/show menu</title>
+    <title>Impact Dockwize</title>
     <style type="text/css">
         *{
             margin: 0;

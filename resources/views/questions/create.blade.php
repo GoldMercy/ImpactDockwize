@@ -43,22 +43,34 @@ $(document).ready(function(e) {
                         <option value="dropdown">Dropdown</option>
                         <option value="meerkeuze">Meerkeuze</option>
                         <option value="open vraag">Open vraag</option>
+                        <option value="schalenvraag">Schaalvraag</option>
                     </select>
                 </div>
-                {{-- <div>
+                <div>
                     <div id="dropdown" class="group">Uit welke opties moet het antwoord bestaan?
-                        {{-- <div id="dropdownoption">
+                        <div id="dropdownoption">
                             <label for="answeroption">Antwoordoptie</label>
                             <input type="text" class="form-control" name="answeroption[]" id="answeroption" placeholder="Wat voor antwoordoptie hoort bij deze vraag?"/>
                             <a href="#" id="add" style="color:black;">Voeg een optie toe.</a>
-                        </div> --}}
-                        {{-- <label for="answeroption">Wat is het antwoordoptie?</label>
-                        <input type="text" class="form-control" name="answeroption" aria-describedby="answeroption" placeholder="Wat is het antwoordoptie?">
+                        </div>
                     </div>
                     <div id="meerkeuze" class="group">Uit welke opties moet het antwoord bestaan?
 
                     </div>
-                </div> --}}
+                    <div id="schalenvraag" class="group">
+                        {{Form::label('schale', 'Schaal van 1 op 10')}}
+                        {{Form::radio('schale', '1')}} 1
+                        {{Form::radio('schale', '2')}} 2
+                        {{Form::radio('schale', '3')}} 3
+                        {{Form::radio('schale', '4')}} 4
+                        {{Form::radio('schale', '5')}} 5
+                        {{Form::radio('schale', '6')}} 6
+                        {{Form::radio('schale', '7')}} 7
+                        {{Form::radio('schale', '8')}} 8
+                        {{Form::radio('schale', '9')}} 9
+                        {{Form::radio('schale', '10')}} 10
+                    </div>  
+                </div>
             </div>
             <div class="row">
                 <a href="/questions">

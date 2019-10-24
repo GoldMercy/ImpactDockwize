@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Card;
 use Illuminate\Support\Facades\DB;
+use App\ScaleQ;
 
-class CardsController extends Controller
+class ScaleQsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class CardsController extends Controller
      */
     public function index()
     {
-        $cards = DB::table('cards')->paginate(20);
-        return view('cards.index')->with('cards', $cards);
+        $scaleqs = DB::table('scaleqs')->paginate(20);
+        return view('scaleqs.index')->with('scaleqs', $scaleqs);
     }
 
     /**
@@ -26,7 +26,8 @@ class CardsController extends Controller
      */
     public function create()
     {
-        return view('cards.create');
+
+        return view('scaleqs/create');
     }
 
     /**
@@ -37,12 +38,18 @@ class CardsController extends Controller
      */
     public function store(Request $request)
     {
-        $card = new Card;
-        $card->card_question = $request->card_question;
-        $card->card_response = $request->card_response;
-        $card->save();
-
-        return redirect('/cards')->with('success', 'Kaart gemaakt!');
+        
+        $this->validate($request, [
+            'scaleq_name' => 'required',
+            'scaleq_score' => 'required'
+        ]);
+        
+        $scaleq = new ScaleQ;
+        $scaleq->scaleq_name = $request->scaleq_name;
+        $scaleq->scaleq_score = $request->scaleq_score;
+        $scaleq->save();
+        
+        return redirect('/scaleqs')->with('success', 'Vraag gemaakt!');
     }
 
     /**
@@ -53,8 +60,8 @@ class CardsController extends Controller
      */
     public function show($id)
     {
-        $card = Card::find($id);
-        return view('cards.show')->with('card', $card);
+        $scaleq = ScaleQ::find($id);
+        return view('scaleqs.show')->with('scaleq', $scaleq);
     }
 
     /**
@@ -65,8 +72,7 @@ class CardsController extends Controller
      */
     public function edit($id)
     {
-        $card = Card::find($id);
-        return view('cards.edit')->with('card', $card);
+        //
     }
 
     /**
@@ -78,12 +84,7 @@ class CardsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $card = Card::find($id);
-        $card->card_question = $request->card_question;
-        $card->card_response = $request->card_response;
-        $card->save();
-
-        return redirect('/cards')->with('success', 'Kaart aangepast!');
+        //
     }
 
     /**
@@ -92,10 +93,8 @@ class CardsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
+    public function destroy($id)
     {
-        $card = Card::find($id);
-        $card->delete();
-        return redirect('/cards')->with('success', 'Kaart verwijderd!');
+        //
     }
 }
