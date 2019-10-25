@@ -45,3 +45,11 @@ Route::get('/admin/edit/{id}', 'AdminController@edit');
 Route::get('/admin/update/{id}', 'AdminController@update');
 Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
 
+Route::get('/downloadPDF/{id}','QuestionsController@downloadPDF');
+
+Route::get('/pdf', function(){
+    //return view('pdf');
+    $pdf = PDF::loadView('pdf');
+    return $pdf->download('test.pdf');
+});
+

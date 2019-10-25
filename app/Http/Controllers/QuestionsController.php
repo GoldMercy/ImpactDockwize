@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\Question;
 use App\Answertype;
@@ -99,4 +100,19 @@ class QuestionsController extends Controller
         $question->delete();
         return redirect('/questions')->with('success', 'Vraag verwijderd!');
     }
+
+    public function downloadPDF() {
+        $question = Question::all();
+        $pdf = PDF::loadView('pdf', compact('question'));
+
+        return $pdf->download('test.pdf');
+    }
+
+//    public function pdfexport($id){
+//        $question = Question::find($id);
+//        $pdf = PDF::loadView('pdf', compact('question'));
+//
+//        $fileName = $question->Titel;
+//        return $pdf->stream($fileName . 'pdf')->with($question, 'question');
+//    }
 }

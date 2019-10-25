@@ -20,5 +20,6 @@
         <a href="/questions/create">
             <button class='btn btn-primary'>Voeg een vraag toe!</button>
         </a>
+    <a href="{{action('QuestionsController@downloadPDF', $question->all)}}">Download PDF</a>
 </div>
 @endsection
