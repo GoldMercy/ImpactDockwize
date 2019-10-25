@@ -81,6 +81,11 @@
                         <button type="button" class="btn btn-danger">Verwijderen</button>
                     </a>
                 </div>
+                <div class="p-2">
+                    <a href="deleteall/{{$business->id}}">
+                        <button type="button" class="btn btn-danger">Verwijder alles</button>
+                    </a>
+                </div>
             </div>
 
         </form>

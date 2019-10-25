@@ -9,13 +9,25 @@
 </head>
 <body>
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="card card-header">
-                <h3>Zoek onderneming</h3>
-                <div class="form-group">
-                    <input type="text" class="form-controller" id="search" name="search">
+    <div class="form-row justify-content-center">
+        <div class="form-row col-sm-12">
+                <div class="form-group col-sm-6">
+                    <label for="datestart">Vanaf Datum</label>
+                    <input type="date" class="form-control" id="datestart" name="datestart">
                 </div>
-            <div class="card card-body">
+                <div class="form-group col-sm-6">
+                    <label for="dateend">Tot Datum</label>
+                    <input type="date" class="form-control" id="dateend" name="dateend">
+                </div>
+        </div>
+        <div class="form-row col-sm-12">
+                <div class="form-group col-sm-6">
+                    <label for="search">Naam Ondernemer/Onderneming</label>
+                    <input type="text" class="form-control" id="search" name="search">
+                </div>
+        </div>
+
+            <div>
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
@@ -37,16 +49,17 @@
                 </table>
             </div>
             </div>
-        </div>
     </div>
 </div>
 <script type="text/javascript">
     $('#search').on('keyup',function(){
         $value=$(this).val();
+        $start=$('#datestart').val();
+        $end=$('#dateend').val();
         $.ajax({
             type : 'get',
             url : '{{URL::to('search')}}',
-            data:{'search':$value},
+            data:{'search':$value, 'datestart':$start, 'dateend':$end},
             success:function(data){
                 $('tbody').html(data);
             }

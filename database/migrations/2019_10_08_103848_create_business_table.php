@@ -25,7 +25,7 @@ class CreateBusinessTable extends Migration
             $table->string('Thema')->nullable();
             $table->string('Doelgroep')->nullable();
             $table->string('Programma')->nullable();
-            $table->dateTime('created_at');
+            $table->date('created_at');
         });
     }
 

@@ -41,7 +41,7 @@ class AdminController extends Controller
         $business->Doelgroep = $request->Doelgroep;
         $business->Thema = $request->Thema;
         $business->Programma = $request->Programma;
-        $business->created_at = date('y-m-d h:i:s');
+        $business->created_at = date('y-m-d');
         $business->save();
 
         return(redirect('/admin'));
@@ -104,6 +104,13 @@ class AdminController extends Controller
             OldBusinessData::find($oldData->id)->delete();
         }
        return(redirect('/admin'));
+    }
+
+    public function deleteAll($id){
+        DB::table('business')->delete($id);
+        DB::table('old_business_data')->where('business_id', $id)->delete();
+
+        return(redirect('/admin'));
     }
 
     /**
