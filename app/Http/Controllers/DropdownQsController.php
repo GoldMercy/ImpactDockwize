@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\ScaleQ;
 
-class ScaleQsController extends Controller
+class DropdownQsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class ScaleQsController extends Controller
      */
     public function index()
     {
-        $scaleqs = DB::table('scaleqs')->paginate(20);
-        return view('scaleqs.index')->with('scaleqs', $scaleqs);
+        //
     }
 
     /**
@@ -26,8 +23,7 @@ class ScaleQsController extends Controller
      */
     public function create()
     {
-
-        return view('scaleqs/create');
+        //
     }
 
     /**
@@ -38,18 +34,7 @@ class ScaleQsController extends Controller
      */
     public function store(Request $request)
     {
-        
-        $this->validate($request, [
-            'scaleq_name' => 'required',
-            'scaleq_score' => 'required'
-        ]);
-        
-        $scaleq = new ScaleQ;
-        $scaleq->scaleq_name = $request->scaleq_name;
-        $scaleq->scaleq_score = $request->scaleq_score;
-        $scaleq->save();
-        
-        return redirect('/scaleqs')->with('success', 'Vraag gemaakt!');
+        //
     }
 
     /**
@@ -60,8 +45,7 @@ class ScaleQsController extends Controller
      */
     public function show($id)
     {
-        $scaleq = ScaleQ::find($id);
-        return view('scaleqs.show')->with('scaleq', $scaleq);
+        //
     }
 
     /**
@@ -72,8 +56,7 @@ class ScaleQsController extends Controller
      */
     public function edit($id)
     {
-        $scaleq = ScaleQ::find($id);
-        return view('scaleqs.edit')->with('scaleq', $scaleq);
+        //
     }
 
     /**
@@ -85,17 +68,7 @@ class ScaleQsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'scaleq_name' => 'required',
-            'scaleq_score' => 'required'
-        ]);
-        
-        $scaleq = ScaleQ::find($id);
-        $scaleq->scaleq_name = $request->scaleq_name;
-        $scaleq->scaleq_score = $request->scaleq_score;
-        $scaleq->save();
-        
-        return redirect('/scaleqs')->with('success', 'Vraag gemaakt!');
+        //
     }
 
     /**

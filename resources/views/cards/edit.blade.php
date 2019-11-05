@@ -2,7 +2,7 @@
 @extends('layouts.navbar')
 @section('content')
 <div class="container">
-    <form method="GET" action="/cards/update{{$card->card_id}}">
+    <form method="GET" action="/cards/update/{{$card->card_id}}">
         @csrf
         <div class="form-group">
             <div class="form-group col-sm-6">

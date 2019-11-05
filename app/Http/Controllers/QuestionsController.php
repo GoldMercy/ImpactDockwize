@@ -37,6 +37,10 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'question_name' => 'required'
+        ]);
+
         $question = new Question;
         $question->question_name = $request->question_name;
         $question->answer_type = $request->answer_type;
@@ -78,6 +82,10 @@ class QuestionsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'question_name' => 'required'
+        ]);
+
         $question = Question::find($id);
         $question->question_name = $request->question_name;
         $question->answer_type = $request->answer_type;
