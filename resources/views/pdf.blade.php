@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="app.css">
     <title>PDF test</title>
 </head>
 <body>
@@ -10,10 +11,10 @@
         <div class="col-md-12">
             <table class="table table-bordered">
                 <tr>
-                    <td>{{$question}}</td>
-                    {{--<td>{{$question->id}}</td>--}}
-                    {{--<td>{{$question->questionName}}</td>--}}
-                    {{--<td>{{$question->answer_type}}</td>--}}
+                    {{--<td>{{$question}}</td>--}}
+                    <td>{{$question->id}}</td>
+                    <td>{{$question->questionName}}</td>
+                    <td>{{$question->answer_type}}</td>
                 </tr>
             </table>
         </div>

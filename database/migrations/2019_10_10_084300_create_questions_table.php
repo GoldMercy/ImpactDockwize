@@ -17,6 +17,8 @@ class CreateQuestionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('questionName');
             $table->string('answer_type');
+            $table->bigInteger('survey_id')->unsigned();
+            $table->foreign('survey_id')->references('id')->on('surveys');
             $table->timestamps();
         });
     }

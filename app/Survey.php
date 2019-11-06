@@ -10,6 +10,10 @@ class Survey extends Model
         'Titel', 'Beschrijving'
     ];
 
+    public function question() {
+        return $this -> belongsToMany(Question::class);
+    }
+
     // Table Name
     protected $table = 'surveys';
     // Primary Key

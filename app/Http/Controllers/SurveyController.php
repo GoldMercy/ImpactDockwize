@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Question;
 use App\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +17,7 @@ class SurveyController extends Controller
 
     public function index()
     {
-        $survey = DB::table('surveys')->paginate(2);
+        $survey = DB::table('surveys')->paginate(3);
         return view('surveys.index', ['survey' => $survey]);
     }
 
@@ -28,8 +29,8 @@ class SurveyController extends Controller
     public function store(Request $request)
     {
         $survey = new Survey;
-        $survey->Titel = $request->Titel;
-        $survey->Beschrijving = $request->Beschrijving;
+        $survey->titel = $request->titel;
+        $survey->beschrijving = $request->beschrijving;
         $survey->save();
 
         return (redirect('/surveys'));
@@ -38,7 +39,8 @@ class SurveyController extends Controller
     public function show($id)
     {
         $survey = Survey::find($id);
-        return view('surveys.show', ['survey' => $survey]);
+        $questions = Question::where('survey_id', $id)->get();
+        return view('surveys.show', ['survey' => $survey], ['questions' => $questions]);
     }
 
     public function edit($id)
@@ -50,8 +52,8 @@ class SurveyController extends Controller
     public function update(Request $request, $id)
     {
         $survey = Survey::find($id);
-        $survey->Titel = $request->Titel;
-        $survey->Beschrijving = $request->Beschrijving;
+        $survey->titel = $request->titel;
+        $survey->beschrijving = $request->beschrijving;
         $survey->save();
 
         return(redirect('/surveys'));

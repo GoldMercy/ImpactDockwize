@@ -17,6 +17,13 @@
                     <option value="Open vraag">Open vraag</option>
                 </select>
             </div>
+            <div class="col-sm-6">
+                <select name="survey_id" class="form-control">
+                    @foreach($surveys as $s)
+                        <option value="{{$s->id}}">{{$s->titel}}</option>
+                        @endforeach
+                </select>
+            </div>
             <div class="row">
                 <a href="/questions">
                     <button type="button" class="btn btn-secondary">Terug</button>

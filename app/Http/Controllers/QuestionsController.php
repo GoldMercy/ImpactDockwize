@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Survey;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\Question;
@@ -28,7 +29,10 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        $surveys = Survey::all();
+        return view('questions.create')->with([
+            'surveys' => $surveys
+            ]);
     }
 
     /**
@@ -39,10 +43,12 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
-        $question = new Question;
-        $question->questionName = $request->questionName;
-        $question->answer_type = $request->answer_type;
-        $question->save();
+
+       $question = Question::create([
+         'questionName' => $request['questionName'],
+           'answer_type' => $request['answer_type'],
+           'survey_id' => $request['survey_id']
+       ]);
 
         return redirect('/questions')->with('success', 'Vraag gemaakt!');
     }
@@ -101,8 +107,8 @@ class QuestionsController extends Controller
         return redirect('/questions')->with('success', 'Vraag verwijderd!');
     }
 
-    public function downloadPDF() {
-        $question = Question::all();
+    public function downloadPDF($id) {
+        $question = Question::find($id);
         $pdf = PDF::loadView('pdf', compact('question'));
 
         return $pdf->download('test.pdf');
