@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Question;
+use App\OpenQ;
 use Illuminate\Support\Facades\DB;
 
-class QuestionsController extends Controller
+class OpenQsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        $questions = DB::table('questions')->paginate(20);
-        return view('questions.index')->with('questions', $questions);
+        $openqs = DB::table('openqs')->paginate(20);
+        return view('openqs.index')->with('openqs', $openqs);
     }
 
     /**
@@ -26,7 +26,7 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        return view('openqs.create');
     }
 
     /**
@@ -38,15 +38,14 @@ class QuestionsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'question_name' => 'required'
+            'openq_name' => 'required'
         ]);
 
-        $question = new Question;
-        $question->question_name = $request->question_name;
-        $question->answer_type = $request->answer_type;
-        $question->save();
+        $openq = new OpenQ;
+        $openq->openq_name = $request->openq_name;
+        $openq->save();
 
-        return redirect('/questions')->with('success', 'Vraag gemaakt!');
+        return redirect('/openqs')->with('success', 'Vraag gemaakt!');
     }
 
     /**
@@ -57,8 +56,8 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = Question::find($id);
-        return view('questions.show')->with('question', $question);
+        $openq = OpenQ::find($id);
+        return view('openqs.show')->with('openq', $openq);
     }
 
     /**
@@ -69,8 +68,8 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        $question = Question::find($id);
-        return view('questions.edit')->with('question', $question);
+        $openq = OpenQ::find($id);
+        return view('openqs.edit')->with('openq', $openq);
     }
 
     /**
@@ -83,16 +82,15 @@ class QuestionsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'question_name' => 'required'
+            'openq_name' => 'required'
         ]);
 
-        $question = Question::find($id);
-        $question->question_name = $request->question_name;
-        $question->answer_type = $request->answer_type;
-        $question->save();
+        $openq = OpenQ::find($id);
+        $openq->openq_name = $request->openq_name;
+        $openq->save();
         
            
-        return redirect('/questions')->with('success', 'Vraag aangepast!');
+        return redirect('/openqs')->with('success', 'Vraag aangepast!');
     }
 
     /**
@@ -103,8 +101,8 @@ class QuestionsController extends Controller
      */
     public function delete($id)
     {
-        $question = Question::find($id);
-        $question->delete();
-        return redirect('/questions')->with('success', 'Vraag verwijderd!');
+        $openq = OpenQ::find($id);
+        $openq->delete();
+        return redirect('/openqs')->with('success', 'Vraag verwijderd!');
     }
 }

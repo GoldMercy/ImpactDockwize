@@ -2,12 +2,12 @@
 @extends('layouts.navbar')
 @section('content')
 <div class="container">
-    <h1>{{$question->question_name}}</h1>
+    <h1>{{$openq->openq_name}}</h1>
     <div class="row">
-        <a href="/questions/edit/{{$question->id}}">
+        <a href="/openqs/edit/{{$openq->openq_id}}">
             <button type="button" class="btn btn-primary">Pas de vraag aan</button>
         </a>
-        <a href="/questions">
+        <a href="/openqs">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
     </div>

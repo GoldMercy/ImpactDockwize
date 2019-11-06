@@ -41,13 +41,13 @@ Route::get('/cards/show/{id}', 'CardsController@show');
 Route::get('/cards/update/{id}', 'CardsController@update');
 Route::get('/cards/edit/delete/{id}', 'CardsController@delete');
 
-Route::get('/questions', 'QuestionsController@index');
-Route::get('/questions/create', 'QuestionsController@create');
-Route::get('/questions/store', 'QuestionsController@store');
-Route::get('/questions/edit/{id}', 'QuestionsController@edit');
-Route::get('/questions/show/{id}', 'QuestionsController@show');
-Route::get('/questions/update/{id}', 'QuestionsController@update');
-Route::get('/questions/edit/delete/{id}', 'QuestionsController@delete');
+Route::get('/openqs', 'OpenQsController@index');
+Route::get('/openqs/create', 'OpenQsController@create');
+Route::get('/openqs/store', 'OpenQsController@store');
+Route::get('/openqs/edit/{id}', 'OpenQsController@edit');
+Route::get('/openqs/show/{id}', 'OpenQsController@show');
+Route::get('/openqs/update/{id}', 'OpenQsController@update');
+Route::get('/openqs/edit/delete/{id}', 'OpenQsController@delete');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/create', 'AdminController@create');
