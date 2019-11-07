@@ -10,6 +10,7 @@
         }
 
         #sidebar{
+            top: 0px;
             z-index: 1001;
             position: fixed;
             width: 200px;
@@ -82,6 +83,12 @@
         </a>
     </div>
     <ul id="buttons">
+        <li><a class href="{{ url('/home') }}">Dashboard</a></li>
+        <li><a href="{{ url('/input') }}">Input</a></li>
+        <li><a href="{{ url('/output') }}">Output</a></li>
+        <li><a href="{{ url('/admin') }}">Admin</a></li>
+        <li><a href="{{ url('/searching') }}">History</a></li>
+        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
         <li><a class="sidebar" href="{{ url('/home') }}">Dashboard</a></li>
         <li><a class="sidebar" href="{{ url('/input') }}">Input</a></li>
         <li><a class="sidebar" href="{{ url('/output') }}">Output</a></li>
