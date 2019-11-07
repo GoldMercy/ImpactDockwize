@@ -470,7 +470,9 @@
         },
         {
             "name": "laravel/framework",
+
             "version": "v6.5.0",
+          
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
@@ -478,6 +480,7 @@
             },
             "dist": {
                 "type": "zip",
+
                 "url": "https://api.github.com/repos/laravel/framework/zipball/6d120a21ef0c69630e92dec67932ef434c746019",
                 "reference": "6d120a21ef0c69630e92dec67932ef434c746019",
                 "shasum": ""
@@ -612,7 +615,9 @@
                 "framework",
                 "laravel"
             ],
+
             "time": "2019-11-05T14:32:58+00:00"
+
         },
         {
             "name": "laravel/tinker",
@@ -747,6 +752,7 @@
         },
         {
             "name": "league/flysystem",
+
             "version": "1.0.57",
             "source": {
                 "type": "git",
@@ -760,13 +766,13 @@
                 "shasum": ""
             },
             "require": {
-                "ext-fileinfo": "*",
                 "php": ">=5.5.9"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
             },
             "require-dev": {
+                "ext-fileinfo": "*",
                 "phpspec/phpspec": "^3.4",
                 "phpunit/phpunit": "^5.7.10"
             },
@@ -827,7 +833,9 @@
                 "sftp",
                 "storage"
             ],
+
             "time": "2019-10-16T21:01:05+00:00"
+
         },
         {
             "name": "monolog/monolog",
