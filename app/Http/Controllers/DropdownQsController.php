@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\DropdownQ;
+use App\QOption;
+use Illuminate\Support\Facades\DB;
 
 class DropdownQsController extends Controller
 {
@@ -13,7 +16,8 @@ class DropdownQsController extends Controller
      */
     public function index()
     {
-        
+        $dropdownqs = DB::table('dropdownqs')->paginate(20);
+        return view('dropdownqs.index')->with('dropdownqs', $dropdownqs);;
     }
 
     /**
@@ -23,7 +27,10 @@ class DropdownQsController extends Controller
      */
     public function create()
     {
-        //
+        $qoptions = QOption::all();
+        return view('dropdownqs.create')->with([
+            'qoptions' => $qoptions
+            ]);
     }
 
     /**
@@ -34,7 +41,11 @@ class DropdownQsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dropdownq = new DropdownQ;
+        $dropdownq->dropdownq_name = $request->dropdownq_name;
+        $dropdownq->save();
+
+        return redirect('/dropdownqs')->with('success', 'Vraag gemaakt!');
     }
 
     /**
@@ -45,7 +56,12 @@ class DropdownQsController extends Controller
      */
     public function show($id)
     {
-        //
+        $dropdownq = DropdownQ::find($id);
+        $qoptions = QOption::where('dropdownq_fk', $id)->get();
+        return view('dropdownqs.show', ['dropdownq' => $dropdownq], ['qoptions' => $qoptions]);
+
+        // $dropdownq = DropdownQ::find($id);
+        // return view('dropdownqs.show')->with('dropdownq', $dropdownq);
     }
 
     /**
@@ -56,7 +72,8 @@ class DropdownQsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dropdownq = DropdownQ::find($id);
+        return view('dropdownqs.edit')->with('dropdownq', $dropdownq);
     }
 
     /**
@@ -68,7 +85,16 @@ class DropdownQsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'dropdownq_name' => 'required'
+        ]);
+
+        $dropdownq = DropdownQ::find($id);
+        $dropdownq->dropdownq_name = $request->dropdownq_name;
+        $dropdownq->save();
+        
+           
+        return redirect('/dropdownqs')->with('success', 'Vraag aangepast!');
     }
 
     /**
@@ -77,8 +103,10 @@ class DropdownQsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $dropdownq = DropdownQ::find($id);
+        $dropdownq->delete();
+        return redirect('/dropdownqs')->with('success', 'Vraag verwijderd!');
     }
 }
