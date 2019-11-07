@@ -13,7 +13,7 @@
             @endforeach
         @else
             <div class="alert alert-danger">
-                {{session('error', 'Geen vragen gevonden.')}}
+                {{session('error', 'Geen schalen vragen gevonden.')}}
             </div>
         @endif
         <a href="/scaleqs/create">

@@ -13,6 +13,15 @@
     <a href="/scaleqs">
         <button class='btn btn-primary'>Voer een schalenvraag in!</button>
     </a>
+
+    <a href="/dropdownqs">
+        <button class='btn btn-primary'>Voer een dropdownvraag in!</button>
+    </a>
+
+    <a href="/qoptions/create">
+        <button class='btn btn-primary'>Voer een opties voor vragen in!</button>
+    </a>
+
     <a href="/surveys">
         <button class='btn btn-primary'>Beheer uw vragenlijsten!</button>
     </a>
