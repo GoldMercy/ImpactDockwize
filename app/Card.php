@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class Card extends Model
 {
     // Table Name
-    protected $table = 'questions';
+    protected $table = 'cards';
     // Primary Key
-    public $primaryKey = 'id';
+    public $primaryKey = 'card_id';
     // Timestamps
     public $timestamps = true;
 }

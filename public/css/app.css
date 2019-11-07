@@ -170,9 +170,13 @@ sup {
 }
 
 a {
-  color: white;
+  color: black;
   text-decoration: none;
   background-color: transparent;
+}
+
+a.sidebar{
+  color:white
 }
 
 a:hover {
@@ -5359,6 +5363,8 @@ a.badge-dark.focus {
   color: #1d643b;
   background-color: #d7f3e3;
   border-color: #c7eed8;
+  margin-left: 22%;
+  margin-right: 22%;
 }
 
 .alert-success hr {

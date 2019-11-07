@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Question;
+use Illuminate\Support\Facades\DB;
+use App\ScaleQ;
 
-class QuestionsController extends Controller
+class ScaleQsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,8 @@ class QuestionsController extends Controller
      */
     public function index()
     {
-        // $questions = Question::orderBy('questionName', 'desc')->get();
-        $questions = Question::all();
-        return view('questions.index')->with('questions', $questions);
+        $scaleqs = DB::table('scaleqs')->paginate(20);
+        return view('scaleqs.index')->with('scaleqs', $scaleqs);
     }
 
     /**
@@ -26,7 +26,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+
+        return view('scaleqs/create');
     }
 
     /**
@@ -37,16 +38,18 @@ class QuestionsController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request, [
-            'questionName' => 'required',
+            'scaleq_name' => 'required',
+            'scaleq_score' => 'required'
         ]);
-
-        // Maak een vraag
-        $question = new Question;
-        $question->questionName = $request->input('questionName');
-        $question->save();
-            
-        return redirect('/questions')->with('success', 'Vraag gemaakt!');
+        
+        $scaleq = new ScaleQ;
+        $scaleq->scaleq_name = $request->scaleq_name;
+        $scaleq->scaleq_score = $request->scaleq_score;
+        $scaleq->save();
+        
+        return redirect('/scaleqs')->with('success', 'Vraag gemaakt!');
     }
 
     /**
@@ -57,8 +60,8 @@ class QuestionsController extends Controller
      */
     public function show($id)
     {
-        $question = Question::find($id);
-        return view('questions.show')->with('question', $question);
+        $scaleq = ScaleQ::find($id);
+        return view('scaleqs.show')->with('scaleq', $scaleq);
     }
 
     /**
@@ -69,8 +72,8 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        $question = Question::find($id);
-        return view('questions.edit')->with('question', $question);
+        $scaleq = ScaleQ::find($id);
+        return view('scaleqs.edit')->with('scaleq', $scaleq);
     }
 
     /**
@@ -83,15 +86,16 @@ class QuestionsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'questionName' => 'required',
+            'scaleq_name' => 'required',
+            'scaleq_score' => 'required'
         ]);
-
-        // Pas een vraag aan
-        $question = Question::find($id);
-        $question->questionName = $request->input('questionName');
-        $question->save();
-           
-        return redirect('/questions')->with('success', 'Vraag aangepast!');
+        
+        $scaleq = ScaleQ::find($id);
+        $scaleq->scaleq_name = $request->scaleq_name;
+        $scaleq->scaleq_score = $request->scaleq_score;
+        $scaleq->save();
+        
+        return redirect('/scaleqs')->with('success', 'Vraag gemaakt!');
     }
 
     /**
@@ -102,8 +106,6 @@ class QuestionsController extends Controller
      */
     public function destroy($id)
     {
-        $question = Question::find($id);
-        $question->delete();
-        return redirect('/questions')->with('success', 'Vraag verwijderd!');
+        //
     }
 }
