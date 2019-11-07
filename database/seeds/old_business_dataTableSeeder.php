@@ -15,7 +15,7 @@ class old_business_dataTableSeeder extends Seeder
     {
         $faker = Faker::create('nl_NL');
         for($i=0; $i<=100; $i++):
-            DB::table('business')->insert([
+            DB::table('old_business_data')->insert([
                 'business_id' => $faker->numberBetween(1, 100),
                 'Ondernemer' => $faker->name,
                 'Onderneming' => $faker->company,

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             SurveysTableSeeder::class,
             OpenqsTableSeeder::class,
             UsersTableSeeder::class,
+            old_business_dataTableSeeder::class,
         ]);
     }
 }
