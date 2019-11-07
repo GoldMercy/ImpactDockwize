@@ -28,11 +28,10 @@ class OpenQsController extends Controller
      */
     public function create()
     {
-/*        $surveys = Survey::all();
-        return view('questions.create')->with([
+        $surveys = Survey::all();
+        return view('openqs.create')->with([
             'surveys' => $surveys
-            ]);*/
-        return view('openqs.create');
+            ]);
     }
 
     /**
@@ -43,17 +42,9 @@ class OpenQsController extends Controller
      */
     public function store(Request $request)
     {
-/*       $question = Question::create([
-         'questionName' => $request['questionName'],
-           'answer_type' => $request['answer_type'],
-           'survey_id' => $request['survey_id']
-       ]);
-        $this->validate($request, [
-            'openq_name' => 'required'
-        ]);*/
-
         $openq = new OpenQ;
         $openq->openq_name = $request->openq_name;
+        $openq->survey_id = $request->survey_id;
         $openq->save();
 
         return redirect('/openqs')->with('success', 'Vraag gemaakt!');

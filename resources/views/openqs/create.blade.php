@@ -9,6 +9,12 @@
                 <label for="openq_name">Hoe heet de vraag?</label>
                 <input type="text" class="form-control" name="openq_name" aria-describedby="openq_name" placeholder="Hoe heet de vraag?">
             </div>
+            <div class="col-sm-6">
+                <select name="survey_id" class="form-control">
+                    @foreach($surveys as $s)
+                        <option placeholder="" value="{{$s->id}}">{{$s->titel}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="row">
                 <a href="/openqs">
