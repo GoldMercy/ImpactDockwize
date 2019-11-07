@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Question extends Model
+class OpenQ extends Model
 {
     // Table Name
-    protected $table = 'questions';
+    protected $table = 'openqs';
     // Primary Key
-    public $primaryKey = 'id';
+    public $primaryKey = 'openq_id';
     // Timestamps
     public $timestamps = true;
 }
