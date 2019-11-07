@@ -20,11 +20,10 @@
     <table class="container">
         <tr>
             <th>Vraag</th>
-            <th>Type</th>
         </tr>
-        @foreach($openqs as $q)
+        @foreach($openqs as $oq)
         <tr>
-            <td>{{$q->openq_name}}</td>
+            <td>{{$oq->openq_name}}</td>
         </tr>
             @endforeach
     </table>
