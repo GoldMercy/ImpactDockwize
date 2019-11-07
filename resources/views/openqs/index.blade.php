@@ -16,6 +16,7 @@
                 {{session('error', 'Geen open vragen gevonden.')}}
             </div>
         @endif
+        <hr>
         <a href="/openqs/create">
             <button class='btn btn-primary'>Voeg een vraag toe!</button>
         </a>

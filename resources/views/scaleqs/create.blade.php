@@ -16,6 +16,7 @@
                 <input type="number" name="scaleq_score" min="1" max="10" class="form-control">
             </div>
         </div>
+        <hr>
         <div class="form-row">
             <a href="/scaleqs">
                 <button type="button" class="btn btn-secondary">Terug</button>

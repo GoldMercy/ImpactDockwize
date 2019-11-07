@@ -9,7 +9,9 @@
                 <label for="dropdownq_name">Hoe moet de vraag gaan heten?</label>
                 <input type="text" class="form-control" name="dropdownq_name" aria-describedby="dropdownq_name" value="{{$dropdownq->dropdownq_name}}">
             </div>
-
+        </div>
+        <hr>
+        <div class="form-row">
             <a href="/dropdownqs/show/{{$dropdownq->dropdownq_id}}">
                 <button type="button" class="btn btn-secondary">Terug</button>
             </a>

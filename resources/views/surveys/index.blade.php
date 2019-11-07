@@ -17,6 +17,7 @@
                 {{session('error', 'Geen vragenlijsten gevonden.')}}
             </div>
         @endif
+        <hr>
     <div class="container">
         <div class="col-sm-1 p-2">
             <a href="{{ url('/surveys/create') }}">

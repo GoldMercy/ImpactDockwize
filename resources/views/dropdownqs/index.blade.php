@@ -16,6 +16,8 @@
                 {{session('error', 'Geen dropdown vragen gevonden.')}}
             </div>
         @endif
+
+        <hr>
         <a href="/dropdownqs/create">
             <button class='btn btn-primary'>Voeg een vraag toe!</button>
         </a>

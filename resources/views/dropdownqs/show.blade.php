@@ -16,7 +16,7 @@
         </tr>
         @endforeach
     </table>
-
+    <hr>
     <a href="/dropdownqs/edit/{{$dropdownq->dropdownq_id}}">
         <button type="button" class="btn btn-primary">Pas de vraag aan</button>
     </a>

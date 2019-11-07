@@ -16,6 +16,7 @@
                 {{session('error', 'Geen schalen vragen gevonden.')}}
             </div>
         @endif
+        <hr>
         <a href="/scaleqs/create">
             <button class='btn btn-primary'>Voeg een schalenvraag toe!</button>
         </a>

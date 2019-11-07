@@ -14,6 +14,7 @@
                 <input type="text" class="form-control" name="card_response" aria-describedby="card_response" placeholder="Wat was het antwoord op de kaart?">
             </div>
         </div>
+        <hr>
         <div class="form-group col-sm-6">
             <a href="/cards">
                 <button type="button" class="btn btn-secondary">Terug</button>

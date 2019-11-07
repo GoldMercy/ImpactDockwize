@@ -10,6 +10,7 @@
                 <input type="text" class="form-control" name="dropdownq_name" aria-describedby="dropdownq_name" placeholder="Hoe heet de vraag?">
             </div>
         </div>
+        <hr>
         <div class="form-row">
             <a href="/dropdownqs">
                 <button type="button" class="btn btn-secondary">Terug</button>

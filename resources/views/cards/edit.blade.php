@@ -14,6 +14,7 @@
                 <input type="text" class="form-control" name="card_response" aria-describedby="card_response" value="{{$card->card_response}}">
             </div>
         </div>
+        <hr>
         <div class="form-group col-sm-6">
             <a href="/cards/show/{{$card->card_id}}">
                 <button type="button" class="btn btn-secondary">Terug</button>

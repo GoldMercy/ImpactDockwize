@@ -20,6 +20,7 @@
                 </select>
             </div>
         </div>
+        <hr>
         <div class="form-row">
             <a href="/openqs">
                 <button type="button" class="btn btn-secondary">Terug</button>

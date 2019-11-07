@@ -9,7 +9,8 @@
                 <label for="openq_name">Hoe moet de vraag gaan heten?</label>
                 <input type="text" class="form-control" name="openq_name" aria-describedby="openq_name" value="{{$openq->openq_name}}">
             </div>
-
+        </div>
+        <div class="form-row">
             <a href="/openqs/show/{{$openq->openq_id}}">
                 <button type="button" class="btn btn-secondary">Terug</button>
             </a>

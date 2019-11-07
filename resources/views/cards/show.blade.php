@@ -8,6 +8,7 @@
     <hr>
     <h2>Dit was het antwoord op de vraag:</h2>
     <h3>{{$card->card_response}}</h3>
+    <hr>
     <div class="row">
         <a href="/cards/edit/{{$card->card_id}}">
             <button type="button" class="btn btn-primary">Pas de kaart aan</button>
