@@ -13,5 +13,8 @@
     <a href="/scaleqs">
         <button class='btn btn-primary'>Voer een schalenvraag in!</button>
     </a>
+    <a href="/surveys">
+        <button class='btn btn-primary'>Beheer uw vragenlijsten!</button>
+    </a>
 </div>
 @endsection

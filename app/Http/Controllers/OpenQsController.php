@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Survey;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\OpenQ;
 use Illuminate\Support\Facades\DB;
@@ -26,6 +28,10 @@ class OpenQsController extends Controller
      */
     public function create()
     {
+/*        $surveys = Survey::all();
+        return view('questions.create')->with([
+            'surveys' => $surveys
+            ]);*/
         return view('openqs.create');
     }
 
@@ -37,9 +43,14 @@ class OpenQsController extends Controller
      */
     public function store(Request $request)
     {
+/*       $question = Question::create([
+         'questionName' => $request['questionName'],
+           'answer_type' => $request['answer_type'],
+           'survey_id' => $request['survey_id']
+       ]);
         $this->validate($request, [
             'openq_name' => 'required'
-        ]);
+        ]);*/
 
         $openq = new OpenQ;
         $openq->openq_name = $request->openq_name;
@@ -105,4 +116,19 @@ class OpenQsController extends Controller
         $openq->delete();
         return redirect('/openqs')->with('success', 'Vraag verwijderd!');
     }
+
+/*    public function downloadPDF($id) {
+        $question = Question::find($id);
+        $pdf = PDF::loadView('pdf', compact('question'));
+
+        return $pdf->download('test.pdf');
+    }*/
+
+//    public function pdfexport($id){
+//        $question = Question::find($id);
+//        $pdf = PDF::loadView('pdf', compact('question'));
+//
+//        $fileName = $question->Titel;
+//        return $pdf->stream($fileName . 'pdf')->with($question, 'question');
+//    }
 }

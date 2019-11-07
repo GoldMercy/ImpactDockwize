@@ -25,6 +25,14 @@ Route::get('/input', 'PagesController@input');
 
 Route::get('/output', 'PagesController@output');
 
+Route::get('/surveys', 'SurveyController@index');
+Route::get('/surveys/create', 'SurveyController@create');
+Route::get('/surveys/store', 'SurveyController@store');
+Route::get('/surveys/edit/{id}', 'SurveyController@edit');
+Route::get('/surveys/show/{id}', 'SurveyController@show');
+Route::get('/surveys/update/{id}', 'SurveyController@update');
+Route::get('/surveys/edit/delete/{id}', 'SurveyController@delete');
+
 Route::get('/scaleqs', 'ScaleQsController@index');
 Route::get('/scaleqs/create', 'ScaleQsController@create');
 Route::get('/store', 'ScaleQsController@store');
@@ -55,4 +63,12 @@ Route::get('/admin/store', 'AdminController@store');
 Route::get('/admin/edit/{id}', 'AdminController@edit');
 Route::get('/admin/update/{id}', 'AdminController@update');
 Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
+
+Route::get('/downloadPDF/{id}','QuestionsController@downloadPDF');
+
+Route::get('/pdf', function(){
+    //return view('pdf');
+    $pdf = PDF::loadView('pdf');
+    return $pdf->download('test.pdf');
+});
 
