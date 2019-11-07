@@ -10,6 +10,14 @@
             <td>{{$survey->titel}}</td>
             <td>{{$survey->beschrijving}}</td>
         </tr>
+<<<<<<< HEAD
+=======
+        <div class="row">
+            <a href="/surveys">
+                <button type="button" class="btn btn-secondary">Ga terug</button>
+            </a>
+        </div>
+>>>>>>> 4bd08c6443f3daace82ddcbb8ce394482e5faab8
     </table>
     <hr>
     <table class="container">

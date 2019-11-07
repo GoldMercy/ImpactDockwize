@@ -17,7 +17,7 @@ class OpenQsController extends Controller
      */
     public function index()
     {
-        $openqs = DB::table('openqs')->paginate(20);
+        $openqs = DB::table('openqs')->paginate(100);
         return view('openqs.index')->with('openqs', $openqs);
     }
 

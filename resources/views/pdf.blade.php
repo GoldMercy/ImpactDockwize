@@ -12,9 +12,8 @@
             <table class="table table-bordered">
                 <tr>
                     {{--<td>{{$question}}</td>--}}
-                    <td>{{$question->id}}</td>
-                    <td>{{$question->questionName}}</td>
-                    <td>{{$question->answer_type}}</td>
+                    <td>{{$openqs->openq_id}}</td>
+                    <td>{{$openqs->openq_name}}</td>
                 </tr>
             </table>
         </div>
