@@ -17,7 +17,7 @@ class SurveyController extends Controller
 
     public function index()
     {
-        $survey = DB::table('surveys')->paginate(3);
+        $survey = DB::table('surveys')->paginate(25);
         return view('surveys.index', ['survey' => $survey]);
     }
 
