@@ -24,8 +24,10 @@ class AdminController extends Controller
 
     public function create()
     {
+        $themes = DB::table('themes')->get();
+        $programs = DB::table('programs')->get();
 
-        return view('admin.create');
+        return view('admin.create', ['themes' =>$themes], ['programs' => $programs]);
     }
 
     public function store(Request $request)
@@ -50,8 +52,10 @@ class AdminController extends Controller
     public function edit($id)
     {
         $business = DB::table('business')->find($id);
+        $themes = DB::table('themes')->get();
+        $programs = DB::table('programs')->get();
 
-        return view('admin.edit', ['business' => $business]);
+        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes]);
     }
 
     public function update(Request $request, $id)

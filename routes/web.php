@@ -64,6 +64,7 @@ Route::get('/admin/edit/{id}', 'AdminController@edit');
 Route::get('/admin/update/{id}', 'AdminController@update');
 Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
 Route::get('/admin/edit/deleteall/{id}', 'AdminController@deleteAll');
+Route::get('/admin/find', 'AdminController@find');
 
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 

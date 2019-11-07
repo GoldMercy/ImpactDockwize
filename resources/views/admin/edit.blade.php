@@ -46,21 +46,25 @@
             <div class="form-group col-sm-3">
                 <label for="Thema">Thema</label>
                 <select name="Thema" class="form-control">
-                    <option selected>Geen</option>
-                    <option>ICT</option>
-                    <option>Dienstverlening</option>
-                    <option>Gezondheid</option>
-                    <option>Zorg</option>
+                    @foreach($themes as $theme)
+                        @if($business->Thema == $theme->name)
+                            <option selected>{{$theme->name}}</option>
+                        @else
+                        <option>{{$theme->name}}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
             <div class="form-group col-sm-3">
                 <label for="Programma">Programma</label>
                 <select name="Programma" class="form-control">
-                    <option selected>Geen</option>
-                    <option>Kickstarter</option>
-                    <option>Accelerator</option>
-                    <option>X</option>
-                    <option>etc.</option>
+                    @foreach($programs as $program)
+                        @if($business->Programma == $program->name)
+                            <option selected>{{$program->name}}</option>
+                        @else
+                            <option>{{$program->name}}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
             </div>

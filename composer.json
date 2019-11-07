@@ -14,7 +14,8 @@
         "illuminate/support": "^6.3",
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
-        "laravelcollective/html": "^6.0.3"
+        "laravelcollective/html": "^6.0.3",
+        "nicolaslopezj/searchable": "1.*"
     },
     "require-dev": {
         "facade/ignition": "^1.4",
