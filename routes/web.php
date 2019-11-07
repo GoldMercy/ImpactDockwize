@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\CardsController;
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -31,13 +33,29 @@ Route::get('/surveys/show/{id}', 'SurveyController@show');
 Route::get('/surveys/update/{id}', 'SurveyController@update');
 Route::get('/surveys/edit/delete/{id}', 'SurveyController@delete');
 
-Route::get('/questions', 'QuestionsController@index');
-Route::get('/questions/create', 'QuestionsController@create');
-Route::get('/questions/store', 'QuestionsController@store');
-Route::get('/questions/edit/{id}', 'QuestionsController@edit');
-Route::get('/questions/show/{id}', 'QuestionsController@show');
-Route::get('/questions/update/{id}', 'QuestionsController@update');
-Route::get('/questions/edit/delete/{id}', 'QuestionsController@delete');
+Route::get('/scaleqs', 'ScaleQsController@index');
+Route::get('/scaleqs/create', 'ScaleQsController@create');
+Route::get('/store', 'ScaleQsController@store');
+Route::get('/scaleqs/edit/{id}', 'ScaleQsController@edit');
+Route::get('/scaleqs/show/{id}', 'ScaleQsController@show');
+Route::get('/scaleqs/update/{id}', 'ScaleQsController@update');
+Route::get('/scaleqs/edit/delete/{id}', 'ScaleQsController@delete');
+
+Route::get('/cards', 'CardsController@index');
+Route::get('/cards/create', 'CardsController@create');
+Route::get('/cards/store', 'CardsController@store');
+Route::get('/cards/edit/{id}', 'CardsController@edit');
+Route::get('/cards/show/{id}', 'CardsController@show');
+Route::get('/cards/update/{id}', 'CardsController@update');
+Route::get('/cards/edit/delete/{id}', 'CardsController@delete');
+
+Route::get('/openqs', 'OpenQsController@index');
+Route::get('/openqs/create', 'OpenQsController@create');
+Route::get('/openqs/store', 'OpenQsController@store');
+Route::get('/openqs/edit/{id}', 'OpenQsController@edit');
+Route::get('/openqs/show/{id}', 'OpenQsController@show');
+Route::get('/openqs/update/{id}', 'OpenQsController@update');
+Route::get('/openqs/edit/delete/{id}', 'OpenQsController@delete');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/create', 'AdminController@create');
