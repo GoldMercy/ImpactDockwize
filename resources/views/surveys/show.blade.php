@@ -27,12 +27,10 @@
     <table class="container">
         <tr>
             <th>Vraag</th>
-            <th>Type</th>
         </tr>
-        @foreach($questions as $q)
+        @foreach($openqs as $oq)
         <tr>
-            <td>{{$q->questionName}}</td>
-            <td>{{$q->answer_type}}</td>
+            <td>{{$oq->openq_name}}</td>
         </tr>
             @endforeach
     </table>
