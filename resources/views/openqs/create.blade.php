@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.navbar')
+@extends('layouts.sidebar')
 @section('content')
 <div class="container">
     <form method="GET" action="/openqs/store">
@@ -21,11 +21,11 @@
             </div>
         </div>
         <hr>
-        <div class="form-row">
+        <div class="form-group col-sm-6">
             <a href="/openqs">
                 <button type="button" class="btn btn-secondary">Terug</button>
             </a>
-                <button type="submit" class="btn btn-primary">Toevoegen</button>
+                <button type="submit" class="btn btn-success">Toevoegen</button>
         </div>
     </form>
 </div>

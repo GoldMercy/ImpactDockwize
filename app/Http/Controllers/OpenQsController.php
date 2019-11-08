@@ -17,7 +17,7 @@ class OpenQsController extends Controller
      */
     public function index()
     {
-        $openqs = DB::table('openqs')->paginate(100);
+        $openqs = DB::table('openqs')->paginate(20);
         return view('openqs.index')->with('openqs', $openqs);
     }
 
@@ -42,6 +42,11 @@ class OpenQsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'openq_name' => 'required',
+            'survey_id' => 'required'
+        ]);
+        
         $openq = new OpenQ;
         $openq->openq_name = $request->openq_name;
         $openq->survey_id = $request->survey_id;
@@ -84,11 +89,13 @@ class OpenQsController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'openq_name' => 'required'
+            'openq_name' => 'required',
+            'survey_id' => 'required'
         ]);
 
         $openq = OpenQ::find($id);
         $openq->openq_name = $request->openq_name;
+        $openq->survey_id = $request->survey_id;
         $openq->save();
         
            

@@ -2,12 +2,13 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container">
-    <h1>Bekijk uw vragen!</h1>
+    <div>
+        <h1>Bekijk uw open vragen!</h1>
         @if(count($openqs) > 0)
             @foreach($openqs as $openq)
                 <div class="card">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="/openqs/show/{{$openq->openq_id}}">{{$openq->openq_name}}</a></li>
+                        <li class="list-group-item"><a href="/openqs/show/{{$openq->openq_id}}">{{$openq->openq_name}}</a>
                     </ul>
                 </div> 
             @endforeach
@@ -16,9 +17,15 @@
                 {{session('error', 'Geen open vragen gevonden.')}}
             </div>
         @endif
-        <hr>
+    </div>
+    <hr>
+    <div class="form-group">
         <a href="/openqs/create">
-            <button class='btn btn-primary'>Voeg een vraag toe!</button>
+            <button class='btn btn-primary'>Voeg een open vraag toe!</button>
         </a>
+    </div>
+    <div class="row justify-content-center">
+        {{$openqs->links()}}
+    </div>
 </div>
 @endsection

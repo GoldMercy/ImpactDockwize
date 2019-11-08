@@ -37,6 +37,11 @@ class CardsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'card_question' => 'required',
+            'card_response' => 'required'
+        ]);
+        
         $card = new Card;
         $card->card_question = $request->card_question;
         $card->card_response = $request->card_response;
@@ -78,6 +83,11 @@ class CardsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'card_question' => 'required',
+            'card_response' => 'required'
+        ]);
+
         $card = Card::find($id);
         $card->card_question = $request->card_question;
         $card->card_response = $request->card_response;

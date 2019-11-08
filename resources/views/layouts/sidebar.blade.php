@@ -55,15 +55,16 @@
             width: 100%;
         }
 
-        a {
+        #sidebar a {
             outline: none;
             text-decoration: none;
             display: inline-block;
-            width: 100%;
             text-align: center;
-            line-height: 3;
-            color: black;
+            width: 100%;
+            line-height: 1;
+            color: white;
         }
+
 
     </style>
     <script type="text/javascript">
@@ -73,6 +74,7 @@
     </script>
 </head>
 <body>
+
 <div id="sidebar">
     <div class="toggle-btn" onclick="toggleSidebar()"><a>
             <span></span>
