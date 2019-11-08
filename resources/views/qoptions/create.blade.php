@@ -2,27 +2,27 @@
 @extends('layouts.navbar')
 @section('content')
 <div class="container">
-    <form method="GET" action="/openqs/store">
+    <form method="GET" action="/qoptions/store">
         @csrf
         <div class="form-row">
             <div class="form-group col-sm-6">
-                <label for="openq_name">Hoe heet de vraag?</label>
-                <input type="text" class="form-control" name="openq_name" aria-describedby="openq_name" placeholder="Hoe heet de vraag?">
+                <label for="option_name">Wat voor optie wilt u toevoegen?</label>
+                <input type="text" class="form-control" name="option_name" aria-describedby="option_name" placeholder="Optie">
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-sm-6">
-                <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
-                <select name="survey_id" class="form-control">
-                    @foreach($surveys as $s)
-                        <option value="{{$s->id}}">{{$s->titel}}</option>
+                <label for="dropdownq_fk">Bij welke dropdown vraag hoort de optie?</label>
+                <select name="dropdownq_fk" class="form-control">
+                    @foreach($dropdownqs as $dqs)
+                        <option value="{{$dqs->dropdownq_id}}">{{$dqs->dropdownq_name}}</option>
                     @endforeach
                 </select>
             </div>
         </div>
         <hr>
         <div class="form-row">
-            <a href="/openqs">
+            <a href="/qoptions/create">
                 <button type="button" class="btn btn-secondary">Terug</button>
             </a>
                 <button type="submit" class="btn btn-primary">Toevoegen</button>

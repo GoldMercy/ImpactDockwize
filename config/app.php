@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'nl_NL',
 
     /*
     |--------------------------------------------------------------------------
@@ -161,12 +161,12 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-    
+
         /*
          * Package Service Providers...
          */
-    
-    
+
+
         /*
          * Application Service Providers...
          */
@@ -175,17 +175,17 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-    
-    
+
+
         /*
          * Collective Providers
          */
-        'Collective\Html\HtmlServiceProvider', //Your Provider here 
-    
+        'Collective\Html\HtmlServiceProvider', //Your Provider here
+
         /*
          * Third Party Providers
          */
-    
+
        ],
 
     /*

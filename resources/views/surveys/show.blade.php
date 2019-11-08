@@ -10,30 +10,30 @@
             <td>{{$survey->titel}}</td>
             <td>{{$survey->beschrijving}}</td>
         </tr>
+<<<<<<< HEAD
+=======
         <div class="row">
             <a href="/surveys">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
-            <div class="container container-smaller">
-                <div class="col-lg-10 col-lg-offset-1" style="margin-top:20px; text-align: right">
-                    <div class="btn-group mb-4">
-                        <a href="{{ url('/pdf') }}" class="btn btn-success">Save as PDF</a>
-                    </div>
-                </div>
-            </div>
         </div>
+>>>>>>> 4bd08c6443f3daace82ddcbb8ce394482e5faab8
     </table>
-    <br>
+    <hr>
     <table class="container">
         <tr>
-            <th>Vraag</th>
-            <th>Type</th>
+            <th>Vragen die bij deze vragenlijst horen</th>
         </tr>
-        @foreach($questions as $q)
+        @foreach($openqs as $oq)
         <tr>
-            <td>{{$q->questionName}}</td>
-            <td>{{$q->answer_type}}</td>
+            <td>{{$oq->openq_name}}</td>
         </tr>
             @endforeach
     </table>
+    <hr>
+    <div class="row">
+            <a href="/surveys">
+                <button type="button" class="btn btn-secondary">Ga terug</button>
+            </a>
+        </div>
 @endsection

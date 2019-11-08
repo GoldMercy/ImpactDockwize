@@ -16,6 +16,7 @@
                     <input type="text" class="form-control" name="beschrijving" placeholder="Beschrijving van de vragenlijst">
                 </div>
             </div>
+            <hr>
             <div class="row">
                 <div class="col-sm-1">
                     <a href="/surveys">

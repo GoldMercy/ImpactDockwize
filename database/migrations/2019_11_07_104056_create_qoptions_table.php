@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDropdownqsTable extends Migration
+class CreateQOptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateDropdownqsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dropdownqs', function (Blueprint $table) {
-            $table->bigIncrements('dropdownq_id')->unsigned();
-            $table->string('dropdownq_name');
+        Schema::create('qoptions', function (Blueprint $table) {
+            $table->bigIncrements('qoption_id');
+            $table->string('option_name');
+            $table->bigInteger('dropdownq_fk')->unsigned();
+            $table->foreign('dropdownq_fk')->references('dropdownq_id')->on('dropdownqs');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateDropdownqsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dropdownqs');
+        Schema::dropIfExists('qoptions');
     }
 }

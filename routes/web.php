@@ -79,3 +79,17 @@ Route::get('/pdf', function(){
     return $pdf->download('test.pdf');
 });
 
+Route::get('/dropdownqs', 'DropdownQsController@index');
+Route::get('/dropdownqs/create', 'DropdownQsController@create');
+Route::get('/dropdownqs/store', 'DropdownQsController@store');
+Route::get('/dropdownqs/edit/{id}', 'DropdownQsController@edit');
+Route::get('/dropdownqs/show/{id}', 'DropdownQsController@show');
+Route::get('/dropdownqs/update/{id}', 'DropdownQsController@update');
+Route::get('/dropdownqs/edit/delete/{id}', 'DropdownQsController@delete');
+
+Route::get('/qoptions/create', 'QOptionsController@create');
+Route::get('/qoptions/store', 'QOptionsController@store');
+Route::get('/qoptions/edit/{id}', 'QOptionsController@edit');
+Route::get('/qoptions/show/{id}', 'QOptionsController@show');
+Route::get('/qoptions/update/{id}', 'QOptionsController@update');
+Route::get('/qoptions/edit/delete/{id}', 'QOptionsController@delete');

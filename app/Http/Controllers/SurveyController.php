@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Question;
+use App\OpenQ;
 use App\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +17,7 @@ class SurveyController extends Controller
 
     public function index()
     {
-        $survey = DB::table('surveys')->paginate(3);
+        $survey = DB::table('surveys')->paginate(25);
         return view('surveys.index', ['survey' => $survey]);
     }
 
@@ -39,8 +39,8 @@ class SurveyController extends Controller
     public function show($id)
     {
         $survey = Survey::find($id);
-        $questions = Question::where('survey_id', $id)->get();
-        return view('surveys.show', ['survey' => $survey], ['questions' => $questions]);
+        $openqs = OpenQ::where('survey_id', $id)->get();
+        return view('surveys.show', ['survey' => $survey], ['openqs' => $openqs]);
     }
 
     public function edit($id)
