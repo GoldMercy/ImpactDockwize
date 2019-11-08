@@ -59,6 +59,14 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group col-sm-3">
+                <label for="Huisvesting">Huisvesting</label>
+                    <select name="Huisvesting" class="form-control">
+                        <option>Flex</option>
+                        <option>Kantoor</option>
+                        <option>Loodsunit</option>
+                    </select>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-1">

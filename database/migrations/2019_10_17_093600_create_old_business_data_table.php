@@ -26,6 +26,7 @@ class CreateOldBusinessDataTable extends Migration
             $table->string('Thema')->nullable();
             $table->string('Doelgroep')->nullable();
             $table->string('Programma')->nullable();
+            $table->string('Huisvesting')->nullable();
             $table->date('created_at');
         });
     }

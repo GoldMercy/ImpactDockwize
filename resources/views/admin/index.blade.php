@@ -23,6 +23,7 @@
                         <th scope="col">Thema</th>
                         <th scope="col">Doelgroep</th>
                         <th scope="col">Programma</th>
+                        <th scope="col">Huisvesting</th>
                     </tr>
                 </thead>
             @foreach ($businesses as $business)
@@ -60,6 +61,10 @@
                     <td>
                 {{ $business->Programma }}
                     </td>
+                    <td>
+                {{ $business->Huisvesting }}
+                    </td>
+                </tr>
                 </tr>
             @endforeach
             </table>

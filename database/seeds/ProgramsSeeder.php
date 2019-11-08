@@ -21,7 +21,7 @@ class ProgramsSeeder extends Seeder
         'Scale up: Deelnemer', 'Scale up: Alumnus', 'Maatwerk: Lead', 'Maatwerk: Lead Kwalificeren', 'Maatwerk: Prospect', 'Maatwerk: Deelnemer',
         'Maatwerk: Alumnus', 'Challenge: Lead', 'Challenge: Lead kwalificeren', 'Challenge: Prospect', 'Challenge: Deelnemer', 'Challenge: Alumnus',
         'Validatieprogramma: Lead', 'Validatieprogramma: Lead kwalificeren', 'Validatieprogramma: Prospect', 'Validatieprogramma: Deelnemer',
-        'Validatieprogramma: Alumnus', 'Lead genereren', 'Parkeerplaats Koud', 'Parkeerplaats Warm'];
+        'Validatieprogramma: Alumnus', 'Lead genereren', 'Parkeerplaats Koud', 'Parkeerplaats Warm', 'Geen'];
 
         foreach ($programs as $program) {
             DB::table('programs')->insert([
