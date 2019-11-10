@@ -12,7 +12,7 @@
         </div>
         <hr>
         <div class="form-group col-sm-6">
-            <a href="/dropdownqs">
+            <a href="/input">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
                 <button type="submit" class="btn btn-success">Toevoegen</button>

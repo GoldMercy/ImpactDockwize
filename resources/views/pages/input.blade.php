@@ -1,24 +1,29 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
-<div class="container">
-        <a href="/openqs">
-        <button id="input-page-btn" class='btn btn-primary'>Voer een open vraag in!</button>
-        </a>
-        <a href="/scaleqs">
-        <button id="input-page-btn" class='btn btn-primary'>Voer een schalenvraag in!</button>
-        </a>
-        <a href="/dropdownqs">
-        <button id="input-page-btn" class='btn btn-primary'>Voer een dropdownvraag in!</button>
-        </a>  
-        <a href="/qoptions/create">
-        <button id="input-page-btn" class='btn btn-primary'>Voer een opties voor vragen in!</button>
-        </a> 
-        <a href="/surveys">
-        <button id="input-page-btn" class='btn btn-primary'>Beheer uw vragenlijsten!</button>
-        </a>
-        <a href="/cards">
-        <button id="input-page-btn" class='btn btn-primary'>Beheer uw fysiek ingevoerde kaartjes!</button>
-        </a>
+<div class="container-input">
+   <div class="row">
+      <div class="column-manage">
+         <a href="/surveys">
+            <button class='btn btn-primary'>Beheer uw vragenlijsten!</button>
+         </a>
+         <a href="/cards">
+            <button class='btn btn-primary'>Beheer uw fysiek ingevoerde kaartjes!</button>
+         </a>
+      </div>
+      <div class="column-add">
+         <h3>Voeg een nieuwe vraag toe!</h3>
+         <p>Voeg een nieuwe vraag toe zodat deze later ingevuld kan worden.</p>
+            <ul class="nobull">
+               <li><a href="/openqs/create"><button class='btn btn-primary' id='addbtn'>Voeg een open vraag toe!</button></a></li> 
+               <br>         
+               <li><a href="/scaleqs/create"><button class='btn btn-primary' id='addbtn'>Voeg een schalenvraag toe!</button></a></li>
+               <br>
+               <li><a href="/dropdownqs/create"><button class='btn btn-primary' id='addbtn'>Voeg een dropdownvraag toe!</button></a></li>
+               <br>
+               <li><a href="/qoptions/create"><button class='btn btn-primary' id='addbtn'>Voeg een opties voor vragen toe!</button></a></li> 
+            </ul>
+      </div>
+   </div>
 </div>
 @endsection
