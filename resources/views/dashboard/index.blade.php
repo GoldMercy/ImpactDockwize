@@ -35,6 +35,26 @@ $(document).ready(function(){
     </div>
     <div id="huisvesting" class="department_content">
         <h1>Dit is content voor huisvesting.</h1>
+        <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Aantal Huurders</th>
+        </tr>
+        </thead>
+            <tr>
+                <td>Flex</td>
+                <td>{{$businesses->where('Huisvesting', '=', 'Flex')->count()}}</td>
+            </tr>
+            <tr>
+                <td>Kantoor</td>
+                <td>{{$businesses->where('Huisvesting', '=', 'Kantoor')->count()}}</td>
+            </tr>
+            <tr>
+                <td>Loodsunit</td>
+                <td>{{$businesses->where('Huisvesting', '=', 'Loodsunit')->count()}}</td>
+            </tr>
+        </table>
     </div>
     <div id="programmas" class="department_content">
         <h1>Dit is content voor programma's.</h1>
