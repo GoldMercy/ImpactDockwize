@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
-@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,4 +70,3 @@
 </script>
 </body>
 </html>
-@endsection
