@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.navbar')
+@extends('layouts.sidebar')
 @section('content')
 <div class="container">
     <h1>Bekijk uw schalenvragen!</h1>
@@ -16,8 +16,12 @@
                 {{session('error', 'Geen schalen vragen gevonden.')}}
             </div>
         @endif
+        <hr>
         <a href="/scaleqs/create">
             <button class='btn btn-primary'>Voeg een schalenvraag toe!</button>
         </a>
+        <div class="row justify-content-center">
+                {{$scaleqs->links()}}
+            </div>
 </div>
 @endsection

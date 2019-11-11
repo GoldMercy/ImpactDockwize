@@ -41,6 +41,10 @@ class DropdownQsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'dropdownq_name' => 'required',
+        ]);
+        
         $dropdownq = new DropdownQ;
         $dropdownq->dropdownq_name = $request->dropdownq_name;
         $dropdownq->save();

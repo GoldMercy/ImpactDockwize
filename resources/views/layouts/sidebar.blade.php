@@ -59,8 +59,8 @@
             outline: none;
             text-decoration: none;
             display: inline-block;
-            width: 100%;
             text-align: center;
+
             line-height: 1;
             background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
             -webkit-background-clip: text;
@@ -80,6 +80,7 @@
             }
         }
 
+
     </style>
     <script type="text/javascript">
         function toggleSidebar(){
@@ -88,6 +89,7 @@
     </script>
 </head>
 <body>
+
 <div id="sidebar">
     <div class="toggle-btn" onclick="toggleSidebar()"><a>
             <span></span>

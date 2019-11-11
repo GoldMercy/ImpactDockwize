@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
+@section('content')
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,20 +10,19 @@
 </head>
 <body>
 <div class="container">
+    <h2>Laat data zien:</h2>
     <div class="form-row justify-content-center">
         <div class="form-row col-sm-12">
-                <div class="form-group col-sm-6">
-                    <label for="datestart">Vanaf Datum</label>
+                <div class="form-group col-sm-2">
+                    <label for="datestart">Vanaf datum</label>
                     <input type="date" class="form-control" id="datestart" name="datestart">
                 </div>
-                <div class="form-group col-sm-6">
-                    <label for="dateend">Tot Datum</label>
+                <div class="form-group col-sm-2">
+                    <label for="dateend">Tot datum</label>
                     <input type="date" class="form-control" id="dateend" name="dateend">
                 </div>
-        </div>
-        <div class="form-row col-sm-12">
-                <div class="form-group col-sm-6">
-                    <label for="search">Naam Ondernemer/Onderneming</label>
+                <div class="form-group col-sm-4">
+                    <label for="search">Naam ondernemer/onderneming</label>
                     <input type="text" class="form-control" id="search" name="search">
                 </div>
         </div>
@@ -71,3 +71,4 @@
 </script>
 </body>
 </html>
+@endsection

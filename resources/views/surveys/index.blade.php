@@ -26,5 +26,13 @@
                 </button>
             </a>
         </div>
-    </div>
+    @endif
+    <hr>
+        <a href="/surveys/create">
+            <button class='btn btn-primary'>Voeg een vragenlijst toe!</button>
+        </a>
+        <div class="row justify-content-center">
+                {{$surveys->links()}}
+            </div>
+</div>
 @endsection

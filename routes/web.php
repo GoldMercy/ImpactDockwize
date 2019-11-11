@@ -31,7 +31,7 @@ Route::get('/surveys/store', 'SurveyController@store');
 Route::get('/surveys/edit/{id}', 'SurveyController@edit');
 Route::get('/surveys/show/{id}', 'SurveyController@show');
 Route::get('/surveys/update/{id}', 'SurveyController@update');
-Route::get('/surveys/edit/delete/{id}', 'SurveyController@delete');
+Route::get('/surveys/edit/destroy/{id}', 'SurveyController@destroy');
 
 Route::get('/scaleqs', 'ScaleQsController@index');
 Route::get('/scaleqs/create', 'ScaleQsController@create');
@@ -64,6 +64,7 @@ Route::get('/admin/edit/{id}', 'AdminController@edit');
 Route::get('/admin/update/{id}', 'AdminController@update');
 Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
 Route::get('/admin/edit/deleteall/{id}', 'AdminController@deleteAll');
+Route::get('/admin/find', 'AdminController@find');
 
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 

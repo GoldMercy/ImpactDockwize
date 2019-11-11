@@ -75,6 +75,11 @@ body {
   background-color: #f8fafc;
 }
 
+#input-page-btn {
+  background-color: brown;
+  border: 2px, solid, black;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
@@ -590,6 +595,14 @@ pre code {
   margin-left: auto;
 }
 
+.container-input {
+   width: 100%;
+   padding-right: 300px;
+   padding-left: 500px;
+   margin-right: auto;
+   margin-left: auto;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -614,6 +627,11 @@ pre code {
   }
 }
 
+.input-ul {
+   display: inline-block;
+   vertical-align: top;
+}
+
 .container-fluid {
   width: 100%;
   padding-right: 15px;
@@ -622,12 +640,43 @@ pre code {
   margin-left: auto;
 }
 
-.row {
+.column-manage{
+   float: left;
+}
+
+.column-add{
+   width: 320px;
+   float: right;
+}
+
+.nobull {
+   list-style-type: none;
+}
+
+#addbtn {
+   width: 320px;
+   height: 40px;
+   border: 1px black solid;
+}
+
+#addbtn:hover {
+   border: 2px black solid;
+   background-color: rgb(255, 249, 66);
+   color: black;
+}
+
+#addbtn:active {
+   background-color: #f3ff8a;
+   color: black;
+   transform: translateY(3px);
+ }
+
+/* .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-}
+  margin-right: auto;
+  margin-left: auto;
+} */
 
 .no-gutters {
   margin-right: 0;
@@ -2572,7 +2621,7 @@ fieldset:disabled a.btn {
 .btn-primary:hover {
   color: #fff;
   background-color: #227dc7;
-  border-color: #2176bd;
+  border-color: 2px #227dc7;
 }
 
 .btn-primary:focus,
