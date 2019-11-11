@@ -5354,10 +5354,16 @@ a.badge-dark.focus {
 
 .alert {
   position: relative;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
+/*  margin-left: 14%;
+  margin-right: 14%;*/
+  margin: auto;
+  width: 75%;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  text-align: center;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+  margin-bottom: 15px;
 }
 
 .alert-heading {
