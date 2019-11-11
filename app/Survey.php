@@ -10,8 +10,8 @@ class Survey extends Model
         'Titel', 'Beschrijving'
     ];
 
-    public function question() {
-        return $this -> belongsToMany(Question::class);
+    public function openqs() {
+        return $this -> hasMany('App\OpenQ', 'survey_id');
     }
 
     // Table Name

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class OpenQ extends Model
 {
     public function survey() {
-        return $this -> belongsToMany(Survey::class);
+        return $this -> hasOne('App\Survey', 'id');
     }
 
     // Table Name

@@ -70,13 +70,10 @@ Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 Route::get('/searching','SearchController@index');
 Route::get('/search','SearchController@search');
 
-Route::get('/downloadPDF/{id}','QuestionsController@downloadPDF');
+Route::get('/searchoutput','OutputController@index');
+Route::get('/searchoutputpdf','OutputController@searchoutputpdf');
 
-Route::get('/pdf', function(){
-    //return view('pdf');
-    $pdf = PDF::loadView('pdf');
-    return $pdf->download('test.pdf');
-});
+Route::get('/downloadPDF/{id}','QuestionsController@downloadPDF');
 
 Route::get('/dropdownqs', 'DropdownQsController@index');
 Route::get('/dropdownqs/create', 'DropdownQsController@create');
@@ -92,3 +89,6 @@ Route::get('/qoptions/edit/{id}', 'QOptionsController@edit');
 Route::get('/qoptions/show/{id}', 'QOptionsController@show');
 Route::get('/qoptions/update/{id}', 'QOptionsController@update');
 Route::get('/qoptions/edit/delete/{id}', 'QOptionsController@delete');
+
+Route::get('/pdf', 'OutputController@show');
+Route::get('/downloadPDF/{id}','OutputController@downloadPDF');

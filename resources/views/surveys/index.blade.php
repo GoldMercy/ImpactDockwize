@@ -4,11 +4,11 @@
     <head> <script src="https://kit.fontawesome.com/11ccc7b6bb.js" crossorigin="anonymous"></script></head>
     <div class="container">
         <h1>Bekijk uw vragenlijsten!</h1>
-        @if(count($survey) > 0)
-            @foreach($survey as $surveys)
+        @if(count($surveys) > 0)
+            @foreach($surveys as $s)
                 <div class="card">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><a href="/surveys/show/{{$surveys->id}}">{{$surveys->titel}}</a></li>
+                        <li class="list-group-item"><a href="/surveys/show/{{$s->id}}">{{$s->titel}}</a></li>
                     </ul>
                 </div>
             @endforeach
@@ -17,6 +17,7 @@
                 {{session('error', 'Geen vragenlijsten gevonden.')}}
             </div>
         @endif
+        <div>{{$surveys->links()}}</div>
     <div class="container">
         <div class="col-sm-1 p-2">
             <a href="{{ url('/surveys/create') }}">

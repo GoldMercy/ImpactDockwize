@@ -15,7 +15,7 @@
             position: fixed;
             width: 200px;
             height: 100%;
-            background: #151719;
+            background-color: black;
             left: -200px;
             transition: all 500ms linear;
         }
@@ -45,24 +45,39 @@
             margin: 5px 0px;
         }
 
-        body,html {
+        #sidebar body,html {
             margin: 0;
             font-family: sans-serif;
         }
 
-        ul {
+        #sidebar ul {
             padding: 0;
             width: 100%;
         }
 
-        a {
+        #sidebar a {
             outline: none;
             text-decoration: none;
             display: inline-block;
             width: 100%;
             text-align: center;
-            line-height: 3;
-            color: black;
+            line-height: 1;
+            background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow_animation 6s ease-in-out infinite;
+            background-size: 400% 100%;
+        }
+
+        @keyframes rainbow_animation {
+            0%, 100% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 100% 0;
+            }
         }
 
     </style>
@@ -83,7 +98,7 @@
         </a>
     </div>
     <ul id="buttons">
-        <li><a class="sidebar" href="{{ url('/home') }}">Dashboard</a></li>
+        <li><a class="rainbow_text_animated" href="{{ url('/home') }}">Dashboard</a></li>
         <li><a class="sidebar" href="{{ url('/input') }}">Input</a></li>
         <li><a class="sidebar" href="{{ url('/output') }}">Output</a></li>
         <li><a class="sidebar" href="{{ url('/admin') }}">Admin</a></li>
