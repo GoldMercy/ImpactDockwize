@@ -79,6 +79,9 @@ Route::get('/pdf', function(){
     return $pdf->download('test.pdf');
 });
 
+Route::get('/output', 'PDFGeneratorController@index');
+Route::get('/output/pdf', 'PDFGeneratorController@pdf');
+
 Route::get('/dropdownqs', 'DropdownQsController@index');
 Route::get('/dropdownqs/create', 'DropdownQsController@create');
 Route::get('/dropdownqs/store', 'DropdownQsController@store');
