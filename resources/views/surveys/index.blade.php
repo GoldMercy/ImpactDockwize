@@ -21,7 +21,7 @@
             <button class='btn btn-primary'>Voeg een vragenlijst toe!</button>
         </a>
         <div class="row justify-content-center">
-                {{$surveys->links()}}
-            </div>
+            {{$survey->links()}}
+        </div>
 </div>
 @endsection

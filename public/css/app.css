@@ -671,12 +671,12 @@ pre code {
    transform: translateY(3px);
  }
 
-/* .row {
+.row {
   display: flex;
   flex-wrap: wrap;
   margin-right: auto;
   margin-left: auto;
-} */
+}
 
 .no-gutters {
   margin-right: 0;
