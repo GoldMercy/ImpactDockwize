@@ -71,14 +71,6 @@ Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 Route::get('/searching','SearchController@index');
 Route::get('/search','SearchController@search');
 
-Route::get('/downloadPDF/{id}','QuestionsController@downloadPDF');
-
-Route::get('/pdf', function(){
-    //return view('pdf');
-    $pdf = PDF::loadView('pdf');
-    return $pdf->download('test.pdf');
-});
-
 Route::get('/output', 'PDFGeneratorController@index');
 Route::get('/output/pdf', 'PDFGeneratorController@pdf');
 
