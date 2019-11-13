@@ -62,9 +62,9 @@
             <div class="form-group col-sm-3">
                 <label for="Huisvesting">Huisvesting</label>
                     <select name="Huisvesting" class="form-control">
-                        <option>Flex</option>
-                        <option>Kantoor</option>
-                        <option>Loodsunit</option>
+                        @foreach($housings as $housing)
+                            <option>{{$housing->housing_name}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

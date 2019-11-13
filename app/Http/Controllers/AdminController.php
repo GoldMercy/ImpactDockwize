@@ -26,8 +26,9 @@ class AdminController extends Controller
     {
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
+        $housings = DB::table('housings')->get();
 
-        return view('admin.create', ['themes' =>$themes], ['programs' => $programs]);
+        return view('admin.create', ['themes' => $themes, 'programs' => $programs, 'housings' => $housings]);
     }
 
     public function store(Request $request)
@@ -55,8 +56,9 @@ class AdminController extends Controller
         $business = DB::table('business')->find($id);
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
+        $housings = DB::table('housings')->get();
 
-        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes]);
+        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes, 'housings' => $housings]);
     }
 
     public function update(Request $request, $id)
@@ -152,7 +154,7 @@ class AdminController extends Controller
         $business->Doelgroep = $request->Doelgroep;
         $business->Thema = $request->Thema;
         $business->Programma = $request->Programma;
-        $oldBusiness->Huisvesting = $business->Huisvesting;
+        $business->Huisvesting = $request->Huisvesting;
         $business->save();
     }
 }

@@ -595,12 +595,55 @@ pre code {
   margin-left: auto;
 }
 
+.container-admin {
+  width: 100%;
+  padding-right: 75px;
+  padding-left: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#ad-td {
+  border: 1px solid black;
+}
+
+.ad-td {
+  border: 1px solid black;
+}
+
 .container-input {
    width: 100%;
    padding-right: 300px;
    padding-left: 500px;
    margin-right: auto;
    margin-left: auto;
+}
+#ad-lg {
+  width: 400px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-md {
+  width: 150px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-sm {
+  width: 100px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-xsm {
+  width: 50px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
 }
 
 @media (min-width: 576px) {

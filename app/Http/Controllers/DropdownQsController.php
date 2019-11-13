@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DropdownQ;
 use App\QOption;
+use App\Survey;
 use Illuminate\Support\Facades\DB;
 
 class DropdownQsController extends Controller
@@ -28,8 +29,10 @@ class DropdownQsController extends Controller
     public function create()
     {
         $qoptions = QOption::all();
+        $surveys = Survey::all();
         return view('dropdownqs.create')->with([
-            'qoptions' => $qoptions
+            'qoptions' => $qoptions,
+            'surveys' => $surveys
             ]);
     }
 
@@ -43,10 +46,12 @@ class DropdownQsController extends Controller
     {
         $this->validate($request, [
             'dropdownq_name' => 'required',
+            'survey_id' => 'required',
         ]);
         
         $dropdownq = new DropdownQ;
         $dropdownq->dropdownq_name = $request->dropdownq_name;
+        $dropdownq->survey_id = $request->survey_id;
         $dropdownq->save();
 
         return redirect('/dropdownqs')->with('success', 'Vraag gemaakt!');
@@ -63,9 +68,6 @@ class DropdownQsController extends Controller
         $dropdownq = DropdownQ::find($id);
         $qoptions = QOption::where('dropdownq_fk', $id)->get();
         return view('dropdownqs.show', ['dropdownq' => $dropdownq], ['qoptions' => $qoptions]);
-
-        // $dropdownq = DropdownQ::find($id);
-        // return view('dropdownqs.show')->with('dropdownq', $dropdownq);
     }
 
     /**
@@ -77,7 +79,8 @@ class DropdownQsController extends Controller
     public function edit($id)
     {
         $dropdownq = DropdownQ::find($id);
-        return view('dropdownqs.edit')->with('dropdownq', $dropdownq);
+        $surveys = Survey::all();
+        return view('dropdownqs.edit')->with(['dropdownq' => $dropdownq, 'surveys' => $surveys]);
     }
 
     /**

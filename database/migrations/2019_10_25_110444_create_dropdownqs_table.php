@@ -16,6 +16,8 @@ class CreateDropdownqsTable extends Migration
         Schema::create('dropdownqs', function (Blueprint $table) {
             $table->bigIncrements('dropdownq_id')->unsigned();
             $table->string('dropdownq_name');
+            $table->bigInteger('survey_id')->unsigned();
+            $table->foreign('survey_id')->references('id')->on('surveys');
             $table->timestamps();
         });
     }

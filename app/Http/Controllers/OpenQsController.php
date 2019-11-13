@@ -52,7 +52,7 @@ class OpenQsController extends Controller
         $openq->survey_id = $request->survey_id;
         $openq->save();
 
-        return redirect('/openqs')->with('success', 'Vraag gemaakt!');
+        return redirect('/openqs/create')->with('success', 'Vraag gemaakt!');
     }
 
     /**
@@ -76,7 +76,8 @@ class OpenQsController extends Controller
     public function edit($id)
     {
         $openq = OpenQ::find($id);
-        return view('openqs.edit')->with('openq', $openq);
+        $surveys = Survey::all();
+        return view('openqs.edit')->with(['openq' => $openq, 'surveys' => $surveys]);
     }
 
     /**
