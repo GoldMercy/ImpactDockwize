@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateScaleqsTable extends Migration
+class CreateAnswersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateScaleqsTable extends Migration
      */
     public function up()
     {
-        Schema::create('scaleqs', function (Blueprint $table) {
-            $table->bigIncrements('scaleq_id');
-            $table->string('scaleq_name');
-            $table->bigInteger('survey_id');
-            $table->integer('scaleq_score')->default(0);
+        Schema::create('answers', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->json('request');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateScaleqsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('scaleqs');
+        Schema::dropIfExists('answers');
     }
 }

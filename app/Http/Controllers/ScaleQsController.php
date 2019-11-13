@@ -8,6 +8,11 @@ use App\ScaleQ;
 
 class ScaleQsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -26,8 +31,8 @@ class ScaleQsController extends Controller
      */
     public function create()
     {
-
-        return view('scaleqs/create');
+        $surveys = DB::table('surveys')->get();
+        return view('scaleqs/create')->with('surveys', $surveys);
     }
 
     /**
@@ -41,12 +46,11 @@ class ScaleQsController extends Controller
         
         $this->validate($request, [
             'scaleq_name' => 'required',
-            'scaleq_score' => 'required'
         ]);
         
         $scaleq = new ScaleQ;
         $scaleq->scaleq_name = $request->scaleq_name;
-        $scaleq->scaleq_score = $request->scaleq_score;
+        $scaleq->survey_id = $request->survey_id;
         $scaleq->save();
         
         return redirect('/scaleqs')->with('success', 'Vraag gemaakt!');
@@ -72,8 +76,9 @@ class ScaleQsController extends Controller
      */
     public function edit($id)
     {
+        $surveys = DB::table('surveys')->get();
         $scaleq = ScaleQ::find($id);
-        return view('scaleqs.edit')->with('scaleq', $scaleq);
+        return view('scaleqs.edit', ['scaleq' => $scaleq, 'surveys' => $surveys]);
     }
 
     /**
@@ -87,12 +92,11 @@ class ScaleQsController extends Controller
     {
         $this->validate($request, [
             'scaleq_name' => 'required',
-            'scaleq_score' => 'required'
         ]);
         
         $scaleq = ScaleQ::find($id);
         $scaleq->scaleq_name = $request->scaleq_name;
-        $scaleq->scaleq_score = $request->scaleq_score;
+        $scaleq->survey_id = $request->survey_id;
         $scaleq->save();
         
         return redirect('/scaleqs')->with('success', 'Vraag gemaakt!');

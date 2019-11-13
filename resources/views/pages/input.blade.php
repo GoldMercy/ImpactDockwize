@@ -4,6 +4,7 @@
 <div class="container-input">
         <div class="column-manage">
             <a href="/cards/create"><button class='btn btn-primary'>Beheer uw fysiek ingevoerde kaartjes!</button></a>
+            <a href="/answer/index"><button class='btn btn-primary'>Vul een vragenlijst in!</button></a>
         </div>
         <div class="column-add">
          <h3>Voeg iets toe!</h3>
