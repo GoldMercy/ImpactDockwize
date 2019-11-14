@@ -5,28 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\OpenQ;
+use App\ScaleQ;
 use PDF;
 
 class PDFGeneratorController extends Controller
 {
     public function index() {
-        $openqs = $this->get_openqs();
-        return view('pdf.index')->with('openqs', $openqs);
+        return view('pdf.index');
     }
 
-    public function get_openqs() {
-        $get_openqs = DB::table('openqs')
-                    ->get();
-        
-        return $get_openqs;
-    }
-
-    public function pdf() {
+    public function generalpdf() {
         $pdf = \App::make('dompdf.wrapper');
-        $openqs = $this->get_openqs();
-        
-        $pdf = PDF::loadView('pdf.pdfview', compact('openqs'));      
-        return $pdf->stream('dockwize.pdf');
+
+        $openqs = DB::table('openqs', 'scaleqs')->get();
+        // $scaleqs = DB::table('scaleqs')->get();
+
+        $pdf = PDF::loadView('pdf.generalpdf', compact('openqs'));      
+        return $pdf->stream('dockwize.generalpdf');
     }
 
     // public function convert_openqs_to_html() {

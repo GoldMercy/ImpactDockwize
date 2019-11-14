@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\ScaleQ;
+use App\Survey;
 
 class ScaleQsController extends Controller
 {
@@ -26,8 +27,10 @@ class ScaleQsController extends Controller
      */
     public function create()
     {
-
-        return view('scaleqs/create');
+        $surveys = Survey::all();
+        return view('scaleqs.create')->with([
+            'surveys' => $surveys
+            ]);
     }
 
     /**
@@ -41,12 +44,12 @@ class ScaleQsController extends Controller
         
         $this->validate($request, [
             'scaleq_name' => 'required',
-            'scaleq_score' => 'required'
+            'survey_id' => 'required'
         ]);
         
         $scaleq = new ScaleQ;
         $scaleq->scaleq_name = $request->scaleq_name;
-        $scaleq->scaleq_score = $request->scaleq_score;
+        $scaleq->survey_id = $request->survey_id;
         $scaleq->save();
         
         return redirect('/scaleqs')->with('success', 'Vraag gemaakt!');

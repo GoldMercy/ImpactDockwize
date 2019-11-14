@@ -72,7 +72,10 @@ Route::get('/searching','SearchController@index');
 Route::get('/search','SearchController@search');
 
 Route::get('/output', 'PDFGeneratorController@index');
-Route::get('/output/pdf', 'PDFGeneratorController@pdf');
+Route::get('/output/generalpdf', 'PDFGeneratorController@generalpdf');
+Route::get('/output/impulspdf', 'PDFGeneratorController@impulspdf');
+Route::get('/output/housingpdf', 'PDFGeneratorController@housingpdf');
+Route::get('/output/programpdf', 'PDFGeneratorController@programpdf');
 
 Route::get('/dropdownqs', 'DropdownQsController@index');
 Route::get('/dropdownqs/create', 'DropdownQsController@create');
