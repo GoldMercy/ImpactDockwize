@@ -20,10 +20,11 @@
                         <th id="ad-md"scope="col">Plaats</th>
                         <th id="ad-lg"scope="col">Idee</th>
                         <th id="ad-xsm"scope="col">Jaar</th>
+                        <th id="ad-md"scope="col">Relatie</th>
                         <th id="ad-md"scope="col">Thema</th>
-                        <th id="ad-md"scope="col">Doelgroep</th>
                         <th id="ad-sm"scope="col">Programma</th>
                         <th id="ad-sm"scope="col">Huisvesting</th>
+                        <th id="ad-sm"scope="col">Organisatievorm</th>
                     </tr>
                 </thead>
             @foreach ($businesses as $business)
@@ -53,16 +54,19 @@
                 {{ $business->Jaar }}
                     </td>
                     <td id="ad-td">
-                {{ $business->Thema }}
+                {{ $business->Doelgroep }}
                     </td>
                     <td id="ad-td">
-                {{ $business->Doelgroep }}
+                {{ $business->Thema }}
                     </td>
                     <td id="ad-td">
                 {{ $business->Programma }}
                     </td>
                     <td id="ad-td">
                 {{ $business->Huisvesting }}
+                    </td id="ad-td">
+                    <td id="ad-td">
+                {{ $business->Organisatievorm }}
                     </td id="ad-td">
                 </tr>
                 </tr>

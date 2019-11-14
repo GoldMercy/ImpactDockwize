@@ -17,7 +17,7 @@ class CreateOpenQsTable extends Migration
             $table->bigIncrements('openq_id');
             $table->string('openq_name');
             $table->bigInteger('survey_id')->unsigned();
-            $table->foreign('survey_id')->references('id')->on('surveys');
+            $table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade');
             $table->timestamps();
         });
     }
