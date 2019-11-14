@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.navbar')
+@extends('layouts.sidebar')
 @section('content')
 <div class="container">
         <form method="GET" action="/admin/update/{{$business->id}}">
@@ -46,23 +46,39 @@
             <div class="form-group col-sm-3">
                 <label for="Thema">Thema</label>
                 <select name="Thema" class="form-control">
-                    <option selected>Geen</option>
-                    <option>ICT</option>
-                    <option>Dienstverlening</option>
-                    <option>Gezondheid</option>
-                    <option>Zorg</option>
+                    @foreach($themes as $theme)
+                        @if($business->Thema == $theme->name)
+                            <option selected>{{$theme->name}}</option>
+                        @else
+                        <option>{{$theme->name}}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
             <div class="form-group col-sm-3">
                 <label for="Programma">Programma</label>
                 <select name="Programma" class="form-control">
-                    <option selected>Geen</option>
-                    <option>Kickstarter</option>
-                    <option>Accelerator</option>
-                    <option>X</option>
-                    <option>etc.</option>
+                    @foreach($programs as $program)
+                        @if($business->Programma == $program->name)
+                            <option selected>{{$program->name}}</option>
+                        @else
+                            <option>{{$program->name}}</option>
+                        @endif
+                    @endforeach
                 </select>
             </div>
+                <div class="form-group col-sm-3">
+                    <label for="Huisvesting">Huisvesting</label>
+                    <select name="Huisvesting" class="form-control">
+                        @foreach($housings as $housing)
+                            @if($business->Huisvesting == $housing->housing_name)
+                                <option selected>{{$housing->housing_name}}</option>
+                            @else
+                                <option>{{$housing->housing_name}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div class="d-flex">
                 <div class="p-2">
@@ -71,11 +87,19 @@
             </a>
                 </div>
                 <div class="p-2">
-            <button type="submit" class="btn btn-primary">Aanpassen</button>
+            <button type="submit" class="btn btn-primary" name="action" value="edit">Aanpassen</button>
+                </div>
+                <div class="p-2">
+                        <button type="submit" class="btn btn-primary" name="action" value="archive">Nieuw meetpunt</button>
                 </div>
                 <div class="ml-auto p-2">
                     <a href="delete/{{$business->id}}">
                         <button type="button" class="btn btn-danger">Verwijderen</button>
+                    </a>
+                </div>
+                <div class="p-2">
+                    <a href="deleteall/{{$business->id}}">
+                        <button type="button" class="btn btn-danger">Verwijder alles</button>
                     </a>
                 </div>
             </div>

@@ -19,4 +19,8 @@ class PagesController extends Controller
         return view('pages.output');
     }
 
+    public function questions(){
+        return view('questions.index');
+    }
+
 }

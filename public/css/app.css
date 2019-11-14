@@ -75,6 +75,11 @@ body {
   background-color: #f8fafc;
 }
 
+#input-page-btn {
+  background-color: brown;
+  border: 2px, solid, black;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
@@ -170,14 +175,17 @@ sup {
 }
 
 a {
-  color: #3490dc;
+  color: black;
   text-decoration: none;
   background-color: transparent;
 }
 
+a.sidebar{
+  color:white
+}
+
 a:hover {
   color: #1d68a7;
-  text-decoration: underline;
 }
 
 a:not([href]):not([tabindex]) {
@@ -587,6 +595,57 @@ pre code {
   margin-left: auto;
 }
 
+.container-admin {
+  width: 100%;
+  padding-right: 75px;
+  padding-left: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#ad-td {
+  border: 1px solid black;
+}
+
+.ad-td {
+  border: 1px solid black;
+}
+
+.container-input {
+   width: 100%;
+   padding-right: 300px;
+   padding-left: 500px;
+   margin-right: auto;
+   margin-left: auto;
+}
+#ad-lg {
+  width: 400px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-md {
+  width: 150px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-sm {
+  width: 100px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-xsm {
+  width: 50px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -611,6 +670,11 @@ pre code {
   }
 }
 
+.input-ul {
+   display: inline-block;
+   vertical-align: top;
+}
+
 .container-fluid {
   width: 100%;
   padding-right: 15px;
@@ -619,11 +683,42 @@ pre code {
   margin-left: auto;
 }
 
+.column-manage{
+   float: left;
+}
+
+.column-add{
+   width: 320px;
+   float: right;
+}
+
+.nobull {
+   list-style-type: none;
+}
+
+#addbtn {
+   width: 320px;
+   height: 40px;
+   border: 1px black solid;
+}
+
+#addbtn:hover {
+   border: 2px black solid;
+   background-color: rgb(255, 249, 66);
+   color: black;
+}
+
+#addbtn:active {
+   background-color: #f3ff8a;
+   color: black;
+   transform: translateY(3px);
+ }
+
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .no-gutters {
@@ -2569,7 +2664,7 @@ fieldset:disabled a.btn {
 .btn-primary:hover {
   color: #fff;
   background-color: #227dc7;
-  border-color: #2176bd;
+  border-color: 2px #227dc7;
 }
 
 .btn-primary:focus,
@@ -5360,6 +5455,8 @@ a.badge-dark.focus {
   color: #1d643b;
   background-color: #d7f3e3;
   border-color: #c7eed8;
+  margin-left: 22%;
+  margin-right: 22%;
 }
 
 .alert-success hr {

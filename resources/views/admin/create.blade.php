@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@extends('layouts.navbar')
+@extends('layouts.sidebar')
 @section('content')
 <div class="container">
         <form method="GET" action="/admin/store">
@@ -46,23 +46,27 @@
             <div class="form-group col-sm-3">
                 <label for="Thema">Thema</label>
                 <select name="Thema" class="form-control">
-                    <option selected>Geen</option>
-                    <option>ICT</option>
-                    <option>Dienstverlening</option>
-                    <option>Gezondheid</option>
-                    <option>Zorg</option>
+                    @foreach($themes as $theme)
+                        <option>{{$theme->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group col-sm-3">
                 <label for="Programma">Programma</label>
                 <select name="Programma" class="form-control">
-                    <option selected>Geen</option>
-                    <option>Kickstarter</option>
-                    <option>Accelerator</option>
-                    <option>X</option>
-                    <option>etc.</option>
+                    @foreach($programs as $program)
+                        <option>{{$program->name}}</option>
+                    @endforeach
                 </select>
             </div>
+            <div class="form-group col-sm-3">
+                <label for="Huisvesting">Huisvesting</label>
+                    <select name="Huisvesting" class="form-control">
+                        @foreach($housings as $housing)
+                            <option>{{$housing->housing_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-1">
