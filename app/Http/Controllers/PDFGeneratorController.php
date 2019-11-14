@@ -17,10 +17,10 @@ class PDFGeneratorController extends Controller
     public function generalpdf() {
         $pdf = \App::make('dompdf.wrapper');
 
-        $openqs = DB::table('openqs', 'scaleqs')->get();
-        // $scaleqs = DB::table('scaleqs')->get();
+        $openqs = DB::table('openqs')->get();
+        $scaleqs = DB::table('scaleqs')->get();
 
-        $pdf = PDF::loadView('pdf.generalpdf', compact('openqs'));      
+        $pdf = PDF::loadView('pdf.generalpdf', compact('openqs', 'scaleqs'));      
         return $pdf->stream('dockwize.generalpdf');
     }
 

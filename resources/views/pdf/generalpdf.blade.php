@@ -12,6 +12,10 @@ table {
   border-collapse: collapse;
 }
 
+.nobull {
+   list-style-type: none;
+}
+
 .table th,
 .table td {
   padding: 0.75rem;
@@ -28,18 +32,12 @@ table {
 
 <div class="container">
     <h1>test content voor algemene data view</h1>
-    <table class="table table-bordered">
-        <tr>
-            <th>Openq name</th>
-            <th>Scaleq name</th>
-        </tr>
-    
+    <ul class="nobull">
         @foreach($openqs as $oq)
-        <tr>
-                <td>{{$oq->openq_name}}</td>
-                <td>{{$oq->scaleq_name}}</td>
-            </tr> 
+            <li>{{$oq->openq_name}}</li>
         @endforeach
-
-    </table>
+        @foreach($scaleqs as $sq)
+            <li>{{$sq->scaleq_name}}</li>
+        @endforeach
+    </ul>
 </div>
