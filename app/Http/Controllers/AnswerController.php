@@ -14,13 +14,8 @@ class AnswerController extends Controller
         $surveys = DB::table('surveys')->get();
         $answers = DB::table('answers')->get();
 
-        foreach ($answers as $answer){
-            $array[] = $answer->request;
-            $string = implode($array);
-            $json = json_decode($string);
-        }
 
-        return view('answer/index', ['surveys' => $surveys, 'json' => $json]);
+        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers]);
 
 
     }
@@ -33,17 +28,34 @@ class AnswerController extends Controller
     public function survey($id){
 
         $survey = DB::table('surveys')->find($id);
+        $businesses = DB::table('business')->get();
         $openqs = DB::table('openqs')->where('survey_id', '=', $id)->get();
         $scaleqs = DB::table('scaleqs')->where('survey_id', '=', $id)->get();
-        return view('answer/survey', ['survey' => $survey, 'openqs' => $openqs, 'scaleqs' => $scaleqs]);
+        return view('answer/survey', ['survey' => $survey, 'openqs' => $openqs, 'scaleqs' => $scaleqs, 'businesses' => $businesses]);
     }
 
     public function submit(Request $request){
-
         $answer = new Answer();
-        $answer->request = $request->toArray();
+        $answer->keys = implode($request->keys(),',');
+        $answer->values = implode($request->toArray(),',');
         $answer->save();
 
         return redirect()->action('AnswerController@index')->with('success', 'Vragenlijst ingevuld!');;
+    }
+
+    public function answerIndex(){
+
+        $answers = DB::table('answers')->get();
+
+        return view('answer/answerindex', ['answers' => $answers]);
+    }
+
+    public function show($id){
+
+        $answer = DB::table('answers')->find($id);
+        $openqs = DB::table('openqs')->get();
+        $scaleqs = DB::table('scaleqs')->get();
+
+        return view('answer/show', ['answer' => $answer, 'openqs' => $openqs, 'scaleqs' => $scaleqs]);
     }
 }

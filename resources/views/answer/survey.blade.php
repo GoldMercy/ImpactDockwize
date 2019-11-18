@@ -9,16 +9,24 @@
                     <div class="card-body">
                         {{$survey->beschrijving}}
                         <form method="get" action="/answer/submit">
+                            <div class="form-group col-sm-8">
+                                <label for="Onderneming">Selecteer uw Onderneming</label>
+                                <select name="Onderneming" class="form-control">
+                                    @foreach($businesses as $business)
+                                        <option>{{$business->Onderneming}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         @foreach($openqs as $openq)
                                 <div class="form-group col-sm-8">
                                     <label for="openvraag{{$openq->openq_id}}">{{$openq->openq_name}}</label>
-                                    <input type="text" class="form-control" name="openvraag{{$openq->openq_id}}">
+                                    <input type="text" class="form-control" name="{{$openq->openq_name}}">
                                 </div>
                         @endforeach
                             @foreach($scaleqs as $scaleq)
                                 <div class="form-group col-sm-8">
                                     <label for="schaalvraag{{$scaleq->scaleq_id}}">{{$scaleq->scaleq_name}}</label>
-                                    <input type="number" min="1" max="10" class="form-control" name="schaalvraag{{$scaleq->scaleq_id}}">
+                                    <input type="number" min="1" max="10" class="form-control" name="{{$scaleq->scaleq_name}}">
                                 </div>
                             @endforeach
                             <div class="col-sm-1">

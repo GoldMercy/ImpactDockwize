@@ -98,3 +98,6 @@ Route::get('/answer/index', 'AnswerController@index');
 Route::get('/answer/select', 'AnswerController@select');
 Route::get('/answer/survey{id}', 'AnswerController@survey');
 Route::get('/answer/submit', 'AnswerController@submit');
+Route::get('/answer/answerIndex', 'AnswerController@answerIndex');
+Route::get('/answer/show/{id}', 'AnswerController@show');
+

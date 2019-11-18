@@ -21,7 +21,6 @@
                             <div class="col-sm-4">
                                 <button type="submit" class="btn btn-primary">Vragenlijst nu invullen</button>
                             </div>
-                            {{$json}}
                         </form>
                     </div>
                 </div>
