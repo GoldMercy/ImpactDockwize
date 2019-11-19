@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Business;
 use App\OldBusinessData;
+use App\Survey;
+use App\BisSurRel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,7 +21,7 @@ class AdminController extends Controller
     {
         $businesses = DB::table('business')->paginate(10);
 
-        return view('admin.index', ['businesses' => $businesses]);
+        return view('admin.index')->with('businesses', $businesses);
     }
 
     public function create()
@@ -159,5 +161,14 @@ class AdminController extends Controller
         $business->Programma = $request->Programma;
         $business->Huisvesting = $request->Huisvesting;
         $business->save();
+    }
+
+    public function show(Request $request, $id) {
+        $business = Business::find($id);
+        $bissurrel = BisSurRel::where('survey_id', $id)->get();
+        return view('admin.show')->with([
+            'business' => $business,
+            'bissurrel' => $bissurrel
+            ]);
     }
 }

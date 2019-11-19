@@ -18,6 +18,8 @@
                <li><a href="/qoptions/create"><button class='btn btn-primary' id='addbtn'>Voeg een opties voor vragen toe!</button></a></li> 
                <br>
                <li><a href="/surveys/create"><button class='btn btn-primary' id='addbtn'>Voeg een vragenlijst toe!</button></a></li>
+               <br>
+               <li><a href="/bissurrels/create"><button class='btn btn-primary' id='addbtn'>Voeg een koppeling toe!</button></a></li>
             </ul>
            
       </div>

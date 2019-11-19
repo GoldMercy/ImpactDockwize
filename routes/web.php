@@ -58,6 +58,7 @@ Route::get('/openqs/update/{id}', 'OpenQsController@update');
 Route::get('/openqs/edit/delete/{id}', 'OpenQsController@delete');
 
 Route::get('/admin', 'AdminController@index');
+Route::get('/admin/show/{id}', 'AdminController@show');
 Route::get('/admin/create', 'AdminController@create');
 Route::get('/admin/store', 'AdminController@store');
 Route::get('/admin/edit/{id}', 'AdminController@edit');
@@ -96,3 +97,7 @@ Route::get('/qoptions/edit/{id}', 'QOptionsController@edit');
 Route::get('/qoptions/show/{id}', 'QOptionsController@show');
 Route::get('/qoptions/update/{id}', 'QOptionsController@update');
 Route::get('/qoptions/edit/delete/{id}', 'QOptionsController@delete');
+
+Route::get('/bissurrels/create', 'BisSurRelsController@create');
+Route::get('/bissurrels', 'BisSurRelsController@index');
+Route::get('/bissurrels/store', 'BisSurRelsController@store');
