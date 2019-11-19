@@ -18,7 +18,7 @@ class BusinessTableSeeder extends Seeder
         DB::table('business')->insert([
             'Ondernemer' => $faker->name,
             'Onderneming' => $faker->company,
-            //'Telefoonnnummer' => $faker->phoneNumber,
+            'Telefoonnummer' => $faker->phoneNumber,
             'Email' => $faker->email,
             'Plaats' => $faker->city,
             'Idee' => $faker->sentence($nbWords = 6, $variableNbWords = true),

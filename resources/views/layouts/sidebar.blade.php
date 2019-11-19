@@ -3,100 +3,53 @@
 <head>
     <title>Impact Dockwize</title>
     <style type="text/css">
-        *{
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
+        /* The sidebar menu */
+        .sidebar {
+            height: 100%; /* 100% Full-height */
+            width: 250; /* 0 width - change this with JavaScript */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Stay on top */
+            top: 0;
+            left: 0;
+            background-color: #111; /* Black*/
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 60px; /* Place content 60px from the top */
         }
 
-        #sidebar{
-            top: 0px;
-            z-index: 1001;
-            position: fixed;
-            width: 200px;
-            height: 100%;
-            background: #151719;
-            left: -200px;
-            transition: all 500ms linear;
-        }
-
-        #sidebar.active{
-            left:0px;
-        }
-
-        #sidebar ul li{
-            color: rgba(230,230,230,0.9);
-            list-style: none;
-            padding: 15px 10px;
-            border-bottom: 1px solid rgba(100,100,100,0.3);
-        }
-
-        #sidebar .toggle-btn{
-            position: absolute;
-            left: 230px;
-            top: 20px;
-        }
-
-        #sidebar .toggle-btn span{
-            display: block;
-            width: 30px;
-            height: 5px;
-            background: #151719;
-            margin: 5px 0px;
-        }
-
-        body,html {
-            margin: 0;
-            font-family: sans-serif;
-        }
-
-        ul {
-            padding: 0;
-            width: 100%;
-        }
-
-        #sidebar a {
-            outline: none;
+        /* The sidebar links */
+        .sidebar a {
+            padding: 8px 8px 8px 8px;
             text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-            line-height: 1;
-            color: white;
+            font-size: 20px;
+            color: #818181;
+            display: block;
         }
 
+        /* When you mouse over the navigation links, change their color */
+        .sidebar a:hover {
+            color: #f1f1f1;
+        }
 
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+            .sidebar {padding-top: 15px;}
+            .sidebar a {font-size: 18px;}
+        }
     </style>
-    <script type="text/javascript">
-        function toggleSidebar(){
-            document.getElementById("sidebar").classList.toggle('active');
-        }
-    </script>
+
 </head>
 <body>
-
-<div id="sidebar">
-    <div class="toggle-btn" onclick="toggleSidebar()"><a>
-            <span></span>
-
-            <span></span>
-
-            <span></span>
-        </a>
-    </div>
-    <ul id="buttons">
-        <li><a class="sidebar" href="{{ url('/home') }}">Dashboard</a></li>
-        <li><a class="sidebar" href="{{ url('/input') }}">Input</a></li>
-        <li><a class="sidebar" href="{{ url('/output') }}">Output</a></li>
-        <li><a class="sidebar" href="{{ url('/admin') }}">Admin</a></li>
-        <li><a class="sidebar" href="{{ url('/searching') }}">History</a></li>
-        <li><a class="sidebar" href="{{ route('logout') }}" onclick="event.preventDefault();
+<div class="sidebar">
+    <a href="{{ url('/home') }}">Dashboard</a>
+    <a href="{{ url('/input') }}">Input</a>
+    <a href="{{ url('/output') }}">Output</a>
+    <a href="{{ url('/admin') }}">Admin</a>
+    <a href="{{ url('/searching') }}">History</a>
+    <a href="{{ route('logout') }}" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-        </li>
-    </ul>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
 </div>
 </body>
 </html>

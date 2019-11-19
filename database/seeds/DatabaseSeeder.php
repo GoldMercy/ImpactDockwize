@@ -15,7 +15,13 @@ class DatabaseSeeder extends Seeder
             ThemesSeeder::class,
             ProgramsSeeder::class,
             HousingSeed::class,
-            OrganisationTypeSeeder::class
+            OrganisationTypeSeeder::class,
+            SurveysTableSeeder::class,
+            BusinessTableSeeder::class,
+            old_business_dataTableSeeder::class,
+            OpenqsTableSeeder::class,
+            RelationshipSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }
