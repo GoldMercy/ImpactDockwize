@@ -16,9 +16,9 @@ class CreateBisSurRelTable extends Migration
         Schema::create('bis_sur_rel', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->bigInteger('survey_id')->unsigned();
+            $table->bigInteger('survey_id')->unsigned()->nullable();
             $table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade');
-            $table->bigInteger('business_id')->unsigned();
+            $table->bigInteger('business_id')->unsigned()->nullable();
             $table->foreign('business_id')->references('id')->on('business')->onDelete('cascade');
         });
     }

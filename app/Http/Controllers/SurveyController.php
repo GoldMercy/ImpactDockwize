@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\OpenQ;
 use App\Survey;
+use App\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -45,7 +46,8 @@ class SurveyController extends Controller
     {
         $survey = Survey::find($id);
         $openqs = OpenQ::where('survey_id', $id)->get();
-        return view('surveys.show', ['survey' => $survey], ['openqs' => $openqs]);
+        $business = Business::all();
+        return view('surveys.show', ['survey' => $survey, 'openqs' => $openqs, 'business' => $business]);
     }
 
     public function edit($id)
@@ -75,4 +77,21 @@ class SurveyController extends Controller
         $survey->delete();
         return redirect('/surveys')->with('success', 'Vragenlijst verwijderd!');
     }
+
+    public function addsur() {
+        $business = Business::all();
+
+        return view('surveys.addsur')->with([
+            'business'  => $business,
+        ]);
+    }
+
+    public function updatesur (Request $request, $id) {
+        $survey = Survey::find($id);
+        $survey->business_id = $request->business_id;
+        $survey->save();
+
+        return redirect('/surveys')->with('success', 'Bedrijf toegevoegd!');
+    }
+    
 }

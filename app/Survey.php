@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Business;
+use App\OpenQ;
 use Illuminate\Database\Eloquent\Model;
 
 class Survey extends Model
@@ -11,7 +13,11 @@ class Survey extends Model
     ];
 
     public function question() {
-        return $this -> belongsToMany(Question::class);
+        return $this -> belongsToMany(OpenQ::class);
+    }
+
+    public function business() {
+        return $this -> belongsToMany(Business::class);
     }
 
     // Table Name

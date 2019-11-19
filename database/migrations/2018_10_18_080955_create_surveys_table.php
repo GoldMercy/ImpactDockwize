@@ -17,6 +17,8 @@ class CreateSurveysTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('titel');
             $table->string('beschrijving');
+            $table->bigInteger('business_id')->unsigned()->nullable();
+            $table->foreign('business_id')->references('id')->on('business')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Survey;
 
 class Business extends Model
 {
@@ -14,5 +15,9 @@ class Business extends Model
     protected $primaryKey = 'id';
     protected $table = 'business';
     public $timestamps = false;
+
+    public function surveyb() {
+        return $this -> belongsToMany(Survey::class);
+    }
 
 }

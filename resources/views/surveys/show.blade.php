@@ -23,6 +23,19 @@
             </tr>
         @endforeach
     </table>
+    <br>
+    <form method="GET" action="/surveys/updatesur/{{$survey->id}}">
+        @csrf
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <label for="business_id">Bij welk bedrijf hoort de vragenlijst?</label>
+                <select name="business_id" class="form-control">
+                    @foreach($business as $bus)
+                        <option value="{{$bus->id}}">{{$bus->Onderneming}}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
     <hr>
     <div class="form-group">
         <a href="/surveys">
@@ -31,6 +44,8 @@
         <a href="/surveys/edit/{{$survey->id}}">
             <button type="button" class="btn btn-primary">Pas de vragenlijst aan</button>
         </a>
+            <button type="submit" class="btn btn-success">Voeg bedrijf toe</button>
     </div>
+</form>
 </div>
 @endsection

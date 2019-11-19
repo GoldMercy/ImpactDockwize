@@ -67,6 +67,9 @@ Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
 Route::get('/admin/edit/deleteall/{id}', 'AdminController@deleteAll');
 Route::get('/admin/find', 'AdminController@find');
 
+Route::get('/surveys/addsur', 'SurveyController@addsur');
+Route::get('/surveys/updatesur/{id}', 'SurveyController@updatesur');
+
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 
 Route::get('/searching','SearchController@index');

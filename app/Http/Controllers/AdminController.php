@@ -56,6 +56,27 @@ class AdminController extends Controller
         return(redirect('/admin'));
     }
 
+    // public function storesur(Request $request)
+    // {
+    //     $business = new Business;
+    //     $business->Ondernemer = $request->Ondernemer;
+    //     $business->Onderneming = $request->Onderneming;
+    //     $business->Telefoonnummer = $request->Telefoonnummer;
+    //     $business->Plaats = $request->Plaats;
+    //     $business->Email = $request->Email;
+    //     $business->Idee = $request->Idee;
+    //     $business->Jaar = $request->Jaar;
+    //     $business->Doelgroep = $request->Doelgroep;
+    //     $business->Thema = $request->Thema;
+    //     $business->Programma = $request->Programma;
+    //     $business->Huisvesting = $request->Huisvesting;
+    //     $business->Organisatievorm = $request->Organisatievorm;
+    //     $business->created_at = date('y-m-d');
+    //     $business->save();
+
+    //     return redirect('/admin')->with('success', 'Vragenlijst gekoppeld!');
+    // }
+
     public function edit($id)
     {
         $business = DB::table('business')->find($id);
@@ -89,7 +110,7 @@ class AdminController extends Controller
                 $business->Huisvesting = $request->Huisvesting;
                 $business->save();
         }
-                return (redirect('/admin'));
+                return (redirect('/admin')->with('success', 'Bedrijf aangepast!'));
     }
 
     public function delete($id){
@@ -117,14 +138,14 @@ class AdminController extends Controller
             $business->save();
             OldBusinessData::find($oldData->id)->delete();
         }
-       return(redirect('/admin'));
+       return(redirect('/admin')->with('success', 'Bedrijf verwijderd!'));
     }
 
     public function deleteAll($id){
         DB::table('business')->delete($id);
         DB::table('old_business_data')->where('business_id', $id)->delete();
 
-        return(redirect('/admin'));
+        return(redirect('/admin')->with('success', 'Alle data verwijderd!'));
     }
 
     /**
@@ -165,10 +186,19 @@ class AdminController extends Controller
 
     public function show(Request $request, $id) {
         $business = Business::find($id);
-        $bissurrel = BisSurRel::where('survey_id', $id)->get();
+        $surveys = Survey::where('business_id', $id)->get();
         return view('admin.show')->with([
             'business' => $business,
-            'bissurrel' => $bissurrel
+            'surveys' => $surveys,
             ]);
     }
+
+    // public function addsur(Request $request, $id) {
+    //     $business = Business::find($id);
+    //     $surveys = Survey::all();
+    //     return view('admin.addsur')->with([
+    //         'business'  => $business,
+    //         'surveys'   => $surveys,
+    //     ]);
+    // }
 }
