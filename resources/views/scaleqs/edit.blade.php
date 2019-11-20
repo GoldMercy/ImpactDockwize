@@ -15,7 +15,7 @@
                 <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
                 <select name="survey_id" class="form-control">
                     @foreach($surveys as $s)
-                        <option value="{{$s->id}}">{{$s->titel}}</option>
+                        <option value="{{$s->id}}" <?php if($s->id == $scaleq->survey_id ){ ?> selected="selected" <?php } ?>>{{$s->titel}}</option>
                     @endforeach
                 </select>
             </div>

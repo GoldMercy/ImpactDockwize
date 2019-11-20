@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
-@section('content')
+
 <div class="container">
     <a href="{{url('output/pdf')}}" class="btn btn-danger">Convert to PDF</a>
 </div>
-<div class="container">
+<div class="container" id="main">
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
@@ -24,4 +24,3 @@
         </table>
     </div>
 </div>
-@endsection
