@@ -186,6 +186,7 @@ class AdminController extends Controller
 
     public function show(Request $request, $id) {
         $business = Business::find($id);
+        $surstat = SurveyStatus::all();
         $surveys = Survey::where('business_id', $id)->get();
         return view('admin.show')->with([
             'business' => $business,
