@@ -18,6 +18,8 @@ class CreateScaleqsTable extends Migration
             $table->string('scaleq_name');
             $table->bigInteger('survey_id');
             $table->integer('scaleq_score')->default(0);
+            $table->bigInteger('survey_id')->unsigned();
+            $table->foreign('survey_id')->references('id')->on('surveys');
             $table->timestamps();
         });
     }

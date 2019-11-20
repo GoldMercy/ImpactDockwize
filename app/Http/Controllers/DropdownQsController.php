@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DropdownQ;
 use App\QOption;
+use App\Survey;
 use Illuminate\Support\Facades\DB;
 
 class DropdownQsController extends Controller
@@ -27,8 +28,10 @@ class DropdownQsController extends Controller
      */
     public function create()
     {
-        $surveys = DB::table('surveys')->get();
+        $qoptions = QOption::all();
+        $surveys = Survey::all();
         return view('dropdownqs.create')->with([
+            'qoptions' => $qoptions,
             'surveys' => $surveys
             ]);
     }
@@ -43,6 +46,7 @@ class DropdownQsController extends Controller
     {
         $this->validate($request, [
             'dropdownq_name' => 'required',
+            'survey_id' => 'required',
         ]);
         
         $dropdownq = new DropdownQ;
@@ -64,9 +68,6 @@ class DropdownQsController extends Controller
         $dropdownq = DropdownQ::find($id);
         $qoptions = QOption::where('dropdownq_fk', $id)->get();
         return view('dropdownqs.show', ['dropdownq' => $dropdownq], ['qoptions' => $qoptions]);
-
-        // $dropdownq = DropdownQ::find($id);
-        // return view('dropdownqs.show')->with('dropdownq', $dropdownq);
     }
 
     /**

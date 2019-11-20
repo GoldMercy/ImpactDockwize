@@ -2,7 +2,7 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container">
-    <form method="GET" action="/surveys/store">
+    <form method="GET" action="/surveys/update/{{$survey->id}}">
         @csrf
         <div class="form-group">
             <div class="form-group col-sm-6">

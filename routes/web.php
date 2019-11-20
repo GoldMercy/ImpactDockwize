@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'DashboardController@index')->name('home');
 
 Route::get('/input', 'PagesController@input');
 
@@ -78,6 +78,9 @@ Route::get('/pdf', function(){
     $pdf = PDF::loadView('pdf');
     return $pdf->download('test.pdf');
 });
+
+Route::get('/output', 'PDFGeneratorController@index');
+Route::get('/output/pdf', 'PDFGeneratorController@pdf');
 
 Route::get('/dropdownqs', 'DropdownQsController@index');
 Route::get('/dropdownqs/create', 'DropdownQsController@create');

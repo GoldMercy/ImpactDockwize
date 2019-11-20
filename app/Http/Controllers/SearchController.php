@@ -32,6 +32,7 @@ class SearchController extends Controller
                             '<td>' . $business->Thema . '</td>' .
                             '<td>' . $business->Doelgroep . '</td>' .
                             '<td>' . $business->Programma . '</td>' .
+                            '<td>' . $business->Huisvesting . '</td>' .
                             '</tr>';
                     }
                 }

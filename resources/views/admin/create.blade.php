@@ -33,13 +33,17 @@
                 <label for="Idee">Idee</label>
                 <input type="text" class="form-control" name="Idee" placeholder="Korte omschrijving idee">
             </div>
-            <div class="form-group col-sm-2">
+            <div class="form-group col-sm-3">
                 <label for="Jaar">Jaar</label>
                 <input type="text" class="form-control" name="Jaar" placeholder="Jaar van deelname">
             </div>
-            <div class="form-group col-sm-4">
-                <label for="Doelgroep">Doelgroep</label>
-                <input type="text" class="form-control" name="Doelgroep" placeholder="Doelgroep">
+            <div class="form-group col-sm-3">
+                <label for="Doelgroep">Relatie</label>
+                <select name="Doelgroep" class="form-control">
+                    @foreach($relationships as $relationship)
+                        <option>{{$relationship->relationship}}</option>
+                    @endforeach
+                </select>
             </div>
             </div>
             <div class="form-row">
@@ -62,9 +66,17 @@
             <div class="form-group col-sm-3">
                 <label for="Huisvesting">Huisvesting</label>
                     <select name="Huisvesting" class="form-control">
-                        <option>Flex</option>
-                        <option>Kantoor</option>
-                        <option>Loodsunit</option>
+                        @foreach($housings as $housing)
+                            <option>{{$housing->housing_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            <div class="form-group col-sm-3">
+                    <label for="Organisatievorm">Organisatievorm</label>
+                    <select name="Organisatievorm" class="form-control">
+                        @foreach($organisation_types as $organisation_type)
+                            <option>{{$organisation_type->organisation_type}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

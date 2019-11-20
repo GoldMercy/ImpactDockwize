@@ -8,7 +8,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 <body>
-<div class="container">
+<br>
+<div class="container-admin">
     <h2>Laat data zien:</h2>
     <div class="form-row justify-content-center">
         <div class="form-row col-sm-12">
@@ -26,21 +27,22 @@
                 </div>
         </div>
 
-            <div>
-                <table class="table table-bordered table-hover">
+            <div class="row justify-content-center">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Gemeten op</th>
-                        <th>Ondernemer</th>
-                        <th>Onderneming</th>
-                        <th>Telefoonnummer</th>
-                        <th>E-mail</th>
-                        <th>Plaats</th>
-                        <th>Idee</th>
-                        <th>Jaar</th>
-                        <th>Thema</th>
-                        <th>Doelgroep</th>
-                        <th>Programma</th>
+                        <th id="ad-md" scope="col">Gemeten op</th>
+                        <th id="ad-md" scope="col">Ondernemer</th>
+                        <th id="ad-md" scope="col">Onderneming</th>
+                        <th id="ad-md" scope="col">Telefoonnummer</th>
+                        <th id="ad-md" scope="col">E-mail</th>
+                        <th id="ad-md" scope="col">Plaats</th>
+                        <th id="ad-lg" scope="col">Idee</th>
+                        <th id="ad-xsm" scope="col">Jaar</th>
+                        <th id="ad-md" scope="col">Thema</th>
+                        <th id="ad-md" scope="col">Doelgroep</th>
+                        <th id="ad-sm" scope="col">Programma</th>
+                        <th id="ad-sm" scope="col">Huisvesting</th>
                     </tr>
                     </thead>
                     <tbody>
