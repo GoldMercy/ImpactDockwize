@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             ThemesSeeder::class,
             ProgramsSeeder::class,
             HousingSeed::class,
-            OrganisationTypeSeeder::class
+            OrganisationTypeSeeder::class,
+            RelationshipSeeder::class
         ]);
     }
 }

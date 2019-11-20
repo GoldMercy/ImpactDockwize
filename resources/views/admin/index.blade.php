@@ -64,10 +64,10 @@
                     </td>
                     <td id="ad-td">
                 {{ $business->Huisvesting }}
-                    </td id="ad-td">
+                    </td>
                     <td id="ad-td">
                 {{ $business->Organisatievorm }}
-                    </td id="ad-td">
+                    </td>
                 </tr>
                 </tr>
             </div>
