@@ -75,8 +75,9 @@ class OpenQsController extends Controller
      */
     public function edit($id)
     {
+        $surveys = DB::table('surveys')->get();
         $openq = OpenQ::find($id);
-        return view('openqs.edit')->with('openq', $openq);
+        return view('openqs.edit')->with(['openq' => $openq, 'surveys' => $surveys]);
     }
 
     /**

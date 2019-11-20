@@ -19,14 +19,25 @@
                             </div>
                         @foreach($openqs as $openq)
                                 <div class="form-group col-sm-8">
-                                    <label for="openvraag{{$openq->openq_id}}">{{$openq->openq_name}}</label>
+                                    <label for="{{$openq->openq_name}}">{{$openq->openq_name}}</label>
                                     <input type="text" class="form-control" name="{{$openq->openq_name}}">
                                 </div>
                         @endforeach
                             @foreach($scaleqs as $scaleq)
                                 <div class="form-group col-sm-8">
-                                    <label for="schaalvraag{{$scaleq->scaleq_id}}">{{$scaleq->scaleq_name}}</label>
+                                    <label for="{{$scaleq->scaleq_name}}">{{$scaleq->scaleq_name}}</label>
                                     <input type="number" min="1" max="10" class="form-control" name="{{$scaleq->scaleq_name}}">
+                                </div>
+                            @endforeach
+                            @foreach($dropdownqs as $dropdownq)
+                                <div class="form-group col-sm-8">
+                                    <label for="{{$dropdownq->dropdownq_name}}">{{$dropdownq->dropdownq_name}}</label>
+                                    <select class="form-control" name="{{$dropdownq->dropdownq_name}}">
+                                        {{$qoptionsx = $qoptions->where('dropdownq_fk', '=', $dropdownq->dropdownq_id)}}
+                                    @foreach($qoptionsx as $qoption)
+                                        <option>{{$qoption->option_name}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             @endforeach
                             <div class="col-sm-1">

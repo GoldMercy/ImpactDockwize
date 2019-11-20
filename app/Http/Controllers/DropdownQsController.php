@@ -27,9 +27,9 @@ class DropdownQsController extends Controller
      */
     public function create()
     {
-        $qoptions = QOption::all();
+        $surveys = DB::table('surveys')->get();
         return view('dropdownqs.create')->with([
-            'qoptions' => $qoptions
+            'surveys' => $surveys
             ]);
     }
 
@@ -47,6 +47,7 @@ class DropdownQsController extends Controller
         
         $dropdownq = new DropdownQ;
         $dropdownq->dropdownq_name = $request->dropdownq_name;
+        $dropdownq->survey_id = $request->survey_id;
         $dropdownq->save();
 
         return redirect('/dropdownqs')->with('success', 'Vraag gemaakt!');
@@ -76,8 +77,9 @@ class DropdownQsController extends Controller
      */
     public function edit($id)
     {
+        $surveys = DB::table('surveys')->get();
         $dropdownq = DropdownQ::find($id);
-        return view('dropdownqs.edit')->with('dropdownq', $dropdownq);
+        return view('dropdownqs.edit')->with(['dropdownq' => $dropdownq, 'surveys' => $surveys]);
     }
 
     /**
@@ -95,6 +97,7 @@ class DropdownQsController extends Controller
 
         $dropdownq = DropdownQ::find($id);
         $dropdownq->dropdownq_name = $request->dropdownq_name;
+        $dropdownq->survey_id = $request->survey_id;
         $dropdownq->save();
         
            
