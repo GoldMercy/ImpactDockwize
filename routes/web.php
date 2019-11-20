@@ -96,3 +96,11 @@ Route::get('/qoptions/edit/{id}', 'QOptionsController@edit');
 Route::get('/qoptions/show/{id}', 'QOptionsController@show');
 Route::get('/qoptions/update/{id}', 'QOptionsController@update');
 Route::get('/qoptions/edit/delete/{id}', 'QOptionsController@delete');
+
+Route::get('/answer/index', 'AnswerController@index');
+Route::get('/answer/select', 'AnswerController@select');
+Route::get('/answer/survey{id}', 'AnswerController@survey');
+Route::get('/answer/submit', 'AnswerController@submit');
+Route::get('/answer/answerIndex', 'AnswerController@answerIndex');
+Route::get('/answer/show/{id}', 'AnswerController@show');
+

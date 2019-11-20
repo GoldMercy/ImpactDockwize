@@ -6,8 +6,8 @@
         @csrf
         <div class="form-row">
             <div class="form-group col-sm-6">
-                <label for="scaleq_name">Wat was de gestelde vraag?</label>
-                <input type="text" class="form-control" name="scaleq_name" aria-describedby="scaleq_name" value="{{$scaleq->scaleq_name}}"/>
+                <label for="scaleq_name">Hoe heet de vraag?</label>
+                <input type="text" class="form-control" name="scaleq_name" aria-describedby="openq_name" value="{{$scaleq->scaleq_name}}">
             </div>
         </div>
         <div class="form-row">
@@ -15,7 +15,11 @@
                 <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
                 <select name="survey_id" class="form-control">
                     @foreach($surveys as $s)
-                        <option value="{{$s->id}}" <?php if($s->id == $scaleq->survey_id ){ ?> selected="selected" <?php } ?>>{{$s->titel}}</option>
+                        @if($s->id == $scaleq->survey_id)
+                        <option selected value="{{$s->id}}">{{$s->titel}}</option>
+                        @else
+                        <option value="{{$s->id}}">{{$s->titel}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>

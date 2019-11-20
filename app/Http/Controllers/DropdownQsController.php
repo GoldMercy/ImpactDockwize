@@ -78,8 +78,8 @@ class DropdownQsController extends Controller
      */
     public function edit($id)
     {
+        $surveys = DB::table('surveys')->get();
         $dropdownq = DropdownQ::find($id);
-        $surveys = Survey::all();
         return view('dropdownqs.edit')->with(['dropdownq' => $dropdownq, 'surveys' => $surveys]);
     }
 
@@ -98,6 +98,7 @@ class DropdownQsController extends Controller
 
         $dropdownq = DropdownQ::find($id);
         $dropdownq->dropdownq_name = $request->dropdownq_name;
+        $dropdownq->survey_id = $request->survey_id;
         $dropdownq->save();
         
            

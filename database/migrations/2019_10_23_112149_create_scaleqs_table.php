@@ -16,6 +16,7 @@ class CreateScaleqsTable extends Migration
         Schema::create('scaleqs', function (Blueprint $table) {
             $table->bigIncrements('scaleq_id');
             $table->string('scaleq_name');
+            $table->bigInteger('survey_id');
             $table->integer('scaleq_score')->default(0);
             $table->bigInteger('survey_id')->unsigned();
             $table->foreign('survey_id')->references('id')->on('surveys');
