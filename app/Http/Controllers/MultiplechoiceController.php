@@ -21,12 +21,8 @@ class MultiplechoiceController extends Controller
 
     public function create()
     {
-        $multiplechoice = Multiplechoice::all();
-        $multiplechoice_options = MultiplechoiceOptions::all();
         $surveys = Survey::all();
         return view('multiplechoice.create')->with([
-            'multiplechoice' => $multiplechoice,
-            'multiplechoice_options' => $multiplechoice_options,
             'surveys' => $surveys
             ]);
     }
@@ -35,7 +31,6 @@ class MultiplechoiceController extends Controller
     {
         $this->validate($request, [
             'multiplechoice_name' => 'required',
-            'multiplechoice_option' => 'required',
             'survey_id' => 'required',
         ]);
         
@@ -45,8 +40,11 @@ class MultiplechoiceController extends Controller
         $multiplechoice->save();
 
         $multiplechoice_options = new MultiplechoiceOptions;
-        $multiplechoice_options->multiplechoice_option = $request->multiplechoice_option;
-        $multiplechoice_options->multiplechoice_id = $request->multiplechoice_id;
+        $options[] = $request->toArray();
+        array_pop($options[0]);
+        array_shift($options[0]);
+        $multiplechoice_options->multiplechoice_option = implode(', ',$options[0]);
+        $multiplechoice_options->multiplechoice_id = $multiplechoice->multiplechoice_id;
         $multiplechoice_options->save();
 
         return redirect('/multiplechoice')->with('success', 'Vraag gemaakt!');
@@ -56,15 +54,17 @@ class MultiplechoiceController extends Controller
     public function show($id)
     {
         $multiplechoice = Multiplechoice::find($id);
-        $qoptions = QOption::where('dropdownq_fk', $id)->get();
-        return view('multiplechoice.show', ['multiplechoice' => $multiplechoice], ['qoptions' => $qoptions]);
+        $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
+        return view('multiplechoice.show', ['multiplechoice' => $multiplechoice], ['multiplechoiceoptions' => $multiplechoiceoptions]);
     }
 
     public function edit($id)
     {
         $surveys = DB::table('surveys')->get();
         $multiplechoice = Multiplechoice::find($id);
-        return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys]);
+        $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get()->first();
+        $options = explode(', ' , $multiplechoiceoptions->multiplechoice_option);
+        return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys, 'options' => $options]);
     }
 
     public function update(Request $request, $id)
@@ -77,7 +77,14 @@ class MultiplechoiceController extends Controller
         $multiplechoice->multiplechoice_name = $request->multiplechoice_name;
         $multiplechoice->survey_id = $request->survey_id;
         $multiplechoice->save();
-        
+
+        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
+        $options[] = $request->toArray();
+        array_pop($options[0]);
+        array_shift($options[0]);
+        array_shift($options[0]);
+        $multiplechoice_options->multiplechoice_option = implode(', ',$options[0]);
+        $multiplechoice_options->save();
            
         return redirect('/multiplechoice')->with('success', 'Vraag aangepast!');
     }
@@ -90,7 +97,9 @@ class MultiplechoiceController extends Controller
      */
     public function delete($id)
     {
+        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
         $multiplechoice = Multiplechoice::find($id);
+        $multiplechoice_options->delete();
         $multiplechoice->delete();
         return redirect('/multiplechoice')->with('success', 'Vraag verwijderd!');
     }

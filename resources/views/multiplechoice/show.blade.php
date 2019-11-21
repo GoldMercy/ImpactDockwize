@@ -7,11 +7,11 @@
         <tr>
             <th>Opties</th>
         </tr>
-        @foreach($qoptions as $qo)
             <tr>
-                <td>{{$qo->option_name}}</td>
+                @foreach($multiplechoiceoptions as $multiplechoiceoption)
+                <td>{{$multiplechoiceoption->multiplechoice_option}}</td>
+                    @endforeach
             </tr>
-        @endforeach
     </table>
     <hr>
     <div class="form-group">

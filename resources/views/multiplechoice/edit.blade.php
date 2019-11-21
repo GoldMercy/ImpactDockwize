@@ -10,6 +10,14 @@
                 <input type="text" class="form-control" name="multiplechoice_name" aria-describedby="multiplechoice_name" value="{{$multiplechoice->multiplechoice_name}}">
             </div>
             </div>
+        @foreach($options as $option)
+            <div class="form row">
+                <div class="form-group col-sm-6">
+                    <label for="multiplechoice_option{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
+                    <input type="text" class="form-control" name="multiplechoice_option{{$loop->iteration}}" aria-describedby="multiplechoice_option{{$loop->iteration}}" value="{{$option}}">
+                </div>
+            </div>
+        @endforeach
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
@@ -26,7 +34,7 @@
             </div>
         <hr>
         <div class="form-group">
-            <a href="/dropdownqs/show/{{$multiplechoice->multiplechoice_id}}">
+            <a href="/multiplechoice/show/{{$multiplechoice->multiplechoice_id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
                 <button type="submit" class="btn btn-primary">Vraag aanpassen</button>
