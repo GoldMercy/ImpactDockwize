@@ -90,6 +90,14 @@ Route::get('/dropdownqs/show/{id}', 'DropdownQsController@show');
 Route::get('/dropdownqs/update/{id}', 'DropdownQsController@update');
 Route::get('/dropdownqs/edit/delete/{id}', 'DropdownQsController@delete');
 
+Route::get('/multiplechoice', 'MultiplechoiceController@index');
+Route::get('/multiplechoice/create', 'MultiplechoiceController@create');
+Route::get('/multiplechoice/store', 'MultiplechoiceController@store');
+Route::get('/multiplechoice/edit/{id}', 'MultiplechoiceController@edit');
+Route::get('/multiplechoice/show/{id}', 'MultiplechoiceController@show');
+Route::get('/multiplechoice/update/{id}', 'MultiplechoiceController@update');
+Route::get('/multiplechoice/edit/delete/{id}', 'MultiplechoiceController@delete');
+
 Route::get('/qoptions/create', 'QOptionsController@create');
 Route::get('/qoptions/store', 'QOptionsController@store');
 Route::get('/qoptions/edit/{id}', 'QOptionsController@edit');

@@ -19,18 +19,7 @@
                         @endforeach
                     </select>
                 </div>
-        </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-sm-6">
-                <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
-                <select name="survey_id" class="form-control">
-                    @foreach($surveys as $s)
-                        <option value="{{$s->id}}">{{$s->titel}}</option>
-                    @endforeach
-                </select>
             </div>
-        </div>
         <hr>
         <div class="form-group col-sm-6">
             <a href="/input">
