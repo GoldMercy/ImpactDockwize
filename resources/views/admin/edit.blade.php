@@ -38,8 +38,16 @@
                 <input type="text" class="form-control" name="Jaar" placeholder="Jaar van deelname" value="{{$business->Jaar}}">
             </div>
             <div class="form-group col-sm-4">
-                <label for="Doelgroep">Doelgroep</label>
-                <input type="text" class="form-control" name="Doelgroep" placeholder="Doelgroep" value="{{$business->Doelgroep}}">
+                <label for="Relatie">Relatie</label>
+                <select name="Relatie" class="form-control">
+                    @foreach($relationships as $relationship)
+                        @if($business->Relatie == $relationship->relationship)
+                        <option selected>{{$relationship->relationship}}</option>
+                        @else
+                            <option>{{$relationship->relationship}}</option>
+                        @endif
+                    @endforeach
+                </select>
             </div>
             </div>
             <div class="form-row">
@@ -75,6 +83,18 @@
                                 <option selected>{{$housing->housing_name}}</option>
                             @else
                                 <option>{{$housing->housing_name}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-sm-3">
+                    <label for="Organisatievorm">Organisatievorm</label>
+                    <select name="Organisatievorm" class="form-control">
+                        @foreach($organisation_types as $organisation_type)
+                            @if($business->Organisatievorm == $organisation_type->organisation_type)
+                                <option selected>{{$organisation_type->organisation_type}}</option>
+                            @else
+                                <option>{{$organisation_type->organisation_type}}</option>
                             @endif
                         @endforeach
                     </select>
