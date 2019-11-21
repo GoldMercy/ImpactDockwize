@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {       
         $this->call([
+            UsersTableSeeder::class,
             ThemesSeeder::class,
             ProgramsSeeder::class,
             HousingSeed::class,
@@ -21,7 +22,6 @@ class DatabaseSeeder extends Seeder
             old_business_dataTableSeeder::class,
             OpenqsTableSeeder::class,
             RelationshipSeeder::class,
-            UsersTableSeeder::class,
         ]);
     }
 }

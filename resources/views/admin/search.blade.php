@@ -39,10 +39,11 @@
                         <th id="ad-md" scope="col">Plaats</th>
                         <th id="ad-lg" scope="col">Idee</th>
                         <th id="ad-xsm" scope="col">Jaar</th>
-                        <th id="ad-md" scope="col">Thema</th>
+                        <th id="ad-md" scope="col">Relatie</th>
                         <th id="ad-md" scope="col">Doelgroep</th>
                         <th id="ad-sm" scope="col">Programma</th>
                         <th id="ad-sm" scope="col">Huisvesting</th>
+                        <th id="ad-sm" scope="col">Organisatievorm</th>
                     </tr>
                     </thead>
                     <tbody>
