@@ -15,7 +15,11 @@
                 <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
                 <select name="survey_id" class="form-control">
                     @foreach($surveys as $s)
-                        <option value="{{$s->id}}">{{$s->titel}}</option>
+                        @if($s->id == $openq->survey_id)
+                            <option selected value="{{$s->id}}">{{$s->titel}}</option>
+                        @else
+                            <option value="{{$s->id}}">{{$s->titel}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>

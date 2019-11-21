@@ -4,16 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DropdownQ extends Model
+class MultiplechoiceOptions extends Model
 {
     // Table Name
-    protected $table = 'dropdownqs';
+    protected $table = 'multiplechoice_options';
     // Primary Key
-    public $primaryKey = 'dropdownq_id';
+    public $primaryKey = 'multiplechoice_id';
     // Timestamps
     public $timestamps = true;
 
     protected $fillable = [
-        'dropdownq_name', 'survey_id'
+        'multiplechoice_option', 'multiplechoice_id'
     ];
 }

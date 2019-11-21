@@ -65,8 +65,8 @@ Route::get('/admin/update/{id}', 'AdminController@update');
 Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
 Route::get('/admin/edit/deleteall/{id}', 'AdminController@deleteAll');
 Route::get('/admin/find', 'AdminController@find');
-
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
+Route::get('/admin/windex', 'AdminController@windex');
 
 Route::get('/searching','SearchController@index');
 Route::get('/search','SearchController@search');
@@ -89,9 +89,25 @@ Route::get('/dropdownqs/show/{id}', 'DropdownQsController@show');
 Route::get('/dropdownqs/update/{id}', 'DropdownQsController@update');
 Route::get('/dropdownqs/edit/delete/{id}', 'DropdownQsController@delete');
 
+Route::get('/multiplechoice', 'MultiplechoiceController@index');
+Route::get('/multiplechoice/create', 'MultiplechoiceController@create');
+Route::get('/multiplechoice/store', 'MultiplechoiceController@store');
+Route::get('/multiplechoice/edit/{id}', 'MultiplechoiceController@edit');
+Route::get('/multiplechoice/show/{id}', 'MultiplechoiceController@show');
+Route::get('/multiplechoice/update/{id}', 'MultiplechoiceController@update');
+Route::get('/multiplechoice/edit/delete/{id}', 'MultiplechoiceController@delete');
+
 Route::get('/qoptions/create', 'QOptionsController@create');
 Route::get('/qoptions/store', 'QOptionsController@store');
 Route::get('/qoptions/edit/{id}', 'QOptionsController@edit');
 Route::get('/qoptions/show/{id}', 'QOptionsController@show');
 Route::get('/qoptions/update/{id}', 'QOptionsController@update');
 Route::get('/qoptions/edit/delete/{id}', 'QOptionsController@delete');
+
+Route::get('/answer/index', 'AnswerController@index');
+Route::get('/answer/select', 'AnswerController@select');
+Route::get('/answer/survey{id}', 'AnswerController@survey');
+Route::get('/answer/submit', 'AnswerController@submit');
+Route::get('/answer/answerIndex', 'AnswerController@answerIndex');
+Route::get('/answer/show/{id}', 'AnswerController@show');
+

@@ -38,8 +38,8 @@
                 <input type="text" class="form-control" name="Jaar" placeholder="Jaar van deelname">
             </div>
             <div class="form-group col-sm-3">
-                <label for="Doelgroep">Relatie</label>
-                <select name="Doelgroep" class="form-control">
+                <label for="Relatie">Relatie</label>
+                <select name="Relatie" class="form-control">
                     @foreach($relationships as $relationship)
                         <option>{{$relationship->relationship}}</option>
                     @endforeach

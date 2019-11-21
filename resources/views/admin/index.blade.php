@@ -9,6 +9,33 @@
             </button>
         </a>
     </div>
+        <form method="get" action="/admin/windex">
+            <div class="form-row align-items-end">
+                <div class="form-group col-sm-2">
+            <label for="column">Filteren op:</label>
+            <select name="column" class="form-control">
+                <option>Onderneming</option>
+                <option>Ondernemer</option>
+                <option>Plaats</option>
+                <option>Relatie</option>
+                <option>Thema</option>
+                <option>Programma</option>
+                <option>Huisvesting</option>
+                <option>Organisatievorm</option>
+            </select>
+                </div>
+            <div class="form-group col-sm-2">
+                <label for="value">Zoeken naar:</label>
+                <input type="text" class="form-control" name="value" aria-describedby="value">
+            </div>
+                <div class="form-group col-sm-2">
+            <button type="submit" class="btn btn-primary">Zoeken</button>
+                    <a href="/admin/index">
+                    <button type="submit" class="btn btn-primary">Toon Alles</button>
+                    </a>
+                </div>
+            </div>
+        </form>
     <div class="row justify-content-center">
             <table id="ad-tbl" class="table table-bordered">
                 <thead>
@@ -54,7 +81,7 @@
                 {{ $business->Jaar }}
                     </td>
                     <td id="ad-td">
-                {{ $business->Doelgroep }}
+                {{ $business->Relatie }}
                     </td>
                     <td id="ad-td">
                 {{ $business->Thema }}
@@ -64,10 +91,10 @@
                     </td>
                     <td id="ad-td">
                 {{ $business->Huisvesting }}
-                    </td id="ad-td">
+                    </td>
                     <td id="ad-td">
                 {{ $business->Organisatievorm }}
-                    </td id="ad-td">
+                    </td>
                 </tr>
                 </tr>
             </div>

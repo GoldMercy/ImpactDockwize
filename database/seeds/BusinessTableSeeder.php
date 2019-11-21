@@ -18,12 +18,12 @@ class BusinessTableSeeder extends Seeder
         DB::table('business')->insert([
             'Ondernemer' => $faker->name,
             'Onderneming' => $faker->company,
-            //'Telefoonnnummer' => $faker->phoneNumber,
+            'Telefoonnummer' => $faker->phoneNumber,
             'Email' => $faker->email,
             'Plaats' => $faker->city,
             'Idee' => $faker->sentence($nbWords = 6, $variableNbWords = true),
             'Jaar' => $faker->year,
-            'Doelgroep' => $faker->word,
+            'Relatie' => $faker->word,
             'created_at' => '2019-11-07',
         ]);
         endfor;

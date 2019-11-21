@@ -13,7 +13,7 @@ class RelationshipSeeder extends Seeder
     {
         DB::table('relationships')->truncate();
 
-        $relationships = ['Huurder kantoor', 'Huurder vergaderruimte', 'Programma deelnemer', 'Ontvanger innovatie financiering', 'Bezoeker', 'Expert/Coach', 'Eigenaar van een project'];
+        $relationships = ['Huurder kantoor', 'Huurder vergaderruimte', 'Programma deelnemer', 'Ontvanger innovatie financiering', 'Bezoeker', 'Expert/Coach', 'Eigenaar van een project', 'Alumnus'];
 
         foreach ($relationships as $relationship) {
             DB::table('relationships')->insert([

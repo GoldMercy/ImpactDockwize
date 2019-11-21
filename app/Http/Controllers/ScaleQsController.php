@@ -41,6 +41,7 @@ class ScaleQsController extends Controller
 
     public function edit($id)
     {
+        $surveys = DB::table('surveys')->get();
         $scaleq = ScaleQ::find($id);
         $surveys = Survey::all();
         return view('scaleqs.edit')->with(['scaleq' => $scaleq, 'surveys' => $surveys]);
@@ -54,6 +55,8 @@ class ScaleQsController extends Controller
         
         $scaleq = ScaleQ::find($id);
         $scaleq->scaleq_name = $request->scaleq_name;
+        $scaleq->survey_id = $request->survey_id;
+
         $scaleq->save();
         
         return redirect('/questions')->with('success', 'Vraag aangepast!');

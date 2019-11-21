@@ -17,13 +17,13 @@ class CreateBusinessTable extends Migration
             $table->bigIncrements('id');
             $table->string('Ondernemer')->nullable();
             $table->string('Onderneming')->nullable();
-            $table->integer('Telefoonnummer')->nullable();
+            $table->string('Telefoonnummer')->nullable();
             $table->string('Email')->nullable();
             $table->string('Plaats')->nullable();
             $table->string('Idee')->nullable();
             $table->integer('Jaar')->nullable();
             $table->string('Thema')->nullable();
-            $table->string('Doelgroep')->nullable();
+            $table->string('Relatie')->nullable();
             $table->string('Programma')->nullable();
             $table->string('Huisvesting')->nullable();
             $table->string('Organisatievorm')->nullable();
