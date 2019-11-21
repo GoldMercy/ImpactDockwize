@@ -17,11 +17,14 @@ class DatabaseSeeder extends Seeder
             ProgramsSeeder::class,
             HousingSeed::class,
             OrganisationTypeSeeder::class,
-            SurveysTableSeeder::class,
             BusinessTableSeeder::class,
+            SurveysTableSeeder::class,
             old_business_dataTableSeeder::class,
+            ScaleqsTableSeeder::class,
+            DropdownqsTableSeeder::class,
             OpenqsTableSeeder::class,
             RelationshipSeeder::class,
+            UsersTableSeeder::class
         ]);
     }
 }
