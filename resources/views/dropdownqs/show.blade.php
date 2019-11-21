@@ -15,7 +15,7 @@
     </table>
     <hr>
     <div class="form-group">
-        <a href="/dropdownqs">
+        <a href="/questions">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
         <a href="/dropdownqs/edit/{{$dropdownq->dropdownq_id}}">

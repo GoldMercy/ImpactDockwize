@@ -25,6 +25,8 @@ Route::get('/input', 'PagesController@input');
 
 Route::get('/output', 'PagesController@output');
 
+Route::get('/questions', 'QuestionspageController@questions');
+
 Route::get('/surveys', 'SurveyController@index');
 Route::get('/surveys/create', 'SurveyController@create');
 Route::get('/surveys/store', 'SurveyController@store');
@@ -33,7 +35,6 @@ Route::get('/surveys/show/{id}', 'SurveyController@show');
 Route::get('/surveys/update/{id}', 'SurveyController@update');
 Route::get('/surveys/edit/destroy/{id}', 'SurveyController@destroy');
 
-Route::get('/scaleqs', 'ScaleQsController@index');
 Route::get('/scaleqs/create', 'ScaleQsController@create');
 Route::get('/store', 'ScaleQsController@store');
 Route::get('/scaleqs/edit/{id}', 'ScaleQsController@edit');
@@ -49,7 +50,6 @@ Route::get('/cards/show/{id}', 'CardsController@show');
 Route::get('/cards/update/{id}', 'CardsController@update');
 Route::get('/cards/edit/delete/{id}', 'CardsController@delete');
 
-Route::get('/openqs', 'OpenQsController@index');
 Route::get('/openqs/create', 'OpenQsController@create');
 Route::get('/openqs/store', 'OpenQsController@store');
 Route::get('/openqs/edit/{id}', 'OpenQsController@edit');
@@ -82,7 +82,6 @@ Route::get('/pdf', function(){
 Route::get('/output', 'PDFGeneratorController@index');
 Route::get('/output/pdf', 'PDFGeneratorController@pdf');
 
-Route::get('/dropdownqs', 'DropdownQsController@index');
 Route::get('/dropdownqs/create', 'DropdownQsController@create');
 Route::get('/dropdownqs/store', 'DropdownQsController@store');
 Route::get('/dropdownqs/edit/{id}', 'DropdownQsController@edit');
