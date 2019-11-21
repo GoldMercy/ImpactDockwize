@@ -18,6 +18,6 @@ class OpenQ extends Model
     public $timestamps = true;
 
     protected $fillable = [
-        'questionName', 'survey_id', 'answer_type',
+        'openq_name', 'survey_id'
     ];
 }

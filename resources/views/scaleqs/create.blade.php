@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@extends('layouts.navbar')
+@extends('layouts.sidebar')
 @section('content')
 <div class="container">
     <form method="GET" action="/store">
         @csrf
-        <div class="form-group">
+        <div class="form-row">
             <div class="form-group col-sm-6">
-                <label for="scaleq_name">Wat was de gestelde vraag?</label>
-                <input type="text" class="form-control" name="scaleq_name" aria-describedby="scaleq_name"/>
+                <label for="scaleq_name">Hoe heet de vraag?</label>
+                <input type="text" class="form-control" name="scaleq_name" aria-describedby="scaleq_name" placeholder="Hoe heet de vraag?">
             </div>
         </div>
         <div class="form-row">
@@ -25,7 +25,7 @@
             <a href="/input">
                 <button type="button" class="btn btn-secondary">Terug</button>
             </a>
-                <button type="submit" class="btn btn-success">Toevoegen</button>
+            <button type="submit" class="btn btn-success">Toevoegen</button>
         </div>
     </form>
 </div>

@@ -5,7 +5,7 @@
     <h1>{{$openq->openq_name}}</h1>
     <hr>
     <div class="form-group">
-        <a href="/openqs">
+        <a href="/questions">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
         <a href="/openqs/edit/{{$openq->openq_id}}">

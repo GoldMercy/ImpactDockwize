@@ -18,7 +18,7 @@ class CreateOldBusinessDataTable extends Migration
             $table->integer('business_id');
             $table->string('Ondernemer')->nullable();
             $table->string('Onderneming')->nullable();
-            $table->integer('Telefoonnummer')->nullable();
+            $table->string('Telefoonnummer')->nullable();
             $table->string('Email')->nullable();
             $table->string('Plaats')->nullable();
             $table->string('Idee')->nullable();

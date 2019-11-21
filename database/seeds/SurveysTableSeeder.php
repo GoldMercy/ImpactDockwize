@@ -14,7 +14,7 @@ class SurveysTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('nl_NL');
-        for($i=0; $i<=20; $i++):
+        for($i=0; $i<=5; $i++):
             DB::table('surveys')->insert([
                 'titel' => $faker->word,
                 'beschrijving' => $faker->sentences($nbWords = 2, $variableNbWords = true),

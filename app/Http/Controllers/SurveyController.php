@@ -66,7 +66,7 @@ class SurveyController extends Controller
         $survey->beschrijving = $request->beschrijving;
         $survey->save();
 
-        return(redirect('/surveys')->with('success', 'Kaart aangepast!'));
+        return(redirect('/surveys')->with('success', 'Vragenlijst aangepast!'));
     }
 
     public function destroy($id)
