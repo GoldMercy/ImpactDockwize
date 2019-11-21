@@ -22,7 +22,7 @@ class ScaleQsController extends Controller
         
         $this->validate($request, [
             'scaleq_name' => 'required',
-            'survey_id' => 'required',
+            'survey_id' => 'required'
         ]);
         
         $scaleq = new ScaleQ;
