@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Survey;
+use App\SurveyStatus;
 
 class Business extends Model
 {
@@ -18,6 +19,10 @@ class Business extends Model
 
     public function surveyb() {
         return $this -> belongsToMany(Survey::class);
+    }
+    
+    public function surstat() {
+        return $this -> belongsToMany(SurveyStatus::class);
     }
 
 }

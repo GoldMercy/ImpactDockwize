@@ -13,7 +13,7 @@ class SurveyStatusSeeder extends Seeder
     {
         DB::table('survey_statuses')->truncate();
 
-        $survey_statuses = ['Nog niet verstuurd', 'Verstuurd', 'Ontvangen'];
+        $survey_statuses = ['Nog niet verstuurd', 'Verstuurd', 'Ontvangen', 'Antwoord ontvangen'];
 
         foreach ($survey_statuses as $surstat) {
             DB::table('survey_statuses')->insert([

@@ -16,6 +16,8 @@ class CreateSurveyStatusesTable extends Migration
         Schema::create('survey_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('status');
+            $table->string('business_name');
+            $table->string('survey_name');
             $table->timestamps();
         });
     }

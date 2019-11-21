@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Business;
 use App\OldBusinessData;
 use App\Survey;
-use App\BisSurRel;
+use App\SurveyStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -56,35 +56,23 @@ class AdminController extends Controller
         return(redirect('/admin'));
     }
 
-    // public function storesur(Request $request)
-    // {
-    //     $business = new Business;
-    //     $business->Ondernemer = $request->Ondernemer;
-    //     $business->Onderneming = $request->Onderneming;
-    //     $business->Telefoonnummer = $request->Telefoonnummer;
-    //     $business->Plaats = $request->Plaats;
-    //     $business->Email = $request->Email;
-    //     $business->Idee = $request->Idee;
-    //     $business->Jaar = $request->Jaar;
-    //     $business->Doelgroep = $request->Doelgroep;
-    //     $business->Thema = $request->Thema;
-    //     $business->Programma = $request->Programma;
-    //     $business->Huisvesting = $request->Huisvesting;
-    //     $business->Organisatievorm = $request->Organisatievorm;
-    //     $business->created_at = date('y-m-d');
-    //     $business->save();
-
-    //     return redirect('/admin')->with('success', 'Vragenlijst gekoppeld!');
-    // }
-
     public function edit($id)
     {
-        $business = DB::table('business')->find($id);
+        $business = Business::find($id);
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
         $housings = DB::table('housings')->get();
+        $surveys = DB::table('surveys')->where('business_id', $id)->get();
+        $surstats = DB::table('survey_statuses')->get();
 
-        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes, 'housings' => $housings]);
+        return view('admin.edit')->with([
+            'business' => $business, 
+            'surveys' => $surveys, 
+            'surstats' => $surstats, 
+            'programs' => $programs, 
+            'themes' => $themes, 
+            'housings' => $housings,
+            ]);
     }
 
     public function update(Request $request, $id)
@@ -186,20 +174,13 @@ class AdminController extends Controller
 
     public function show(Request $request, $id) {
         $business = Business::find($id);
-        $surstat = SurveyStatus::all();
-        $surveys = Survey::where('business_id', $id)->get();
+        $surveys = Survey::where('business_id', '=',  $id);
+        $surstats = SurveyStatus::where('business_name', $business->Onderneming)->get();
+
         return view('admin.show')->with([
             'business' => $business,
             'surveys' => $surveys,
+            'surstats' => $surstats,
             ]);
     }
-
-    // public function addsur(Request $request, $id) {
-    //     $business = Business::find($id);
-    //     $surveys = Survey::all();
-    //     return view('admin.addsur')->with([
-    //         'business'  => $business,
-    //         'surveys'   => $surveys,
-    //     ]);
-    // }
 }

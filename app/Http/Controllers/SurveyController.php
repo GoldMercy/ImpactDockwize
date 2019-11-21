@@ -78,20 +78,12 @@ class SurveyController extends Controller
         return redirect('/surveys')->with('success', 'Vragenlijst verwijderd!');
     }
 
-    public function addsur() {
-        $business = Business::all();
-
-        return view('surveys.addsur')->with([
-            'business'  => $business,
-        ]);
-    }
-
     public function updatesur (Request $request, $id) {
         $survey = Survey::find($id);
         $survey->business_id = $request->business_id;
         $survey->save();
 
-        return redirect('/surveys')->with('success', 'Bedrijf toegevoegd!');
+        return redirect('/surveys')->with('success', 'Bedrijf gekoppeld aan vragenlijst!');
     }
     
 }

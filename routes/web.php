@@ -66,9 +66,14 @@ Route::get('/admin/update/{id}', 'AdminController@update');
 Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
 Route::get('/admin/edit/deleteall/{id}', 'AdminController@deleteAll');
 Route::get('/admin/find', 'AdminController@find');
+Route::get('/admin/storestatus', 'AdminController@storestatus');
 
-Route::get('/surveys/addsur', 'SurveyController@addsur');
 Route::get('/surveys/updatesur/{id}', 'SurveyController@updatesur');
+
+Route::get('/admin/updatesurstat/{id}', 'AdminController@updatesurstat');
+
+Route::get('/surstat/addstat', 'SurveyStatusController@addstat');
+Route::get('/surstat/create', 'SurveyStatusController@create');
 
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 
@@ -100,7 +105,3 @@ Route::get('/qoptions/edit/{id}', 'QOptionsController@edit');
 Route::get('/qoptions/show/{id}', 'QOptionsController@show');
 Route::get('/qoptions/update/{id}', 'QOptionsController@update');
 Route::get('/qoptions/edit/delete/{id}', 'QOptionsController@delete');
-
-Route::get('/bissurrels/create', 'BisSurRelsController@create');
-Route::get('/bissurrels', 'BisSurRelsController@index');
-Route::get('/bissurrels/store', 'BisSurRelsController@store');
