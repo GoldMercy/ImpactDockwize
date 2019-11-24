@@ -24,6 +24,27 @@ class PDFGeneratorController extends Controller
         return $pdf->stream('dockwize.generalpdf');
     }
 
+    public function housingpdf() {
+        $pdf = \App::make('dompdf.wrapper');
+
+        $pdf = PDF::loadView('pdf.housingpdf');      
+        return $pdf->stream('dockwize.housingpdf');
+    }
+
+    public function impulspdf() {
+        $pdf = \App::make('dompdf.wrapper');
+
+        $pdf = PDF::loadView('pdf.impulspdf');      
+        return $pdf->stream('dockwize.impulspdf');
+    }
+
+    public function programpdf() {
+        $pdf = \App::make('dompdf.wrapper');
+
+        $pdf = PDF::loadView('pdf.programpdf');      
+        return $pdf->stream('dockwize.programpdf');
+    }
+
     // public function convert_openqs_to_html() {
     //     $openqs = $this->get_openqs();
     //     $pdfoutput = '

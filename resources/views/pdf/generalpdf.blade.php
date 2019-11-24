@@ -40,19 +40,4 @@ table {
             <li>{{$sq->scaleq_name}}</li>
         @endforeach
     </ul>
-    <table class="table table-bordered">
-        <tr>
-            <th>Openq name</th>
-            <th>Scaleq name</th>
-        </tr>
-    
-        @foreach($openqs as $oq)
-        <tr>
-                <td>{{$oq->openq_name}}</td>
-                <td>{{$oq->scaleq_name}}</td>
-            </tr> 
-        @endforeach
-
-
-    </table>
 </div>
