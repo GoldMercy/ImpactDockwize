@@ -1,22 +1,44 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
-    <table class="table table-striped">
-        <thead>
-        <th>ID</th>
-        <th>Vraag</th>
-        <th>Antwoord type</th>
-        <th>Action</th>
-        </thead>
-    <tbody>
-        @foreach($questions as $question)
+    <div class="container">
+        <div class="float-left">
+        <table class="table table-bordered">
             <tr>
-                <td>{{$question->id}}</td>
-                <td>{{$question->questionName}}</td>
-                <td>{{$question->answer_type}}</td>
-                <td><a href="{{action('QuestionController@downloadPDF', $question->id)}}">Download PDF</a></td>
+                <th>Open vragen</th>
             </tr>
-        @endforeach
-    </tbody>
-    </table>
+            @foreach($openqs as $oq)
+                <tr>
+                    <td><a href="/openqs/show/{{$oq->openq_id}}">{{$oq->openq_name}}</a></td>
+                    @endforeach
+                </tr>
+        </table>
+    </div>
+
+            <div class="float-left">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Dropdown vragen</th>
+                    </tr>
+                    @foreach($dropdownqs as $dq)
+                        <tr>
+                            <td><a href="/dropdownqs/show/{{$dq->dropdownq_id}}">{{$dq->dropdownq_name}}</a></td>
+                            @endforeach
+                        </tr>
+                </table>
+            </div>
+
+            <div class="float-left">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Schalen vragen</th>
+                    </tr>
+                    @foreach($scaleqs as $sq)
+                        <tr>
+                            <td><a href="/scaleqs/show/{{$sq->scaleq_id}}">{{$sq->scaleq_name}}</a></td>
+                            @endforeach
+                        </tr>
+                </table>
+            </div>
+    </div>
 @endsection
