@@ -24,7 +24,8 @@ class old_business_dataTableSeeder extends Seeder
                 'Plaats' => $faker->city,
                 'Idee' => $faker->sentence($nbWords = 6, $variableNbWords = true),
                 'Jaar' => $faker->year,
-                'Doelgroep' => $faker->word,
+                'Organisatievorm' => $faker->word,
+                'Relatie' => $faker->word,
                 'created_at' => '2019-11-07',
             ]);
         endfor;

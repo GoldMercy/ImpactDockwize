@@ -9,7 +9,7 @@
 </head>
 <body>
 <br>
-<div id="main">
+<div class="container">
     <h2>Laat data zien:</h2>
     <div class="form-row justify-content-center">
         <div class="form-row col-sm-12">
