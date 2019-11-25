@@ -8,40 +8,42 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 <body>
+<br>
 <div class="container">
+    <h2>Laat data zien:</h2>
     <div class="form-row justify-content-center">
         <div class="form-row col-sm-12">
-                <div class="form-group col-sm-6">
-                    <label for="datestart">Vanaf Datum</label>
+                <div class="form-group col-sm-2">
+                    <label for="datestart">Vanaf datum</label>
                     <input type="date" class="form-control" id="datestart" name="datestart">
                 </div>
-                <div class="form-group col-sm-6">
-                    <label for="dateend">Tot Datum</label>
+                <div class="form-group col-sm-2">
+                    <label for="dateend">Tot datum</label>
                     <input type="date" class="form-control" id="dateend" name="dateend">
                 </div>
-        </div>
-        <div class="form-row col-sm-12">
-                <div class="form-group col-sm-6">
-                    <label for="search">Naam Ondernemer/Onderneming</label>
+                <div class="form-group col-sm-4">
+                    <label for="search">Naam ondernemer/onderneming</label>
                     <input type="text" class="form-control" id="search" name="search">
                 </div>
         </div>
 
-            <div>
-                <table class="table table-bordered table-hover">
+            <div class="row justify-content-center">
+                <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Gemeten op</th>
-                        <th>Ondernemer</th>
-                        <th>Onderneming</th>
-                        <th>Telefoonnummer</th>
-                        <th>E-mail</th>
-                        <th>Plaats</th>
-                        <th>Idee</th>
-                        <th>Jaar</th>
-                        <th>Thema</th>
-                        <th>Doelgroep</th>
-                        <th>Programma</th>
+                        <th id="ad-md" scope="col">Gemeten op</th>
+                        <th id="ad-md" scope="col">Ondernemer</th>
+                        <th id="ad-md" scope="col">Onderneming</th>
+                        <th id="ad-md" scope="col">Telefoonnummer</th>
+                        <th id="ad-md" scope="col">E-mail</th>
+                        <th id="ad-md" scope="col">Plaats</th>
+                        <th id="ad-lg" scope="col">Idee</th>
+                        <th id="ad-xsm" scope="col">Jaar</th>
+                        <th id="ad-md" scope="col">Relatie</th>
+                        <th id="ad-md" scope="col">Doelgroep</th>
+                        <th id="ad-sm" scope="col">Programma</th>
+                        <th id="ad-sm" scope="col">Huisvesting</th>
+                        <th id="ad-sm" scope="col">Organisatievorm</th>
                     </tr>
                     </thead>
                     <tbody>

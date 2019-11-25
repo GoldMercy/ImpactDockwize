@@ -15,6 +15,13 @@ class AdminController extends Controller
         date_default_timezone_set('Europe/Amsterdam');
     }
 
+    public function windex(Request $request)
+    {
+        $businesses = DB::table('business')->where($request->column, 'LIKE', '%' . $request->value . '%')->paginate(10);
+
+        return view('admin.index', ['businesses' => $businesses]);
+    }
+
     public function index()
     {
         $businesses = DB::table('business')->paginate(10);
@@ -26,8 +33,11 @@ class AdminController extends Controller
     {
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
+        $housings = DB::table('housings')->get();
+        $organisation_types = DB::table('organisation_types')->get();
+        $relationships = DB::table('relationships')->get();
 
-        return view('admin.create', ['themes' =>$themes], ['programs' => $programs]);
+        return view('admin.create', ['themes' => $themes, 'programs' => $programs, 'housings' => $housings, 'organisation_types' => $organisation_types, 'relationships' => $relationships]);
     }
 
     public function store(Request $request)
@@ -40,10 +50,11 @@ class AdminController extends Controller
         $business->Email = $request->Email;
         $business->Idee = $request->Idee;
         $business->Jaar = $request->Jaar;
-        $business->Doelgroep = $request->Doelgroep;
+        $business->Relatie = $request->Relatie;
         $business->Thema = $request->Thema;
         $business->Programma = $request->Programma;
         $business->Huisvesting = $request->Huisvesting;
+        $business->Organisatievorm = $request->Organisatievorm;
         $business->created_at = date('y-m-d');
         $business->save();
 
@@ -55,8 +66,11 @@ class AdminController extends Controller
         $business = DB::table('business')->find($id);
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
+        $housings = DB::table('housings')->get();
+        $relationships = DB::table('relationships')->get();
+        $organisation_types = DB::table('organisation_types')->get();
 
-        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes]);
+        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes, 'housings' => $housings, 'relationships' => $relationships, 'organisation_types' => $organisation_types]);
     }
 
     public function update(Request $request, $id)
@@ -76,10 +90,11 @@ class AdminController extends Controller
                 $business->Email = $request->Email;
                 $business->Idee = $request->Idee;
                 $business->Jaar = $request->Jaar;
-                $business->Doelgroep = $request->Doelgroep;
+                $business->Relatie = $request->Relatie;
                 $business->Thema = $request->Thema;
                 $business->Programma = $request->Programma;
                 $business->Huisvesting = $request->Huisvesting;
+                $business->Organisatievorm = $request->Organisatievorm;
                 $business->save();
         }
                 return (redirect('/admin'));
@@ -102,7 +117,7 @@ class AdminController extends Controller
             $business->Email = $oldData->Email;
             $business->Idee = $oldData->Idee;
             $business->Jaar = $oldData->Jaar;
-            $business->Doelgroep = $oldData->Doelgroep;
+            $business->Relatie = $oldData->Relatie;
             $business->Thema = $oldData->Thema;
             $business->Programma = $oldData->Programma;
             $business->Huisvesting = $oldData->Huisvesting;
@@ -135,7 +150,7 @@ class AdminController extends Controller
         $oldBusiness->Email = $business->Email;
         $oldBusiness->Idee = $business->Idee;
         $oldBusiness->Jaar = $business->Jaar;
-        $oldBusiness->Doelgroep = $business->Doelgroep;
+        $oldBusiness->Relatie = $business->Relatie;
         $oldBusiness->Thema = $business->Thema;
         $oldBusiness->Programma = $business->Programma;
         $oldBusiness->Huisvesting = $business->Huisvesting;
@@ -149,10 +164,10 @@ class AdminController extends Controller
         $business->Email = $request->Email;
         $business->Idee = $request->Idee;
         $business->Jaar = $request->Jaar;
-        $business->Doelgroep = $request->Doelgroep;
+        $business->Relatie = $request->Relatie;
         $business->Thema = $request->Thema;
         $business->Programma = $request->Programma;
-        $oldBusiness->Huisvesting = $business->Huisvesting;
+        $business->Huisvesting = $request->Huisvesting;
         $business->save();
     }
 }

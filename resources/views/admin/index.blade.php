@@ -1,71 +1,103 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
-<div class="container">
+<div class="container-admin">
     <div class="col-sm-1 p-2">
         <a href="{{ url('/admin/create') }}">
-            <button type="button" class="btn btn-primary">
+            <button id="addbtn" type="button" class="btn btn-primary">
                 Toevoegen
             </button>
         </a>
     </div>
+        <form method="get" action="/admin/windex">
+            <div class="form-row align-items-end">
+                <div class="form-group col-sm-2">
+            <label for="column">Filteren op:</label>
+            <select name="column" class="form-control">
+                <option>Onderneming</option>
+                <option>Ondernemer</option>
+                <option>Plaats</option>
+                <option>Relatie</option>
+                <option>Thema</option>
+                <option>Programma</option>
+                <option>Huisvesting</option>
+                <option>Organisatievorm</option>
+            </select>
+                </div>
+            <div class="form-group col-sm-2">
+                <label for="value">Zoeken naar:</label>
+                <input type="text" class="form-control" name="value" aria-describedby="value">
+            </div>
+                <div class="form-group col-sm-2">
+            <button type="submit" class="btn btn-primary">Zoeken</button>
+                    <a href="/admin/index">
+                    <button type="submit" class="btn btn-primary">Toon Alles</button>
+                    </a>
+                </div>
+            </div>
+        </form>
     <div class="row justify-content-center">
-            <table class="table table-bordered">
+            <table id="ad-tbl" class="table table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Onderneming</th>
-                        <th scope="col">Ondernemer</th>
-                        <th scope="col">Telefoonnummer</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Plaats</th>
-                        <th scope="col">Idee</th>
-                        <th scope="col">Jaar</th>
-                        <th scope="col">Thema</th>
-                        <th scope="col">Doelgroep</th>
-                        <th scope="col">Programma</th>
-                        <th scope="col">Huisvesting</th>
+                        <th id="ad-md"scope="col">Onderneming</th>
+                        <th id="ad-md"scope="col">Ondernemer</th>
+                        <th id="ad-md"scope="col">Telefoonnummer</th>
+                        <th id="ad-md"scope="col">E-mail</th>
+                        <th id="ad-md"scope="col">Plaats</th>
+                        <th id="ad-lg"scope="col">Idee</th>
+                        <th id="ad-xsm"scope="col">Jaar</th>
+                        <th id="ad-md"scope="col">Relatie</th>
+                        <th id="ad-md"scope="col">Thema</th>
+                        <th id="ad-sm"scope="col">Programma</th>
+                        <th id="ad-sm"scope="col">Huisvesting</th>
+                        <th id="ad-sm"scope="col">Organisatievorm</th>
                     </tr>
                 </thead>
             @foreach ($businesses as $business)
-
+            <div>
                 <tr>
-                    <td>
+                    <td id="ad-td">
                         <a href="/admin/edit/{{$business->id}}">
                 {{ $business->Onderneming }}
                         </a>
                     </td>
-                    <td>
+                    <td id="ad-td">
                 {{ $business->Ondernemer }}
                     </td>
-                    <td>
+                    <td id="ad-td">
                 {{ $business->Telefoonnummer }}
                     </td>
-                    <td>
+                    <td id="ad-td">
                 {{ $business->Email }}
                     </td>
-                    <td>
+                    <td id="ad-td">
                 {{ $business->Plaats }}
                     </td>
-                    <td>
+                    <td id="ad-td">
                 {{ $business->Idee }}
                     </td>
-                    <td>
+                    <td id="ad-td">
                 {{ $business->Jaar }}
                     </td>
-                    <td>
+                    <td id="ad-td">
+                {{ $business->Relatie }}
+                    </td>
+                    <td id="ad-td">
                 {{ $business->Thema }}
                     </td>
-                    <td>
-                {{ $business->Doelgroep }}
-                    </td>
-                    <td>
+                    <td id="ad-td">
                 {{ $business->Programma }}
                     </td>
-                    <td>
+                    <td id="ad-td">
                 {{ $business->Huisvesting }}
+                    </td>
+                    <td id="ad-td">
+                {{ $business->Organisatievorm }}
                     </td>
                 </tr>
                 </tr>
+            </div>
             @endforeach
             </table>
 

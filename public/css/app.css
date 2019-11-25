@@ -75,6 +75,11 @@ body {
   background-color: #f8fafc;
 }
 
+#input-page-btn {
+  background-color: brown;
+  border: 2px, solid, black;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
@@ -590,6 +595,50 @@ pre code {
   margin-left: auto;
 }
 
+.container-admin {
+  width: 100%;
+  padding-right: 75px;
+  padding-left: 200px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#ad-td {
+  border: 1px solid black;
+}
+
+.ad-td {
+  border: 1px solid black;
+}
+
+#ad-lg {
+  width: 400px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-md {
+  width: 150px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-sm {
+  width: 100px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+#ad-xsm {
+  width: 50px;
+  text-align: center;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
@@ -614,6 +663,11 @@ pre code {
   }
 }
 
+.input-ul {
+   display: inline-block;
+   vertical-align: top;
+}
+
 .container-fluid {
   width: 100%;
   padding-right: 15px;
@@ -622,11 +676,53 @@ pre code {
   margin-left: auto;
 }
 
+.container-input {
+    width: 100%;
+    padding-right: 300px;
+    padding-left: 500px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.column-manage{
+    position: fixed;
+    width: 350px;
+    text-align: left;
+}
+
+.column-add {
+    float: right;
+    width: 350px;
+    text-align: left;
+}
+
+.nobull {
+   list-style-type: none;
+}
+
+#addbtn {
+   width: 320px;
+   height: 40px;
+   border: 1px black solid;
+}
+
+#addbtn:hover {
+   border: 2px black solid;
+   background-color: RGB(255, 218, 0);
+   color: black;
+}
+
+#addbtn:active {
+   background-color: #f3ff8a;
+   color: black;
+   transform: translateY(3px);
+ }
+
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .no-gutters {
@@ -1621,7 +1717,7 @@ pre code {
 }
 
 .table {
-  width: 100%;
+  width: 350px;
   margin-bottom: 1rem;
   color: #212529;
 }
@@ -2550,7 +2646,7 @@ textarea.form-control.is-invalid {
 .btn:focus,
 .btn.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
+  box-shadow: 0 0 0 0.2rem rgb(255, 218, 0, 0.25);
 }
 
 .btn.disabled,
@@ -2564,41 +2660,41 @@ fieldset:disabled a.btn {
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: #3490dc;
-  border-color: #3490dc;
+  color: rgb(255, 218, 0);;
+  background-color: black;
+  border-color: rgb(255, 218, 0);
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #227dc7;
-  border-color: #2176bd;
+  background-color: rgb(255, 218, 0);
+  border-color: rgb(255, 218, 0);
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(82, 161, 225, 0.5);
+  box-shadow: rgb(255, 218, 0);
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
-  background-color: #3490dc;
-  border-color: #3490dc;
+  background-color: rgb(255, 218, 0);
+  border-color: rgb(255, 218, 0);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #2176bd;
-  border-color: #1f6fb2;
+  background-color: rgb(255, 218, 0);
+  border-color: rgb(255, 218, 0);
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus,
 .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(82, 161, 225, 0.5);
+  box-shadow: rgb(255, 218, 0);
 }
 
 .btn-secondary {
@@ -2705,14 +2801,14 @@ fieldset:disabled a.btn {
 .btn-info:not(:disabled):not(.disabled).active,
 .show > .btn-info.dropdown-toggle {
   color: #fff;
-  background-color: #3f9ae5;
-  border-color: #3495e3;
+  background-color: rgb(255, 218, 0);
+  border-color: rgb(255, 218, 0);
 }
 
 .btn-info:not(:disabled):not(.disabled):active:focus,
 .btn-info:not(:disabled):not(.disabled).active:focus,
 .show > .btn-info.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(97, 157, 206, 0.5);
+  box-shadow: rgb(255, 218, 0);
 }
 
 .btn-warning {

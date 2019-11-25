@@ -14,10 +14,10 @@ class CreateOpenQsTable extends Migration
     public function up()
     {
         Schema::create('openqs', function (Blueprint $table) {
-            $table->bigIncrements('openq_id');
+            $table->bigIncrements('openq_id')->unsigned();
             $table->string('openq_name');
             $table->bigInteger('survey_id')->unsigned();
-            $table->foreign('survey_id')->references('id')->on('surveys');
+            $table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade');
             $table->timestamps();
         });
     }

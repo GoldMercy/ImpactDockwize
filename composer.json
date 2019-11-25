@@ -11,6 +11,7 @@
         "php": "^7.2",
         "barryvdh/laravel-dompdf": "^0.8.5",
         "consoletvs/charts": "6.*",
+        "dompdf/dompdf": "^0.8.3",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.8",
         "illuminate/support": "^6.3",

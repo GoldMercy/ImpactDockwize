@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -240,6 +241,7 @@ return [
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
         'Input' => Illuminate\Support\Facades\Input::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],
 

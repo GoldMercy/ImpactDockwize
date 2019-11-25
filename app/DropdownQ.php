@@ -12,4 +12,8 @@ class DropdownQ extends Model
     public $primaryKey = 'dropdownq_id';
     // Timestamps
     public $timestamps = true;
+
+    protected $fillable = [
+        'dropdownq_name', 'survey_id'
+    ];
 }

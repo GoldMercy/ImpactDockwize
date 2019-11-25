@@ -28,6 +28,11 @@ class SurveyController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'titel' => 'required',
+            'beschrijving' => 'required'
+        ]);
+
         $survey = new Survey;
         $survey->titel = $request->titel;
         $survey->beschrijving = $request->beschrijving;
@@ -45,24 +50,29 @@ class SurveyController extends Controller
 
     public function edit($id)
     {
-        $survey = DB::table('surveys')->find($id);
-        return view('surveys.edit', ['survey' => $survey]);
+        $survey = Survey::find($id);
+        return view('surveys.edit')->with('survey', $survey);
     }
 
     public function update(Request $request, $id)
     {
+        $this->validate($request, [
+            'titel' => 'required',
+            'beschrijving' => 'required'
+        ]);
+
         $survey = Survey::find($id);
         $survey->titel = $request->titel;
         $survey->beschrijving = $request->beschrijving;
         $survey->save();
 
-        return(redirect('/surveys'));
+        return(redirect('/surveys')->with('success', 'Vragenlijst aangepast!'));
     }
 
     public function destroy($id)
     {
-        DB::table('surveys')->delete($id);
-
-        return(redirect('/surveys'));
+        $survey = Survey::find($id);
+        $survey->delete();
+        return redirect('/surveys')->with('success', 'Vragenlijst verwijderd!');
     }
 }

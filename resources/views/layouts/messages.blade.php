@@ -7,7 +7,7 @@
 @endif
 
 @if(session('success'))
-    <div class="alert alert-success">
+    <div class="card alert alert-success">
         {{session('success')}}
     </div>
 @endif
