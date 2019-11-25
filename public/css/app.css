@@ -611,13 +611,6 @@ pre code {
   border: 1px solid black;
 }
 
-.container-input {
-   width: 100%;
-   padding-right: 300px;
-   padding-left: 500px;
-   margin-right: auto;
-   margin-left: auto;
-}
 #ad-lg {
   width: 400px;
   text-align: center;
@@ -683,13 +676,24 @@ pre code {
   margin-left: auto;
 }
 
-.column-manage{
-   float: left;
+.container-input {
+    width: 100%;
+    padding-right: 300px;
+    padding-left: 500px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
-.column-add{
-   width: 320px;
-   float: right;
+.column-manage{
+    position: fixed;
+    width: 350px;
+    text-align: left;
+}
+
+.column-add {
+    float: right;
+    width: 350px;
+    text-align: left;
 }
 
 .nobull {
