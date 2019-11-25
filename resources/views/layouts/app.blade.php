@@ -19,6 +19,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+    {{-- {!!Charts::assets()!!} --}}
+
 </head>
 <body>
     <div id="app">
