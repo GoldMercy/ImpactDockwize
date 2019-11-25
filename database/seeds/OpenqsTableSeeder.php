@@ -14,10 +14,10 @@ class OpenqsTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('nl_NL');
-        for($i=0; $i<=250; $i++):
+        for($i=0; $i<=15; $i++):
             DB::table('openqs')->insert([
                 'openq_name' => $faker->word,
-                'survey_id' => $faker->numberBetween(1, 20),
+                'survey_id' => $faker->numberBetween(1, 6),
                 'created_at' => '2019-11-07',
                 'updated_at' => '2019-11-07',
             ]);

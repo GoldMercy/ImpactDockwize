@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOpenQsTable extends Migration
+class CreateMultiplechoiceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateOpenQsTable extends Migration
      */
     public function up()
     {
-        Schema::create('openqs', function (Blueprint $table) {
-            $table->bigIncrements('openq_id')->unsigned();
-            $table->string('openq_name');
+        Schema::create('multiplechoice', function (Blueprint $table) {
+            $table->bigIncrements('multiplechoice_id')->unsigned();
+            $table->string('multiplechoice_name');
             $table->bigInteger('survey_id')->unsigned();
-            $table->foreign('survey_id')->references('id')->on('surveys')->onDelete('cascade');
+            $table->foreign('survey_id')->references('id')->on('surveys');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateOpenQsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('openqs');
+        Schema::dropIfExists('multiplechoice');
     }
 }

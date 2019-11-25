@@ -2,23 +2,23 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container">
-    <h1>{{$dropdownq->dropdownq_name}}</h1>  
+    <h1>{{$multiplechoice->multiplechoice_name}}</h1>
     <table>
         <tr>
             <th>Opties</th>
         </tr>
-        @foreach($qoptions as $qo)
             <tr>
-                <td>{{$qo->option_name}}</td>
+                @foreach($multiplechoiceoptions as $multiplechoiceoption)
+                <td>{{$multiplechoiceoption->multiplechoice_option}}</td>
+                    @endforeach
             </tr>
-        @endforeach
     </table>
     <hr>
     <div class="form-group">
-        <a href="/questions">
+        <a href="/multiplechoice">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
-        <a href="/dropdownqs/edit/{{$dropdownq->dropdownq_id}}">
+        <a href="/multiplechoice/edit/{{$multiplechoice->multiplechoice_id}}">
             <button type="button" class="btn btn-primary">Pas de kaart aan</button>
         </a>
     </div>
