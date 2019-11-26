@@ -12,23 +12,22 @@ class QuestionspageController extends Controller
         $this->middleware('auth');
     }
 
-/*    public function questions()
-    {
-        $data = DB::table('openqs')
-            ->leftJoin('dropdownqs', 'openqs.openq_id', '=', 'dropdownqs.dropdownq_id')
-            ->leftJoin('scaleqs', 'openqs.openq_id', '=', 'scaleqs.scaleq_id')
-            ->select('openqs.openq_id', 'openqs.openq_name', 'dropdownq_id', 'dropdownq_name', 'scaleq_id', 'scaleq_name')
-            ->get();
-        return view('pages.index', ['data' => $data]);
-    }*/
     public function questions(){
         $openqs = DB::table('openqs')->get() ;
+        $usedIds = array();
+        $viewQs = array();
+        foreach($openqs as $oq) {
+            if (!in_array($oq->openq_id, $usedIds)) {
+                array_push($viewQs, $oq);
+                array_push($usedIds, $oq->openq_id);
+            }
+        }
         $dropdownqs = DB::table('dropdownqs')->get();
         $scaleqs = DB::table('scaleqs')->get();
 
-        return view('pages.index', ['openqs' => $openqs, 'dropdownqs' => $dropdownqs, 'scaleqs' => $scaleqs]);
-
+        return view('pages.index', ['openqs' => $viewQs, 'dropdownqs' => $dropdownqs, 'scaleqs' => $scaleqs]);
     }
+
     public function edit($id)
     {
         $openq = Openq::find($id);

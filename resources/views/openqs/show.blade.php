@@ -8,7 +8,7 @@
         <a href="/questions">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
-        <a href="/openqs/edit/{{$openq->openq_id}}">
+        <a href="/openqs/edit/{{$openq->id}}">
             <button type="button" class="btn btn-primary">Pas de vraag aan</button>
         </a>
     </div>

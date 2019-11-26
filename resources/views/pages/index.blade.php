@@ -9,7 +9,7 @@
             </tr>
             @foreach($openqs as $oq)
                 <tr>
-                    <td><a href="/openqs/show/{{$oq->openq_id}}">{{$oq->openq_name}}</a></td>
+                    <td><a href="/openqs/show/{{$oq->id}}">{{$oq->openq_name}}</a></td>
                     @endforeach
                 </tr>
         </table>
