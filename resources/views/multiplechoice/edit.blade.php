@@ -14,7 +14,7 @@
             <div class="form row">
                 <div class="form-group col-sm-6">
                     <label for="multiplechoice_option{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
-                    <input type="text" class="form-control" name="multiplechoice_option{{$loop->iteration}}" aria-describedby="multiplechoice_option{{$loop->iteration}}" value="{{$option}}">
+                    <input type="text" class="form-control" name="multiplechoice_option{{$loop->iteration}}" aria-describedby="multiplechoice_option{{$loop->iteration}}" value="{{$option->multiplechoice_option}}">
                 </div>
             </div>
         @endforeach
