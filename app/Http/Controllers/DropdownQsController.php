@@ -38,7 +38,7 @@ class DropdownQsController extends Controller
         foreach ($options[0] as $option){
             $dpqo = new DropdownQOptions;
             $dpqo->dropdownoption_name = $option;
-            $dpqo->dropdown_id = $dpq->dropdown_id;
+            $dpqo->dropdown_id = $dpq->dropdownq_id;
             $dpqo->save();
         }
 
