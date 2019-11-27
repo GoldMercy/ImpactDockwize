@@ -39,13 +39,16 @@ class MultiplechoiceController extends Controller
         $multiplechoice->survey_id = $request->survey_id;
         $multiplechoice->save();
 
-        $multiplechoice_options = new MultiplechoiceOptions;
+
         $options[] = $request->toArray();
         array_pop($options[0]);
         array_shift($options[0]);
-        $multiplechoice_options->multiplechoice_option = implode(', ',$options[0]);
-        $multiplechoice_options->multiplechoice_id = $multiplechoice->multiplechoice_id;
-        $multiplechoice_options->save();
+        foreach ($options[0] as $option){
+            $multiplechoice_options = new MultiplechoiceOptions;
+            $multiplechoice_options->multiplechoice_option = $option;
+            $multiplechoice_options->multiplechoice_id = $multiplechoice->multiplechoice_id;
+            $multiplechoice_options->save();
+        }
 
         return redirect('/multiplechoice')->with('success', 'Vraag gemaakt!');
     }
@@ -62,9 +65,8 @@ class MultiplechoiceController extends Controller
     {
         $surveys = DB::table('surveys')->get();
         $multiplechoice = Multiplechoice::find($id);
-        $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get()->first();
-        $options = explode(', ' , $multiplechoiceoptions->multiplechoice_option);
-        return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys, 'options' => $options]);
+        $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
+        return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys, 'options' => $multiplechoiceoptions]);
     }
 
     public function update(Request $request, $id)
@@ -77,14 +79,6 @@ class MultiplechoiceController extends Controller
         $multiplechoice->multiplechoice_name = $request->multiplechoice_name;
         $multiplechoice->survey_id = $request->survey_id;
         $multiplechoice->save();
-
-        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
-        $options[] = $request->toArray();
-        array_pop($options[0]);
-        array_shift($options[0]);
-        array_shift($options[0]);
-        $multiplechoice_options->multiplechoice_option = implode(', ',$options[0]);
-        $multiplechoice_options->save();
            
         return redirect('/multiplechoice')->with('success', 'Vraag aangepast!');
     }

@@ -33,7 +33,10 @@ class AnswerController extends Controller
         $scaleqs = DB::table('scaleqs')->where('survey_id', '=', $id)->get();
         $dropdownqs = DB::table('dropdownqs')->where('survey_id', '=', $id)->get();
         $qoptions = DB::table('qoptions')->get();
-        return view('answer/survey', ['survey' => $survey, 'openqs' => $openqs, 'scaleqs' => $scaleqs, 'businesses' => $businesses, 'dropdownqs' => $dropdownqs, 'qoptions' => $qoptions]);
+        $multiplechoiceqs = DB::table('multiplechoice')->where('survey_id', '=', $id)->get();
+        $multiplechoiceoptions = DB::table('multiplechoice_options')->get();
+        return view('answer/survey', ['survey' => $survey, 'openqs' => $openqs, 'scaleqs' => $scaleqs, 'businesses' => $businesses, 'dropdownqs' => $dropdownqs, 'qoptions' => $qoptions,
+        'multiplechoiceqs' => $multiplechoiceqs, 'multiplechoiceoptions' => $multiplechoiceoptions]);
     }
 
     public function submit(Request $request){
