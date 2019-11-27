@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\DropdownQ;
+use App\Multiplechoice;
 use App\OpenQ;
+use App\ScaleQ;
 use App\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,7 +48,10 @@ class SurveyController extends Controller
     {
         $survey = Survey::find($id);
         $openqs = OpenQ::where('survey_id', $id)->get();
-        return view('surveys.show', ['survey' => $survey], ['openqs' => $openqs]);
+        $dropdownq = DropdownQ::where('survey_id', $id)->get();
+        $scaleq = ScaleQ::where('survey_id', $id)->get();
+        $multiplechoiceq = Multiplechoice::where('survey_id', $id)->get();
+        return view('surveys.show', ['survey' => $survey, 'openqs' => $openqs, 'dropdownq' => $dropdownq, 'scaleq' => $scaleq, 'multiplechoiceq' => $multiplechoiceq]);
     }
 
     public function edit($id)
