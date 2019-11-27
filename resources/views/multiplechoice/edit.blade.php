@@ -10,14 +10,14 @@
                 <input type="text" class="form-control" name="multiplechoice_name" aria-describedby="multiplechoice_name" value="{{$multiplechoice->multiplechoice_name}}">
             </div>
             </div>
-        @foreach($options as $option)
-            <div class="form row">
-                <div class="form-group col-sm-6">
-                    <label for="multiplechoice_option{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
-                    <input type="text" class="form-control" name="multiplechoice_option{{$loop->iteration}}" aria-describedby="multiplechoice_option{{$loop->iteration}}" value="{{$option->multiplechoice_option}}">
+            @foreach($options as $option)
+                <div class="form row">
+                    <div class="form-group col-sm-6">
+                        <label for="multiplechoice_option{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
+                        <input type="text" class="form-control" name="multiplechoice_option{{$loop->iteration}}" aria-describedby="multiplechoice_option{{$loop->iteration}}" value="{{$option->multiplechoice_option}}">
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
             <div class="form-row">
                 <div class="form-group col-sm-6">
                     <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>

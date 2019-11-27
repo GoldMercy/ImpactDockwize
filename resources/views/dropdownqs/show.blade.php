@@ -6,12 +6,12 @@
     <table>
         <tr>
             <th>Opties</th>
-        </tr>
-        <tr>
-            @foreach($dpqo as $do)
+        </tr>   
+        @foreach($dpqo as $do)
+            <tr>
                 <td>{{$do->dropdownoption_name}}</td>
-            @endforeach
-        </tr>
+            </tr>
+        @endforeach
     </table>
     <hr>
     <div class="form-group">
