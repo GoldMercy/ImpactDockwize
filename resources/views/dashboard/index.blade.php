@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
+{!! $housingchart->script() !!}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -17,6 +19,7 @@ $(document).ready(function(){
     });
 
 });
+
 </script>
 <div class="container">
     <div class="form-group col-sm-6">
@@ -34,27 +37,7 @@ $(document).ready(function(){
         <h1>Dit is content voor Impuls.</h1>
     </div>
     <div id="huisvesting" class="department_content">
-        <h1>Dit is content voor huisvesting.</h1>
-        <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th>Type</th>
-            <th>Aantal Huurders</th>
-        </tr>
-        </thead>
-            <tr>
-                <td>Flex</td>
-                <td>{{$businesses->where('Huisvesting', '=', 'Flex')->count()}}</td>
-            </tr>
-            <tr>
-                <td>Kantoor</td>
-                <td>{{$businesses->where('Huisvesting', '=', 'Kantoor')->count()}}</td>
-            </tr>
-            <tr>
-                <td>Loodsunit</td>
-                <td>{{$businesses->where('Huisvesting', '=', 'Loodsunit')->count()}}</td>
-            </tr>
-        </table>
+        {!! $housingchart->container() !!}
     </div>
     <div id="programmas" class="department_content">
         <h1>Dit is content voor programma's.</h1>
