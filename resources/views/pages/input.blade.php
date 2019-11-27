@@ -15,7 +15,7 @@
             <br>
             <li><a href="/answer/index"><button class='btn btn-primary' id='addbtn'>Vul een vragenlijst in!</button></a></li>
             <br>
-            <li><a href="/answer/answerIndex"><button class='btn btn-primary' id='addbtn'>Bekijk ingevulde vragenlijsten! (Admin only)</button></a></li>
+            <li><a href="/answer/answerIndex"><button class='btn btn-primary' id='addbtn'>Bekijk ingevulde vragenlijsten!</button></a></li>
         </ul>
     </div>
     <div class="column-add">
