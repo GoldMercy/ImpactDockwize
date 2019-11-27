@@ -24,8 +24,7 @@
                     </select>
                 </div>
             </div>
-        </div>
-        <div class="form-row">
+{{--        <div class="form-row">
             <div class="form-group col-sm-6">
                 <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
                 <select name="survey_id" class="form-control">
@@ -34,7 +33,7 @@
                     @endforeach
                 </select>
             </div>
-        </div>
+        </div>--}}
         <hr>
         <div class="form-group">
             <a href="/dropdownqs/show/{{$dropdownq->dropdownq_id}}">

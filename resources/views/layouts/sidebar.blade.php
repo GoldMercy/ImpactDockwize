@@ -56,7 +56,7 @@
         }
 
         /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-        #main {
+        #sidebarbutton {
             transition: margin-left .5s; /* If you want a transition effect */
         }
 
@@ -73,16 +73,16 @@
 /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
 function openNav() {
 document.getElementById("mySidebar").style.width = "150px";
-document.getElementById("main").style.marginLeft = "150px";
+document.getElementById("sidebarbutton").style.marginLeft = "150px";
 }
 
 /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
 function closeNav() {
 document.getElementById("mySidebar").style.width = "0";
-document.getElementById("main").style.marginLeft = "0";
+document.getElementById("sidebarbutton").style.marginLeft = "0";
 }
 </script>
-<div id="main">
+<div id="sidebarbutton">
     <button class="openbtn" onclick="openNav()">&#9776;</button>
 </div>
 <div id="mySidebar" class="sidebar">

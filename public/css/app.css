@@ -614,28 +614,28 @@ pre code {
 #ad-lg {
   width: 400px;
   text-align: center;
-  background-color: yellow;
+  background-color: #ffd640;
   border: 1px solid black;
 }
 
 #ad-md {
   width: 150px;
   text-align: center;
-  background-color: yellow;
+  background-color: #ffd640;
   border: 1px solid black;
 }
 
 #ad-sm {
   width: 100px;
   text-align: center;
-  background-color: yellow;
+  background-color: #ffd640;
   border: 1px solid black;
 }
 
 #ad-xsm {
   width: 50px;
   text-align: center;
-  background-color: yellow;
+  background-color: #ffd640;
   border: 1px solid black;
 }
 
@@ -679,20 +679,20 @@ pre code {
 .container-input {
     width: 100%;
     padding-right: 300px;
-    padding-left: 500px;
-    margin-right: auto;
-    margin-left: auto;
+    padding-left: 300px;
+/*    margin-right: auto;
+    margin-left: auto;*/
 }
 
 .column-manage{
     position: fixed;
-    width: 350px;
+    width: 400px;
     text-align: left;
 }
 
 .column-add {
     float: right;
-    width: 350px;
+    width: 400px;
     text-align: left;
 }
 
