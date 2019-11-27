@@ -2,15 +2,15 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container-admin">
-    <div class="col-sm-1 p-2">
-        <a href="{{ url('/admin/create') }}">
-            <button id="addbtn" type="button" class="btn btn-primary">
-                Toevoegen
-            </button>
-        </a>
-    </div>
         <form method="get" action="/admin/windex">
             <div class="form-row align-items-end">
+                <div class="form-group col-sm-4">
+                    <a href="{{ url('/admin/create') }}">
+                        <button id="addbtn" type="button" class="btn btn-primary">
+                            Toevoegen
+                        </button>
+                    </a>
+                </div>
                 <div class="form-group col-sm-2">
             <label for="column">Filteren op:</label>
             <select name="column" class="form-control">
@@ -36,22 +36,22 @@
                 </div>
             </div>
         </form>
-    <div class="row justify-content-center">
-            <table id="ad-tbl" class="table table-bordered">
+    <div class="container justify-content-center">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th id="ad-md"scope="col">Onderneming</th>
-                        <th id="ad-md"scope="col">Ondernemer</th>
-                        <th id="ad-md"scope="col">Telefoonnummer</th>
-                        <th id="ad-md"scope="col">E-mail</th>
-                        <th id="ad-md"scope="col">Plaats</th>
-                        <th id="ad-lg"scope="col">Idee</th>
-                        <th id="ad-xsm"scope="col">Jaar</th>
-                        <th id="ad-md"scope="col">Relatie</th>
+                        <th id="ad-md" >Onderneming</th>
+                        <th id="ad-md" >Ondernemer</th>
+                        <th id="ad-md" >Telefoonnummer</th>
+                        <th id="ad-md" >E-mail</th>
+                        <th id="ad-md" >Plaats</th>
+                        <th id="ad-md" >Idee</th>
+                        <th id="ad-md" >Jaar</th>
+{{--                        <th id="ad-md"scope="col">Relatie</th>
                         <th id="ad-md"scope="col">Thema</th>
                         <th id="ad-sm"scope="col">Programma</th>
                         <th id="ad-sm"scope="col">Huisvesting</th>
-                        <th id="ad-sm"scope="col">Organisatievorm</th>
+                        <th id="ad-sm"scope="col">Organisatievorm</th>--}}
                     </tr>
                 </thead>
             @foreach ($businesses as $business)
@@ -80,7 +80,7 @@
                     <td id="ad-td">
                 {{ $business->Jaar }}
                     </td>
-                    <td id="ad-td">
+{{--                    <td id="ad-td">
                 {{ $business->Relatie }}
                     </td>
                     <td id="ad-td">
@@ -94,7 +94,7 @@
                     </td>
                     <td id="ad-td">
                 {{ $business->Organisatievorm }}
-                    </td>
+                    </td>--}}
                 </tr>
                 </tr>
             </div>

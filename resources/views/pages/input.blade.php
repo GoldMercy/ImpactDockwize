@@ -12,6 +12,10 @@
             <li><a href="/questions"><button class='btn btn-primary' id='addbtn'>Bekijk al uw vragen!</button></a></li>
             <br>
             <li><a href="/surveys"><button class='btn btn-primary' id='addbtn'>Bekijk al uw vragenlijsten!</button></a></li>
+            <br>
+            <li><a href="/answer/index"><button class='btn btn-primary' id='addbtn'>Vul een vragenlijst in!</button></a></li>
+            <br>
+            <li><a href="/answer/answerIndex"><button class='btn btn-primary' id='addbtn'>Bekijk ingevulde vragenlijsten!</button></a></li>
         </ul>
     </div>
     <div class="column-add">

@@ -12,7 +12,7 @@
                 <input type="text" class="form-control" name="multiplechoice_name" aria-describedby="multiplechoice_name" placeholder="Hoe heet de vraag?">
             </div>
             <div class="table-responsive">
-                <table class="table table-bordered" id="dynamic_field">
+                <table class="table" id="dynamic_field">
                     <tr>
                         <td><input type="text"  class="form-control" name="multiplechoice_option1" aria-describedby="multiplechoice_option" placeholder="Vul hier een optie in" /></td>
                         <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>

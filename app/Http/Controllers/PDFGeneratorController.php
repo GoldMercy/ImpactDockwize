@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\OpenQ;
 use App\ScaleQ;
+use App\Business;
+use App\Charts\HousingChart;
 use PDF;
 
 class PDFGeneratorController extends Controller
@@ -20,7 +22,7 @@ class PDFGeneratorController extends Controller
         $openqs = DB::table('openqs')->get();
         $scaleqs = DB::table('scaleqs')->get();
 
-        $pdf = PDF::loadView('pdf.generalpdf', compact('openqs', 'scaleqs'));      
+        $pdf = PDF::loadView('pdf.generalpdf', ['openqs' => $openqs, 'scaleqs' => $scaleqs]);      
         return $pdf->stream('dockwize.generalpdf');
     }
 
