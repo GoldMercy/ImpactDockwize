@@ -13,16 +13,28 @@ class AnswerController extends Controller
 
         $surveys = DB::table('surveys')->get();
         $answers = DB::table('answers')->get();
+        $businesses = DB::table('business')->get();
 
 
-        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers]);
+        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers, 'businesses' => $businesses]);
 
 
     }
 
     public function select(Request $request){
 
-        return redirect()->action('AnswerController@survey', ['id'=>$request->Vragenlijst]);
+        $business = DB::table('business')->where('id', '=', $request->Ontvanger)->first();
+
+        switch ($request->input('action')) {
+            case 'survey':
+                return redirect()->action('AnswerController@survey', ['id' => $request->Vragenlijst]);
+                break;
+
+            case 'mail':
+                return redirect()->to('mailto:'.$business->Email.'?SUBJECT='.$business->Onderneming.'&BODY=Beste Ondernemer, zou u een vragenlijst willen invullen?: '.url('/').'/answer/survey'.$request->Vragenlijst);
+        }
+
+
     }
 
     public function survey($id){

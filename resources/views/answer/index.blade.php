@@ -16,10 +16,17 @@
                                             <option value={{$survey->id}}>{{$survey->titel}}</option>
                                         @endforeach
                                     </select>
+                                    <label for="Ontvanger">Ontvanger (Optioneel)</label>
+                                    <select name="Ontvanger" class="form-control">
+                                        @foreach($businesses as $business)
+                                            <option value={{$business->id}}>{{$business->Onderneming}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <button type="submit" class="btn btn-primary">Vragenlijst nu invullen</button>
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-primary" name="action" value="survey">Vragenlijst nu invullen</button>
+                                <button type="submit" class="btn btn-primary" name="action" value="mail">Vragenlijst versturen per e-mail</button>
                             </div>
                         </form>
                     </div>
