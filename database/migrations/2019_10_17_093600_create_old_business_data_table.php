@@ -23,11 +23,11 @@ class CreateOldBusinessDataTable extends Migration
             $table->string('Plaats')->nullable();
             $table->string('Idee')->nullable();
             $table->integer('Jaar')->nullable();
-            $table->string('Thema')->nullable();
+/*            $table->string('Thema')->nullable();
             $table->string('Relatie')->nullable();
             $table->string('Programma')->nullable();
             $table->string('Huisvesting')->nullable();
-            $table->string('Organisatievorm')->nullable();
+            $table->string('Organisatievorm')->nullable();*/
             $table->date('created_at');
         });
     }
