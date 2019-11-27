@@ -51,7 +51,18 @@ class SurveyController extends Controller
     public function edit($id)
     {
         $survey = Survey::find($id);
-        return view('surveys.edit')->with('survey', $survey);
+        $oqs = DB::table('openqs')->where('survey_id', '=', $id)->get();
+        $dpqs = DB::table('dropdownqs')->where('survey_id', '=', $id)->get();
+        $mpqs = DB::table('multiplechoice')->where('survey_id', '=', $id)->get();
+        $scaleqs = DB::table('scaleqs')->where('survey_id', '=', $id)->get();
+
+        return view('surveys.edit')->with([
+            'survey' => $survey,
+            'oqs' => $oqs,
+            'dpqs' => $dpqs,
+            'mpqs' => $mpqs,
+            'scaleqs' => $scaleqs
+            ]);
     }
 
     public function update(Request $request, $id)
