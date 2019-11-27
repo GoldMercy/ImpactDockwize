@@ -84,6 +84,7 @@ Route::get('/dropdownqs/store', 'DropdownQsController@store');
 Route::get('/dropdownqs/edit/{id}', 'DropdownQsController@edit');
 Route::get('/dropdownqs/show/{id}', 'DropdownQsController@show');
 Route::get('/dropdownqs/update/{id}', 'DropdownQsController@update');
+Route::get('/dropdownqs/add/{id}', 'DropdownQsController@add');
 Route::get('/dropdownqs/edit/delete/{id}', 'DropdownQsController@delete');
 
 Route::get('/multiplechoice', 'MultiplechoiceController@index');
