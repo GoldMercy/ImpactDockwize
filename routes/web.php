@@ -40,6 +40,7 @@ Route::get('/store', 'ScaleQsController@store');
 Route::get('/scaleqs/edit/{id}', 'ScaleQsController@edit');
 Route::get('/scaleqs/show/{id}', 'ScaleQsController@show');
 Route::get('/scaleqs/update/{id}', 'ScaleQsController@update');
+Route::get('/scaleqs/add/{id}', 'ScaleQsController@add');
 Route::get('/scaleqs/edit/delete/{id}', 'ScaleQsController@delete');
 
 Route::get('/cards', 'CardsController@index');
@@ -87,12 +88,12 @@ Route::get('/dropdownqs/update/{id}', 'DropdownQsController@update');
 Route::get('/dropdownqs/add/{id}', 'DropdownQsController@add');
 Route::get('/dropdownqs/edit/delete/{id}', 'DropdownQsController@delete');
 
-Route::get('/multiplechoice', 'MultiplechoiceController@index');
 Route::get('/multiplechoice/create', 'MultiplechoiceController@create');
 Route::get('/multiplechoice/store', 'MultiplechoiceController@store');
 Route::get('/multiplechoice/edit/{id}', 'MultiplechoiceController@edit');
 Route::get('/multiplechoice/show/{id}', 'MultiplechoiceController@show');
 Route::get('/multiplechoice/update/{id}', 'MultiplechoiceController@update');
+Route::get('/multiplechoice/add/{id}', 'MultiplechoiceController@add');
 Route::get('/multiplechoice/edit/delete/{id}', 'MultiplechoiceController@delete');
 
 Route::get('/qoptions/create', 'QOptionsController@create');

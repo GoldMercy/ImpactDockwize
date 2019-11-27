@@ -40,5 +40,18 @@
                         </tr>
                 </table>
             </div>
+
+         <div class="float-left">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Meerkeuze vragen</th>
+                </tr>
+                @foreach($multiplechoice as $mq)
+                    <tr>
+                        <td><a href="/multiplechoice/show/{{$mq->multiplechoice_id}}">{{$mq->multiplechoice_name}}</a></td>
+                        @endforeach
+                    </tr>
+            </table>
+        </div>
     </div>
 @endsection
