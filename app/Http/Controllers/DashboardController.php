@@ -11,7 +11,6 @@ use App\Business;
 class DashboardController extends Controller
 {
     public function index(){
-        // $housing_data = DB::table('business')->lists('Huisvesting');
         $flex_data = Business::where('Huisvesting', '=', 'Flex')->count();
         $loods_data = Business::where('Huisvesting', '=', 'Loodsunit')->count();
         $kantoor_data = Business::where('Huisvesting', '=', 'Kantoor')->count();
@@ -19,7 +18,6 @@ class DashboardController extends Controller
         $housingchart = new HousingChart;
         $housingchart->labels(['Flex', 'Loodsunit', 'Kantoor']);
         $housingchart->dataset('housing', 'bar', [$flex_data, $loods_data, $kantoor_data]);
-        $housingchart->dataset('housing 2', 'bar', [$flex_data, $loods_data, $kantoor_data]);
 
         $businesses = DB::table('business')->get();
 
