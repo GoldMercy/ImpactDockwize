@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             ThemesSeeder::class,
             ProgramsSeeder::class,
-            HousingSeeder::class,
+/*            HousingSeeder::class,*/
             OrganisationTypeSeeder::class,
             BusinessTableSeeder::class,
             SurveysTableSeeder::class,
