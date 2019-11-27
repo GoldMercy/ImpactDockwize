@@ -12,15 +12,6 @@ class QuestionspageController extends Controller
         $this->middleware('auth');
     }
 
-/*    public function questions()
-    {
-        $data = DB::table('openqs')
-            ->leftJoin('dropdownqs', 'openqs.openq_id', '=', 'dropdownqs.dropdownq_id')
-            ->leftJoin('scaleqs', 'openqs.openq_id', '=', 'scaleqs.scaleq_id')
-            ->select('openqs.openq_id', 'openqs.openq_name', 'dropdownq_id', 'dropdownq_name', 'scaleq_id', 'scaleq_name')
-            ->get();
-        return view('pages.index', ['data' => $data]);
-    }*/
     public function questions(){
         $openqs = DB::table('openqs')->get() ;
         $dropdownqs = DB::table('dropdownqs')->get();

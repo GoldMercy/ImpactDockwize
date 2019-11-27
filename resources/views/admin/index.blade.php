@@ -36,17 +36,17 @@
                 </div>
             </div>
         </form>
-    <div class="container justify-content-center">
-            <table class="table table-bordered">
+    <div>
+            <table class="table-admin table-bordered">
                 <thead>
                     <tr>
                         <th id="ad-md" >Onderneming</th>
                         <th id="ad-md" >Ondernemer</th>
                         <th id="ad-md" >Telefoonnummer</th>
                         <th id="ad-md" >E-mail</th>
-                        <th id="ad-md" >Plaats</th>
+{{--                        <th id="ad-md" >Plaats</th>--}}
                         <th id="ad-md" >Idee</th>
-                        <th id="ad-md" >Jaar</th>
+{{--                        <th id="ad-md" >Jaar</th>--}}
 {{--                        <th id="ad-md"scope="col">Relatie</th>
                         <th id="ad-md"scope="col">Thema</th>
                         <th id="ad-sm"scope="col">Programma</th>
@@ -71,15 +71,15 @@
                     <td id="ad-td">
                 {{ $business->Email }}
                     </td>
-                    <td id="ad-td">
+{{--                    <td id="ad-td">
                 {{ $business->Plaats }}
-                    </td>
+                    </td>--}}
                     <td id="ad-td">
                 {{ $business->Idee }}
                     </td>
-                    <td id="ad-td">
+ {{--                   <td id="ad-td">
                 {{ $business->Jaar }}
-                    </td>
+                    </td>--}}
 {{--                    <td id="ad-td">
                 {{ $business->Relatie }}
                     </td>

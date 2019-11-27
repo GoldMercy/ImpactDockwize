@@ -1722,6 +1722,19 @@ pre code {
   color: #212529;
 }
 
+.table-admin {
+  width: 1200px;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.table-admin th,
+.table-admin td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
 .table th,
 .table td {
   padding: 0.75rem;
