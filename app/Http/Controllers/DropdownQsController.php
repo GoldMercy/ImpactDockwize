@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\DropdownQ;
-use App\QOption;
+use Illuminate\Validation\Validator;
+use Illuminate\Http\Request;
 use App\Survey;
+use App\DropdownQOptions;
 use Illuminate\Support\Facades\DB;
 
 class DropdownQsController extends Controller
 {
     public function create()
     {
-        $qoptions = QOption::all();
         $surveys = Survey::all();
         return view('dropdownqs.create')->with([
-            'qoptions' => $qoptions,
             'surveys' => $surveys
             ]);
     }
@@ -27,26 +26,39 @@ class DropdownQsController extends Controller
             'survey_id' => 'required',
         ]);
         
-        $dropdownq = new DropdownQ;
-        $dropdownq->dropdownq_name = $request->dropdownq_name;
-        $dropdownq->survey_id = $request->survey_id;
-        $dropdownq->save();
+        $dpq = new DropdownQ;
+        $dpq->dropdownq_name = $request->dropdownq_name;
+        $dpq->survey_id = $request->survey_id;
+        $dpq->save();
 
-        return redirect('/dropdownqs')->with('success', 'Vraag gemaakt!');
+
+        $options[] = $request->toArray();
+        array_pop($options[0]);
+        array_shift($options[0]);
+        foreach ($options[0] as $option){
+            $dpqo = new DropdownQOptions;
+            $dpqo->dropdownoption_name = $option;
+            $dpqo->dropdown_id = $dpq->dropdown_id;
+            $dpqo->save();
+        }
+
+        return redirect('/dropdownqs/create')->with('success', 'Vraag gemaakt!');
     }
+
 
     public function show($id)
     {
-        $dropdownq = DropdownQ::find($id);
-        $qoptions = QOption::where('dropdownq_fk', $id)->get();
-        return view('dropdownqs.show', ['dropdownq' => $dropdownq], ['qoptions' => $qoptions]);
+        $dpq = DropdownQ::find($id);
+        $dpqo = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
+        return view('dropdownqs.show', ['dpq' => $dpq, 'dpqo' => $dpqo]);
     }
 
     public function edit($id)
     {
         $surveys = DB::table('surveys')->get();
-        $dropdownq = DropdownQ::find($id);
-        return view('dropdownqs.edit')->with(['dropdownq' => $dropdownq, 'surveys' => $surveys]);
+        $dpq = DropdownQ::find($id);
+        $dpqo = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
+        return view('dropdownqs.edit')->with(['dpq' => $dpq, 'surveys' => $surveys, 'options' => $dpqo]);
     }
 
     public function update(Request $request, $id)
@@ -55,19 +67,50 @@ class DropdownQsController extends Controller
             'dropdownq_name' => 'required'
         ]);
 
-        $dropdownq = DropdownQ::find($id);
-        $dropdownq->dropdownq_name = $request->dropdownq_name;
-        $dropdownq->survey_id = $request->survey_id;
-        $dropdownq->save();
-        
+        $dpq = DropdownQ::find($id);
+        $dpq->dropdownq_name = $request->dropdownq_name;
+        $dpq->survey_id = $request->survey_id;
+        $dpq->save();
            
         return redirect('/questions')->with('success', 'Vraag aangepast!');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function delete($id)
     {
-        $dropdownq = DropdownQ::find($id);
-        $dropdownq->delete();
-        return redirect('/questions')->with('success', 'Vraag verwijderd!');
+        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
+        $multiplechoice = Multiplechoice::find($id);
+        $multiplechoice_options->delete();
+        $multiplechoice->delete();
+        return redirect('/multiplechoice')->with('success', 'Vraag verwijderd!');
+    }
+
+    public function addMore()
+    {
+        return view("/dropdownqs/create");
+    }
+
+    public function addMorePost(Request $request)
+    {
+        $rules = [];
+
+        foreach($request->input('dropdownq_name') as $key => $value) {
+            $rules["dropdownq_name.{$key}"] = 'required';
+        }
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->passes()) {
+            foreach($request->input('name') as $key => $value) {
+                Multiplechoice::create(['dropdownq_name'=>$value]);
+            }
+            return response()->json(['success'=>'done']);
+        }
+        return response()->json(['error'=>$validator->errors()->all()]);
     }
 }

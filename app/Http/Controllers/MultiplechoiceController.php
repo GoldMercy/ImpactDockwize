@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Multiplechoice;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
-use App\DropdownQ;
-use App\QOption;
 use App\Survey;
 use App\MultiplechoiceOptions;
 use Illuminate\Support\Facades\DB;
