@@ -26,6 +26,7 @@ class OpenQsController extends Controller
         ]);
         
         $openq = new OpenQ;
+        $openq->openq_id = $this->getNextId();
         $openq->openq_name = $request->openq_name;
         $openq->survey_id = $request->survey_id;
         $openq->save();
@@ -41,9 +42,11 @@ class OpenQsController extends Controller
 
     public function edit($id)
     {
-        $surveys = DB::table('surveys')->get();
         $openq = OpenQ::find($id);
-        return view('openqs.edit')->with(['openq' => $openq, 'surveys' => $surveys]);
+        $surveys = DB::table('surveys')->get();
+        $connectedsurveys = OpenQ::where('openq_id', $openq->openq_id)->get();
+        $allqs = OpenQ::where('survey_id', $id)->get();
+        return view('openqs.edit')->with(['openq' => $openq, 'surveys' => $surveys, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
     }
 
     public function update(Request $request, $id)
@@ -67,6 +70,25 @@ class OpenQsController extends Controller
         $openq = OpenQ::find($id);
         $openq->delete();
         return redirect('/questions')->with('success', 'Vraag verwijderd!');
+    }
+
+    public function add(Request $request)
+    {
+        $openq = OpenQ::find($request['id']);
+        $name = $openq->openq_name;
+
+        OpenQ::create([
+            'survey_id' => $request['survey_id'],
+            'openq_id' => $openq->openq_id,
+            'openq_name' => $name
+        ]);
+
+        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+    }
+
+    public function getNextId(){
+        $highest = OpenQ::max('openq_id');
+        return $highest+1;
     }
 
 /*    public function downloadPDF($id) {
