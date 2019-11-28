@@ -10,14 +10,20 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {       
         $this->call([
-            OrganisationTypeSeeder::class,
-            ProgramsSeeder::class,
-            RelationshipSeeder::class,
+            UsersTableSeeder::class,
             ThemesSeeder::class,
+            ProgramsSeeder::class,
             HousingSeeder::class,
-            UsersTableSeeder::class
+            OrganisationTypeSeeder::class,
+            BusinessTableSeeder::class,
+            SurveysTableSeeder::class,
+            old_business_dataTableSeeder::class,
+            ScaleqsTableSeeder::class,
+            DropdownqsTableSeeder::class,
+            OpenqsTableSeeder::class,
+            RelationshipSeeder::class
         ]);
     }
 }

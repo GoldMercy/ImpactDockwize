@@ -17,7 +17,6 @@ class CreateDropdownqsTable extends Migration
             $table->bigIncrements('dropdownq_id')->unsigned();
             $table->string('dropdownq_name');
             $table->bigInteger('survey_id')->unsigned();
-            $table->foreign('survey_id')->references('id')->on('surveys');
             $table->timestamps();
         });
     }

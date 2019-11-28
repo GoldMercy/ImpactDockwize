@@ -5,87 +5,45 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\OpenQ;
+use App\ScaleQ;
+use App\Business;
+use App\Charts\HousingChart;
 use PDF;
 
 class PDFGeneratorController extends Controller
 {
     public function index() {
-        $openqs = $this->get_openqs();
-        return view('pdf.index')->with('openqs', $openqs);
+        return view('pdf.index');
     }
 
-    public function get_openqs() {
-        $get_openqs = DB::table('openqs')
-                    ->get();
-        
-        return $get_openqs;
-    }
-
-    public function pdf() {
+    public function generalpdf() {
         $pdf = \App::make('dompdf.wrapper');
-        $pdf->loadHTML($this->
-            convert_openqs_to_html());
-        
-        return $pdf->stream();
+
+        $openqs = DB::table('openqs')->get();
+        $scaleqs = DB::table('scaleqs')->get();
+
+        $pdf = PDF::loadView('pdf.generalpdf', ['openqs' => $openqs, 'scaleqs' => $scaleqs]);      
+        return $pdf->stream('dockwize.generalpdf');
     }
 
-    public function convert_openqs_to_html() {
-        $openqs = $this->get_openqs();
-        // $pdfoutput = '
-        // <div class="container">
-        //     <div class="table-responsive">
-        //         <table class="table table-bordered">
-        //             <thead>
-        //                 <tr>
-        //                     <th>Open vraag id</th>
-        //                     <th>Open vraag</th>
-        //                 </tr>
-        //             </thead>
-        //             <tbody>
-        //                 @foreach($openqs as $oq)
-        //                     <tr>
-        //                         <td>{{$oq->openq_id}}</td>
-        //                         <td>{{$oq->openq_name}}</td>
-        //                     </tr>
-        //                 @endforeach
-        //             </tbody>
-        //         </table>
-        //     </div>
-        // </div>
-        // ';
+    public function housingpdf() {
+        $pdf = \App::make('dompdf.wrapper');
 
-        $pdfoutput = '
-        <h3 align="center">Open questions</h3>
-        <table width="100%" style="border-collapse: collapse; border: 0px;">
-            <tr>
-                <th style="border: 1px solid; padding:12px;" width="20%">OpenQ ID</th>
-                <th style="border: 1px solid; padding:12px;" width="30%">OpenQ Name</th>
-            </tr>
-        ';
+        $pdf = PDF::loadView('pdf.housingpdf');      
+        return $pdf->stream('dockwize.housingpdf');
+    }
 
-        foreach($openqs as $oq){
-            $pdfoutput .= '
-            <tr>
-                <th style="border: 1px solid; padding:12px;" width="10%">' . $oq->openq_id . '</th>
-                <th style="border: 1px solid; padding:12px;" width="90%">' . $oq->openq_name . '</th>
-            </tr>
-            ';
+    public function impulspdf() {
+        $pdf = \App::make('dompdf.wrapper');
 
-            $pdfoutput .= '</table>';
-        }
+        $pdf = PDF::loadView('pdf.impulspdf');      
+        return $pdf->stream('dockwize.impulspdf');
+    }
 
-        // foreach($openqs as $oq){
-        //     $pdfoutput .= '<table class="table table-bordered">
-        //     <tr>
-        //         <td>' . $oq->openq_id . '</td>
-        //         <td>' . $oq->openq_name . '</td>
-        //     </tr>
-        //     ';
+    public function programpdf() {
+        $pdf = \App::make('dompdf.wrapper');
 
-        //     $pdfoutput .= '</table>';
-        // }
-
-        
-        return $pdfoutput;
+        $pdf = PDF::loadView('pdf.programpdf');      
+        return $pdf->stream('dockwize.programpdf');
     }
 }
