@@ -76,23 +76,24 @@ document.getElementById("mySidebar").style.width = "150px";
 document.getElementById("sidebarbutton").style.marginLeft = "150px";
 }
 
-<div id="sidebar">
-    <div class="toggle-btn" onclick="toggleSidebar()"><a>
-            <span></span>
-
-            <span></span>
-
-            <span></span>
-        </a>
-    </div>
-    <ul id="buttons">
-        <li><a class="sidebar" href="{{ url('/home') }}">Dashboard</a></li>
-        <li><a class="sidebar" href="{{ url('/input') }}">Input</a></li>
-        <li><a class="sidebar" href="{{ url('/output') }}">Output</a></li>
-        <li><a class="sidebar" href="{{ url('/admin') }}">Admin</a></li>
-        <li><a class="sidebar" href="{{ url('/searching') }}">History</a></li>
-        <li><a class="sidebar" href="{{ url('/surstat/create') }}">Maak koppeling</a></li>
-        <li><a class="sidebar" href="{{ route('logout') }}" onclick="event.preventDefault();
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+document.getElementById("mySidebar").style.width = "0";
+document.getElementById("sidebarbutton").style.marginLeft = "0";
+}
+</script>
+<div id="sidebarbutton">
+    <button class="openbtn" onclick="openNav()">&#9776;</button>
+</div>
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="{{ url('/home') }}">Dashboard</a>
+    <a href="{{ url('/input') }}">Input</a>
+    <a href="{{ url('/output') }}">Output</a>
+    <a href="{{ url('/admin') }}">Admin</a>
+    <a href="{{ url('/surstat/create') }}">Maak koppeling</a>
+    <a href="{{ url('/searching') }}">History</a>
+    <a href="{{ route('logout') }}" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
