@@ -37,7 +37,8 @@ class ScaleQsController extends Controller
     public function show($id)
     {
         $scaleq = ScaleQ::find($id);
-        return view('scaleqs.show')->with('scaleq', $scaleq);
+        $connectedsurveys = ScaleQ::where('scaleq_id', $scaleq->scaleq_id)->get();
+        return view('scaleqs.show')->with(['scaleq' => $scaleq, 'connectedsurveys' => $connectedsurveys]);
     }
 
     public function edit($id)

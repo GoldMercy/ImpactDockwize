@@ -52,7 +52,8 @@ class MultiplechoiceController extends Controller
     {
         $multiplechoice = Multiplechoice::find($id);
         $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
-        return view('multiplechoice.show', ['multiplechoice' => $multiplechoice], ['multiplechoiceoptions' => $multiplechoiceoptions]);
+        $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->multiplechoice_id)->get();
+        return view('multiplechoice.show', ['multiplechoice' => $multiplechoice, 'multiplechoiceoptions' => $multiplechoiceoptions, 'connectedsurveys' => $connectedsurveys]);
     }
 
     public function edit($id)
@@ -78,16 +79,16 @@ class MultiplechoiceController extends Controller
         $multiplechoice->survey_id = $request->survey_id;
         $multiplechoice->save();
            
-        return redirect('/multiplechoice')->with('success', 'Vraag aangepast!');
+        return redirect('/input')->with('success', 'Vraag aangepast!');
     }
 
     public function delete($id)
     {
-        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
+        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id);
         $multiplechoice = Multiplechoice::find($id);
         $multiplechoice_options->delete();
         $multiplechoice->delete();
-        return redirect('/multiplechoice')->with('success', 'Vraag verwijderd!');
+        return redirect('/input')->with('success', 'Vraag verwijderd!');
     }
 
     public function add(Request $request)

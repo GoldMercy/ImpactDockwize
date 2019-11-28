@@ -101,33 +101,33 @@ class SurveyController extends Controller
         return redirect('/surveys')->with('success', 'Vragenlijst verwijderd!');
     }
 
-    public function destroyoq($id)
+    public function destroyoq($openq_id)
     {
-        $oq = DB::table('openqs')->where('survey_id', '=', $id);
+        $oq = DB::table('openqs')->where('id', '=', $openq_id);
         $oq->delete();
-        return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
+        return redirect('/surveys')->with('success', 'Open vraag uit vragenlijst verwijderd!');
     }
 
-    public function destroysq($id)
+    public function destroysq($scaleq_id)
     {
-        $sq = DB::table('scaleqs')->where('survey_id', '=', $id);
+        $sq = DB::table('scaleqs')->where('id', '=', $scaleq_id);
         $sq->delete();
+        return redirect('/surveys')->with('success', 'Schalen vraag uit vragenlijst verwijderd!');
+    }
+
+    public function destroydpq($dropdownq_id)
+    {
+        $dpq = DropdownQ::where('survey_id', '=', $dropdownq_id)->get();
+        $dpqo = DropdownQOptions::where('dropdown_id', '=', $dropdownq_id)->first();
+        $dpq->delete();
+        $dpqo->delete();
         return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
     }
 
-    // public function destroydpq($dropdownq_id, $survey_id)
-    // {
-    //     $dpq = DropdownQ::where('survey_id', '=', $survey_id)->get();
-    //     $dpqo = DropdownQOptions::where('dropdown_id', '=', $dropdownq_id)->first();
-    //     $dpq->delete();
-    //     $dpqo->delete();
-    //     return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
-    // }
-
-    public function destroympq($id)
+    public function destroympq($multiplechoice_id)
     {
-        $mpq = DB::table('multiplechoice')->where('survey_id', '=', $id);
-        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
+        $mpq = DB::table('multiplechoice')->where('survey_id', '=', $multiplechoice_id);
+        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id)->first();
         $mpqo->delete();
         $mpq->delete();
         

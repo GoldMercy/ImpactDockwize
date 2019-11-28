@@ -51,7 +51,8 @@ class DropdownQsController extends Controller
     {
         $dpq = DropdownQ::find($id);
         $dpqo = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
-        return view('dropdownqs.show', ['dpq' => $dpq, 'dpqo' => $dpqo]);
+        $connectedsurveys = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
+        return view('dropdownqs.show', ['dpq' => $dpq, 'dpqo' => $dpqo, 'connectedsurveys' => $connectedsurveys]);
     }
 
     public function edit($id)

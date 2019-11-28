@@ -6,20 +6,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <div class="container">
         @csrf
-        <div class="form-row">
-            <div class="form-group col-sm-6">
-                <table>
-                    <tr>
-                        <th>Vragenlijsten waar deze vraag bij hoort!</th>
-                    </tr>
-                    @foreach($connectedsurveys as $cs)
-                        <tr>
-                            <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
-                        </tr>
-                    @endforeach
-                </table>
-            </div>
-        </div>
+
         <div class="form-row">
             <div class="form-group col-sm-6">
                 <label for="openq_name">Hoe moet de vraag gaan heten?</label>

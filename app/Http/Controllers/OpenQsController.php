@@ -37,7 +37,8 @@ class OpenQsController extends Controller
     public function show($id)
     {
         $openq = OpenQ::find($id);
-        return view('openqs.show')->with('openq', $openq);
+        $connectedsurveys = OpenQ::where('openq_id', $openq->openq_id)->get();
+        return view('openqs.show')->with(['openq' => $openq, 'connectedsurveys' => $connectedsurveys]);
     }
 
     public function edit($id)

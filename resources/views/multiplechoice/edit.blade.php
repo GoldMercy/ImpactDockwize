@@ -2,21 +2,9 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container">
+    <form method="GET" action="/multiplechoice/update/{{$multiplechoice->id}}">
         @csrf
-    <div class="form-row">
-        <div class="form-group col-sm-6">
-            <table>
-                <tr>
-                    <th>Vragenlijsten waar deze vraag bij hoort!</th>
-                </tr>
-                @foreach($connectedsurveys as $cs)
-                    <tr>
-                        <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
-                    </tr>
-                @endforeach
-            </table>
-        </div>
-    </div>
+           
     <div class="form-row">
         <div class="form-group col-sm-6">
             <label for="multiplechoice_name">Hoe moet de vraag gaan heten?</label>
@@ -54,10 +42,10 @@
     </div>
         <hr>
         <div class="form-group">
-            <a href="/multiplechoice/show/{{$multiplechoice->multiplechoice_id}}">
+            <a href="/multiplechoice/show/{{$multiplechoice->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
-                <a href="delete/{{$multiplechoice->multiplechoice_id}}">
+                <a href="delete/{{$multiplechoice->id}}">
                     <button type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>

@@ -20,20 +20,7 @@
             @endforeach
 
         @csrf
-        <div class="form-row">
-            <div class="form-group col-sm-6">
-                <table>
-                    <tr>
-                        <th>Vragenlijsten waar deze vraag bij hoort!</th>
-                    </tr>
-                    @foreach($connectedsurveys as $cs)
-                        <tr>
-                            <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
-                        </tr>
-                    @endforeach
-                </table>
-            </div>
-        </div>
+
         <div class="form-row">
             <div class="form-group col-sm-6">
                 <label for="openq_name">Hoe moet de vraag gaan heten?</label>
@@ -60,12 +47,12 @@
         </div>
         <hr>
         <div class="form-group">
-            <a href="/dropdownqs/show/{{$dpq->dropdownq_id}}">
+            <a href="/dropdownqs/show/{{$dpq->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
                 <button type="submit" class="btn btn-primary">Vraag aanpassen</button>
             <div style="float:right;">
-                <a href="delete/{{$dpq->dropdownq_id}}">
+                <a href="delete/{{$dpq->id}}">
                     <button type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>

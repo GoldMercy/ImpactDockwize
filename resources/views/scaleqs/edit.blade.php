@@ -3,20 +3,7 @@
 @section('content')
 <div class="container">
         @csrf
-        <div class="form-row">
-            <div class="form-group col-sm-6">
-                <table>
-                    <tr>
-                        <th>Vragenlijsten waar deze vraag bij hoort!</th>
-                    </tr>
-                    @foreach($connectedsurveys as $cs)
-                        <tr>
-                            <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
-                        </tr>
-                    @endforeach
-                </table>
-            </div>
-        </div>
+
         <div class="form-row">
             <div class="form-group col-sm-6">
                 <label for="scaleq_name">Hoe moet de vraag gaan heten?</label>
@@ -43,10 +30,10 @@
         </div>
         <hr>
         <div class="form-group">
-            <a href="/scaleqs/show/{{$scaleq->scaleq_id}}">
+            <a href="/scaleqs/show/{{$scaleq->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
-                <a href="delete/{{$scaleq->scaleq_id}}">
+                <a href="delete/{{$scaleq->id}}">
                     <button type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>
