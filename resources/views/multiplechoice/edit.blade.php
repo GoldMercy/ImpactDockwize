@@ -32,20 +32,6 @@
                     </div>
                 </div>
             @endforeach
-            <div class="form-row">
-                <div class="form-group col-sm-6">
-                    <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
-                    <select name="survey_id" class="form-control">
-                        @foreach($surveys as $s)
-                            @if($s->id == $multiplechoice->survey_id)
-                                <option selected value="{{$s->id}}">{{$s->titel}}</option>
-                            @else
-                                <option value="{{$s->id}}">{{$s->titel}}</option>
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-            </div>
                 <input type="hidden" id="survey_id" name="survey_id" value="{{$multiplechoice->survey_id}}">
                 <button type="submit" class="btn btn-primary" value="edit">Vraag aanpassen</button>
             </form>
@@ -54,11 +40,12 @@
                 <input type="hidden" id="multiplechoice_id" name="multiplechoice_id" value="{{$multiplechoice->multiplechoice_id}}">
                 <input type="hidden" id="id" name="id" value="{{$multiplechoice->id}}">
                 <select name="survey_id" class="form-control">
-                    @foreach($surveys as $s) @if($s->id == $multiplechoice->multiplechoice_id)
-                        <option selected value="{{$s->id}}">{{$s->titel}}</option>
-                    @else
-                        <option value="{{$s->id}}">{{$s->titel}}</option>
-                    @endif
+                    @foreach($surveys as $s) 
+                        @if($s->id == $multiplechoice->multiplechoice_id)
+                            <option selected value="{{$s->id}}">{{$s->titel}}</option>
+                        @else
+                            <option value="{{$s->id}}">{{$s->titel}}</option>
+                        @endif
                     @endforeach
                 </select>
                 <button class="btn btn-primary" name="action" value="add">Toevoegen</button>

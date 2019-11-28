@@ -101,34 +101,36 @@ class SurveyController extends Controller
         return redirect('/surveys')->with('success', 'Vragenlijst verwijderd!');
     }
 
-    public function destroyoq($openq_id)
+    public function destroyoq($id)
     {
-        $oq = OpenQ::find($openq_id);
+        $oq = DB::table('openqs')->where('survey_id', '=', $id);
         $oq->delete();
-        return redirect('/surveys')->with('success', 'Vraag verwijderd!');
+        return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
     }
 
-    public function destroysq($scaleq_id)
+    public function destroysq($id)
     {
-        $sq = ScaleQ::find($scaleq_id);
+        $sq = DB::table('scaleqs')->where('survey_id', '=', $id);
         $sq->delete();
-        return redirect('/surveys')->with('success', 'Vraag uit vrangelijst verwijderd!');
+        return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
     }
 
-    public function destroydpq($dropdownq_id)
-    {
-        $dpq = DropdownQ::find($dropdownq_id);
-        // $dpqo = DropdownQOptions
-        $dpq->delete();
-        return redirect('/surveys')->with('success', 'Vraag uit vrangelijst verwijderd!');
-    }
+    // public function destroydpq($dropdownq_id, $survey_id)
+    // {
+    //     $dpq = DropdownQ::where('survey_id', '=', $survey_id)->get();
+    //     $dpqo = DropdownQOptions::where('dropdown_id', '=', $dropdownq_id)->first();
+    //     $dpq->delete();
+    //     $dpqo->delete();
+    //     return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
+    // }
 
-    public function destroympq($multiplechoice_id)
+    public function destroympq($id)
     {
-        $mpq = Multiplechoice::find($multiplechoice_id);
-        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id)->first();
-        $mpq->delete();
+        $mpq = DB::table('multiplechoice')->where('survey_id', '=', $id);
+        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
         $mpqo->delete();
-        return redirect('/surveys')->with('success', 'Vraag uit vrangelijst verwijderd!');
+        $mpq->delete();
+        
+        return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
     }
 }

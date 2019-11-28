@@ -27,6 +27,7 @@ class DropdownQsController extends Controller
         ]);
         
         $dpq = new DropdownQ;
+        $dpq->dropdownq_id = $this->getNextId();
         $dpq->dropdownq_name = $request->dropdownq_name;
         $dpq->survey_id = $request->survey_id;
         $dpq->save();

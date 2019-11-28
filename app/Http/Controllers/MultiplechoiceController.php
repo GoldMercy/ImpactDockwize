@@ -59,8 +59,10 @@ class MultiplechoiceController extends Controller
     {
         $surveys = DB::table('surveys')->get();
         $multiplechoice = Multiplechoice::find($id);
-        $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->multiplechoice_id)->get();
+        
         $allqs = Multiplechoice::where('survey_id', $id)->get();
+        
+        $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->multiplechoice_id)->get();
         $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
         return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys, 'options' => $multiplechoiceoptions, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
     }

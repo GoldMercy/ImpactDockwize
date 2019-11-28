@@ -16,8 +16,8 @@ class CreateMultiplechoiceOptionsTable extends Migration
         Schema::create('multiplechoice_options', function (Blueprint $table) {
             $table->bigIncrements('multiplechoice_options_id')->unsigned();
             $table->string('multiplechoice_option');
-            $table->bigInteger('multiplechoice_id')->unsigned()->nullable();
-            $table->foreign('multiplechoice_id')->references('multiplechoice_id')->on('multiplechoice')->onDelete('cascade');
+            $table->bigInteger('multiplechoice_id')->unsigned();
+            $table->foreign('multiplechoice_id')->references('id')->on('multiplechoice');
             $table->timestamps();
         });
     }

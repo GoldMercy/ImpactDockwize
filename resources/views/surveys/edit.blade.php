@@ -19,10 +19,9 @@
                 <div class="form-group col-sm-6">
                     <label for="openq_name{{$loop->iteration}}">Open vraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="openq_name{{$loop->iteration}}" aria-describedby="openq_name{{$loop->iteration}}" value="{{$oq->openq_name}}">
-                    <a href="destroyoq/{{$oq->openq_id}}">
-                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
-                    </a>
-                    
+                    <a href="destroyoq/{{$oq->id}}">
+                        <button type="submit" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                    </a> 
                 </div>
             </div>
         @endforeach
