@@ -10,9 +10,9 @@
             <th style="padding:5px 25px 0 0;">Status</th>
         </tr>
         <tr>
-                @foreach($surstats as $surstat)
-                <td style="padding:5px 25px 0 0;">{{$surstat->survey_name}}</td>
-                <td style="padding:5px 25px 0 0;">{{$surstat->status}}</td>
+            @foreach($surstats as $surstat)
+            <td style="padding:5px 25px 0 0;">{{$surstat->survey_name}}</td>
+            <td style="padding:5px 25px 0 0;">{{$surstat->status}}</td>
         </tr>  
         @endforeach
     </table>

@@ -27,18 +27,27 @@ class SurveyStatusController extends Controller
 
     public function addstat(Request $request) {
         
+        $random = ['survey_name', 'business_name', 'status'];
+
+        $messages = [
+            'status.required' => 'Status is verplicht op te geven.',
+            'business_name.required' => 'Bedrijfsnaam is verplicht op te geven.',
+            'survey_name.required' => 'Naam van vragenlijst is verplicht op te geven.',
+            'survey_name.unique' => 'Koppeling bestaat al.'
+        ];
+
         $this->validate($request, [
             'status' => 'required',
             'business_name' => 'required',
-            'survey_name' => 'required',
-        ]);
+            'survey_name' => 'required|unique:survey_statuses',
+        ], $messages);
 
         $surstat = new SurveyStatus;
         $surstat->status = $request->status;
         $surstat->business_name = $request->business_name;
         $surstat->survey_name = $request->survey_name;
         $surstat->save();
-
-        return redirect('/admin')->with('success', 'Status bijgewerkt!');
+    
+        return redirect('/surstat/create')->with('success', 'Status bijgewerkt!');
     }    
 }
