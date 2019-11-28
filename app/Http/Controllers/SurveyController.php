@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\OpenQ;
+use App\ScaleQ;
+use App\Multiplechoice;
+use App\MultiplechoiceOptions;
+use App\DropdownQ;
+use App\DropdownQOptions;
 use App\Survey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PDF;
 
 class SurveyController extends Controller
 {
@@ -95,5 +99,36 @@ class SurveyController extends Controller
         $survey = Survey::find($id);
         $survey->delete();
         return redirect('/surveys')->with('success', 'Vragenlijst verwijderd!');
+    }
+
+    public function destroyoq($openq_id)
+    {
+        $oq = OpenQ::find($openq_id);
+        $oq->delete();
+        return redirect('/surveys')->with('success', 'Vraag verwijderd!');
+    }
+
+    public function destroysq($scaleq_id)
+    {
+        $sq = ScaleQ::find($scaleq_id);
+        $sq->delete();
+        return redirect('/surveys')->with('success', 'Vraag uit vrangelijst verwijderd!');
+    }
+
+    public function destroydpq($dropdownq_id)
+    {
+        $dpq = DropdownQ::find($dropdownq_id);
+        // $dpqo = DropdownQOptions
+        $dpq->delete();
+        return redirect('/surveys')->with('success', 'Vraag uit vrangelijst verwijderd!');
+    }
+
+    public function destroympq($multiplechoice_id)
+    {
+        $mpq = Multiplechoice::find($multiplechoice_id);
+        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id)->first();
+        $mpq->delete();
+        $mpqo->delete();
+        return redirect('/surveys')->with('success', 'Vraag uit vrangelijst verwijderd!');
     }
 }

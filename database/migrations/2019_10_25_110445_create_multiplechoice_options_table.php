@@ -17,7 +17,7 @@ class CreateMultiplechoiceOptionsTable extends Migration
             $table->bigIncrements('multiplechoice_options_id')->unsigned();
             $table->string('multiplechoice_option');
             $table->bigInteger('multiplechoice_id')->unsigned()->nullable();
-            $table->foreign('multiplechoice_id')->references('multiplechoice_id')->on('multiplechoice');
+            $table->foreign('multiplechoice_id')->references('multiplechoice_id')->on('multiplechoice')->onDelete('cascade');
             $table->timestamps();
         });
     }

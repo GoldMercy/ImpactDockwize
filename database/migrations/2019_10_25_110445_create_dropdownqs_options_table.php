@@ -17,7 +17,7 @@ class CreateDropdownQsOptionsTable extends Migration
             $table->bigIncrements('dropdownoption_id')->unsigned();
             $table->string('dropdownoption_name');
             $table->bigInteger('dropdown_id')->unsigned()->nullable();
-            $table->foreign('dropdown_id')->references('dropdownq_id')->on('dropdownqs');
+            $table->foreign('dropdown_id')->references('dropdownq_id')->on('dropdownqs')->onDelete('cascade');;
             $table->timestamps();
         });
     }
