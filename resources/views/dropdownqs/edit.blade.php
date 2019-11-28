@@ -10,7 +10,7 @@
                 <input type="text" class="form-control" name="dropdownq_name" aria-describedby="dropdownq_name" value="{{$dpq->dropdownq_name}}">
             </div>
             </div>
-            @foreach($options as $option)
+            @foreach($dpqos as $dpqo)
                 <div class="form row">
                     <div class="form-group col-sm-6">
                         <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
@@ -18,20 +18,46 @@
                     </div>
                 </div>
             @endforeach
-            <div class="form-row">
-                <div class="form-group col-sm-6">
+
+        @csrf
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <table>
+                    <tr>
+                        <th>Vragenlijsten waar deze vraag bij hoort!</th>
+                    </tr>
+                    @foreach($connectedsurveys as $cs)
+                        <tr>
+                            <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm-6">
+                <label for="openq_name">Hoe moet de vraag gaan heten?</label>
+                <form method="GET" action="/dropdownqs/update/{{$dropdownq->id}}">
+                    <input type="text" class="form-control" name="dropdownq_name" aria-describedby="dropdownq_name" value="{{$dropdownq->dropdownq_name}}">
+                    <input type="hidden" id="survey_id" name="survey_id" value="{{$dropdownq->survey_id}}">
+                    <button type="submit" class="btn btn-primary" value="edit">Vraag aanpassen</button>
+                </form>
+                <form method="GET" action="/dropdownqs/add/{{$dropdownq->id}}">
                     <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
+                    <input type="hidden" id="dropdownq_id" name="dropdownq_id" value="{{$dropdownq->dropdownq_id}}">
+                    <input type="hidden" id="id" name="id" value="{{$dropdownq->id}}">
                     <select name="survey_id" class="form-control">
-                        @foreach($surveys as $s)
-                            @if($s->id == $dpq->survey_id)
-                                <option selected value="{{$s->id}}">{{$s->titel}}</option>
-                            @else
-                                <option value="{{$s->id}}">{{$s->titel}}</option>
-                            @endif
+                        @foreach($surveys as $s) @if($s->id == $dropdownq->survey_id)
+                            <option selected value="{{$s->id}}">{{$s->titel}}</option>
+                        @else
+                            <option value="{{$s->id}}">{{$s->titel}}</option>
+                        @endif
                         @endforeach
                     </select>
-                </div>
+                    <button class="btn btn-primary" name="action" value="add">Toevoegen</button>
+                </form>
             </div>
+        </div>
         <hr>
         <div class="form-group">
             <a href="/dropdownqs/show/{{$dpq->dropdownq_id}}">
@@ -44,6 +70,5 @@
                 </a>
             </div>
         </div>
-    </form>
-</div>
+    </div>
 @endsection

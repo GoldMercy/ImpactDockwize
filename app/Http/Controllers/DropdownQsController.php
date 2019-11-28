@@ -56,9 +56,13 @@ class DropdownQsController extends Controller
     public function edit($id)
     {
         $surveys = DB::table('surveys')->get();
+        
         $dpq = DropdownQ::find($id);
-        $dpqo = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
-        return view('dropdownqs.edit')->with(['dpq' => $dpq, 'surveys' => $surveys, 'options' => $dpqo]);
+        $dpqos = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
+        $connectedsurveys = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
+        $allqs = DropdownQ::where('dropdownq_id', $id)->get();
+
+        return view('dropdownqs.edit')->with(['dpq' => $dpq, 'dpqos' => $dpqos, 'surveys' => $surveys, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
     }
 
     public function update(Request $request, $id)
@@ -112,5 +116,24 @@ class DropdownQsController extends Controller
             return response()->json(['success'=>'done']);
         }
         return response()->json(['error'=>$validator->errors()->all()]);
+    }
+
+    public function add(Request $request)
+    {
+        $dropdownq = DropdownQ::find($request['id']);
+        $name = $dropdownq->dropdownq_name;
+
+        DropdownQ::create([
+            'survey_id' => $request['survey_id'],
+            'dropdownq_id' => $dropdownq->dropdownq_id,
+            'dropdownq_name' => $name
+        ]);
+
+        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+    }
+
+    public function getNextId(){
+        $highest = DropdownQ::max('dropdownq_id');
+        return $highest+1;
     }
 }

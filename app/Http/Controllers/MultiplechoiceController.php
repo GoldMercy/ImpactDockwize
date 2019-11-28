@@ -8,21 +8,17 @@ use Illuminate\Http\Request;
 use App\Survey;
 use App\MultiplechoiceOptions;
 use Illuminate\Support\Facades\DB;
+use PhpParser\Parser\Multiple;
 
 class MultiplechoiceController extends Controller
 {
-    public function index()
-    {
-        $multiplechoice = DB::table('multiplechoice')->paginate(20);
-        return view('multiplechoice.index')->with('multiplechoice', $multiplechoice);;
-    }
 
     public function create()
     {
         $surveys = Survey::all();
         return view('multiplechoice.create')->with([
             'surveys' => $surveys
-            ]);
+        ]);
     }
 
     public function store(Request $request)
@@ -33,6 +29,7 @@ class MultiplechoiceController extends Controller
         ]);
         
         $multiplechoice = new Multiplechoice;
+        $multiplechoice->multiplechoice_id = $this->getNextId();
         $multiplechoice->multiplechoice_name = $request->multiplechoice_name;
         $multiplechoice->survey_id = $request->survey_id;
         $multiplechoice->save();
@@ -48,9 +45,8 @@ class MultiplechoiceController extends Controller
             $multiplechoice_options->save();
         }
 
-        return redirect('/multiplechoice')->with('success', 'Vraag gemaakt!');
+        return redirect('/multiplechoice/create')->with('success', 'Vraag gemaakt!');
     }
-
 
     public function show($id)
     {
@@ -63,8 +59,10 @@ class MultiplechoiceController extends Controller
     {
         $surveys = DB::table('surveys')->get();
         $multiplechoice = Multiplechoice::find($id);
+        $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->multiplechoice_id)->get();
+        $allqs = Multiplechoice::where('survey_id', $id)->get();
         $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
-        return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys, 'options' => $multiplechoiceoptions]);
+        return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys, 'options' => $multiplechoiceoptions, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
     }
 
     public function update(Request $request, $id)
@@ -81,12 +79,6 @@ class MultiplechoiceController extends Controller
         return redirect('/multiplechoice')->with('success', 'Vraag aangepast!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function delete($id)
     {
         $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
@@ -94,6 +86,26 @@ class MultiplechoiceController extends Controller
         $multiplechoice_options->delete();
         $multiplechoice->delete();
         return redirect('/multiplechoice')->with('success', 'Vraag verwijderd!');
+    }
+
+    public function add(Request $request)
+    {
+        $multiplechoice = Multiplechoice::find($request['id']);
+        $name = $multiplechoice->multiplechoice_name;
+
+        Multiplechoice::create([
+            'survey_id' => $request['survey_id'],
+            'multiplechoice_id' => $multiplechoice->multiplechoice_id,
+            'multiplechoice_name' => $name
+        ]);
+
+        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+    }
+
+    public function getNextId()
+    {
+        $highest = Multiplechoice::max('multiplechoice_id');
+        return $highest + 1;
     }
 
     public function addMore()
