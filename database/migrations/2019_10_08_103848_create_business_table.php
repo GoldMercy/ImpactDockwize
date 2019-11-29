@@ -27,6 +27,7 @@ class CreateBusinessTable extends Migration
             $table->string('Programma')->nullable();
             $table->string('Huisvesting')->nullable();
             $table->string('Organisatievorm')->nullable();
+            $table->string('Omzet')->nullable();
             $table->date('created_at');
         });
     }

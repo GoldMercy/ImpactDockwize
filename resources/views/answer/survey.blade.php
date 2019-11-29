@@ -45,7 +45,7 @@
                                     <label for="{{$multiq->multiplechoice_name}}">{{$multiq->multiplechoice_name}}</label><br>
                                         <?php $multioptions = $multiplechoiceoptions->where('multiplechoice_id', '=', $multiq->multiplechoice_id) ?>
                                         @foreach($multioptions as $multioption)
-                                        <input type="checkbox" name="{{$multiq->multiplechoice_name}} Antwoord {{$loop->iteration}}" value={{$multioption->multiplechoice_option}}>{{$multioption->multiplechoice_option}}<br>
+                                        <input type="checkbox" name="{{$multiq->multiplechoice_name}} Antwoord {{$loop->iteration}}" value="{{$multioption->multiplechoice_option}}">{{$multioption->multiplechoice_option}}<br>
                                             @endforeach
                                 </div>
                             @endforeach

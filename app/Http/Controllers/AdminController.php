@@ -55,6 +55,7 @@ class AdminController extends Controller
         $business->Programma = $request->Programma;
         $business->Huisvesting = $request->Huisvesting;
         $business->Organisatievorm = $request->Organisatievorm;
+        $business->Omzet = $request->Omzet;
         $business->created_at = date('y-m-d');
         $business->save();
 
@@ -95,6 +96,7 @@ class AdminController extends Controller
                 $business->Programma = $request->Programma;
                 $business->Huisvesting = $request->Huisvesting;
                 $business->Organisatievorm = $request->Organisatievorm;
+                $business->Omzet = $request->Omzet;
                 $business->save();
         }
                 return (redirect('/admin'));

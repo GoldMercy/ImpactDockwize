@@ -99,6 +99,15 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group col-sm-3">
+                    <label for="Omzet">Omzet</label>
+                    <select name="Omzet" class="form-control">
+                        <option>€0 - €100.000</option>
+                        <option>€100.000 - €500.000</option>
+                        <option>€500.000 - €1.000.000</option>
+                        <option>> €1.000.000</option>
+                    </select>
+                </div>
             </div>
             <div class="d-flex">
                 <div class="p-2">
