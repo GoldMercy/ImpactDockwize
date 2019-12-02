@@ -64,7 +64,13 @@ class DropdownQsController extends Controller
         $connectedsurveys = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
         $allqs = DropdownQ::where('dropdownq_id', $id)->get();
 
-        return view('dropdownqs.edit')->with(['dpq' => $dpq, 'dpqos' => $dpqos, 'surveys' => $surveys, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
+        return view('dropdownqs.edit')->with([
+            'dpq' => $dpq, 
+            'dpqos' => $dpqos, 
+            'surveys' => $surveys, 
+            'allqs' => $allqs, 
+            'connectedsurveys' => $connectedsurveys
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -137,5 +143,12 @@ class DropdownQsController extends Controller
     public function getNextId(){
         $highest = DropdownQ::max('dropdownq_id');
         return $highest+1;
+    }
+
+    public function destroydpo($dropdownq_id)
+    {
+        $dpo = DB::table('dropdownqs_options')->where('dropdownoption_id', '=', $dropdownq_id);
+        $dpo->delete();
+        return redirect('/questions')->with('success', 'Optie voor dropdown vraag verwijderd.');
     }
 }

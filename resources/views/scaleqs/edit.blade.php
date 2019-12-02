@@ -33,8 +33,14 @@
             <a href="/scaleqs/show/{{$scaleq->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
+            <div style="float:right;">
                 <a href="delete/{{$scaleq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
+                </a>
+            </div>
+            <div style="float:right;">
+                <a href="deleteallsq/{{$scaleq->id}}">
+                    <button type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
                 </a>
             </div>
         </div>

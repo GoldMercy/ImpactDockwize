@@ -6,7 +6,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <div class="container">
         @csrf
-
         <div class="form-row">
             <div class="form-group col-sm-6">
                 <label for="openq_name">Hoe moet de vraag gaan heten?</label>
@@ -38,7 +37,12 @@
             </a>
             <div style="float:right;">
                 <a href="delete/{{$openq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
+                </a>
+            </div>
+            <div style="float:right;">
+                <a href="deletealloq/{{$openq->id}}">
+                    <button type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
                 </a>
             </div>
         </div>

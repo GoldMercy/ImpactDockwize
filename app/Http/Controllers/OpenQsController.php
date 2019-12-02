@@ -38,7 +38,10 @@ class OpenQsController extends Controller
     {
         $openq = OpenQ::find($id);
         $connectedsurveys = OpenQ::where('openq_id', $openq->openq_id)->get();
-        return view('openqs.show')->with(['openq' => $openq, 'connectedsurveys' => $connectedsurveys]);
+        return view('openqs.show')->with([
+            'openq' => $openq, 
+            'connectedsurveys' => $connectedsurveys
+        ]);
     }
 
     public function edit($id)
@@ -47,7 +50,12 @@ class OpenQsController extends Controller
         $surveys = DB::table('surveys')->get();
         $connectedsurveys = OpenQ::where('openq_id', $openq->openq_id)->get();
         $allqs = OpenQ::where('survey_id', $id)->get();
-        return view('openqs.edit')->with(['openq' => $openq, 'surveys' => $surveys, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
+        return view('openqs.edit')->with([
+            'openq' => $openq, 
+            'surveys' => $surveys, 
+            'allqs' => $allqs, 
+            'connectedsurveys' => $connectedsurveys
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -70,7 +78,7 @@ class OpenQsController extends Controller
     {
         $openq = OpenQ::find($id);
         $openq->delete();
-        return redirect('/questions')->with('success', 'Vraag verwijderd!');
+        return redirect('/questions')->with('success', 'Vraag uit geselecteerde vrangelijst verwijderd!');
     }
 
     public function add(Request $request)
@@ -92,5 +100,9 @@ class OpenQsController extends Controller
         return $highest+1;
     }
 
+    public function deleteAlloq($id){
+        DB::table('openqs')->delete($id);
 
+        return redirect('/questions')->with('success', 'Vraag uit alle vragenlijsten verwijderd!');
+    }
 }

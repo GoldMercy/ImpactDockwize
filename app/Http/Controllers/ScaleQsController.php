@@ -90,4 +90,10 @@ class ScaleQsController extends Controller
         $highest = ScaleQ::max('scaleq_id');
         return $highest + 1;
     }
+
+    public function deleteAllsq($id){
+        DB::table('scaleqs')->delete($id);
+
+        return redirect('/questions')->with('success', 'Vraag uit alle vragenlijsten verwijderd!');
+    }
 }

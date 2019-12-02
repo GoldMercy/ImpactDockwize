@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Survey;
 use App\MultiplechoiceOptions;
 use Illuminate\Support\Facades\DB;
-use PhpParser\Parser\Multiple;
 
 class MultiplechoiceController extends Controller
 {
@@ -149,6 +148,12 @@ class MultiplechoiceController extends Controller
     {
         $mpo = DB::table('multiplechoice_options')->where('multiplechoice_options_id', '=', $multiplechoice_id);
         $mpo->delete();
-        return redirect('/multiplechocie')->with('success', 'Open vraag uit vragenlijst verwijderd!');
+        return redirect('/questions')->with('success', 'Optie voor multiplechoice vraag verwijderd.');
+    }
+
+    public function deleteAlloq($id){
+        DB::table('multiplechoice')->delete($id);
+
+        return redirect('/questions')->with('success', 'Vraag uit alle vragenlijsten verwijderd!');
     }
 }
