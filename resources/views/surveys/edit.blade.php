@@ -2,7 +2,7 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container">
-    {{-- <form method="GET" action="/surveys/update/{{$survey->id}}"> --}}
+    <form method="GET" action="/surveys/update/{{$survey->id}}">
         @csrf
         <div class="form-group">
             <div class="form-group col-sm-6">
@@ -14,7 +14,6 @@
                 <input type="text" class="form-control" name="beschrijving" value="{{$survey->beschrijving}}">
             </div>
         </div>
-
         @foreach($oqs as $oq)
             <div class="form row">
                 <div class="form-group col-sm-6">
@@ -60,7 +59,7 @@
             </div>
         @endforeach
         <hr>
-        {{-- <div class="form-group">
+        <div class="form-group">
             <a href="/surveys/show/{{$survey->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
@@ -71,6 +70,6 @@
                 </a>
             </div>
         </div>
-    </form> --}}
+    </form>
 </div>
 @endsection

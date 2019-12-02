@@ -99,6 +99,7 @@ Route::get('/multiplechoice/show/{id}', 'MultiplechoiceController@show');
 Route::get('/multiplechoice/update/{id}', 'MultiplechoiceController@update');
 Route::get('/multiplechoice/add/{id}', 'MultiplechoiceController@add');
 Route::get('/multiplechoice/edit/delete/{id}', 'MultiplechoiceController@delete');
+Route::get('/multiplechoice/edit/destroympo/{id}', 'MultiplechoiceController@destroympo');
 
 Route::get('/qoptions/create', 'QOptionsController@create');
 Route::get('/qoptions/store', 'QOptionsController@store');

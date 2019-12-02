@@ -35,12 +35,12 @@ class MultiplechoiceController extends Controller
         $multiplechoice->save();
 
 
-        $options[] = $request->toArray();
-        array_pop($options[0]);
-        array_shift($options[0]);
-        foreach ($options[0] as $option){
+        $mp_options[] = $request->toArray();
+        array_pop($mp_options[0]);
+        array_shift($mp_options[0]);
+        foreach ($mp_options[0] as $mp_option){
             $multiplechoice_options = new MultiplechoiceOptions;
-            $multiplechoice_options->multiplechoice_option = $option;
+            $multiplechoice_options->multiplechoice_option = $mp_option;
             $multiplechoice_options->multiplechoice_id = $multiplechoice->multiplechoice_id;
             $multiplechoice_options->save();
         }
@@ -53,7 +53,11 @@ class MultiplechoiceController extends Controller
         $multiplechoice = Multiplechoice::find($id);
         $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
         $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->multiplechoice_id)->get();
-        return view('multiplechoice.show', ['multiplechoice' => $multiplechoice, 'multiplechoiceoptions' => $multiplechoiceoptions, 'connectedsurveys' => $connectedsurveys]);
+        return view('multiplechoice.show')->with([
+            'multiplechoice' => $multiplechoice, 
+            'multiplechoiceoptions' => $multiplechoiceoptions, 
+            'connectedsurveys' => $connectedsurveys
+            ]);
     }
 
     public function edit($id)
@@ -64,8 +68,14 @@ class MultiplechoiceController extends Controller
         $allqs = Multiplechoice::where('survey_id', $id)->get();
         
         $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->multiplechoice_id)->get();
-        $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
-        return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys, 'options' => $multiplechoiceoptions, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
+        $mpos = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
+        return view('multiplechoice.edit')->with([
+            'multiplechoice' => $multiplechoice,
+            'surveys' => $surveys,
+            'mpos' => $mpos,
+            'allqs' => $allqs,
+            'connectedsurveys' => $connectedsurveys
+            ]);
     }
 
     public function update(Request $request, $id)
@@ -133,5 +143,12 @@ class MultiplechoiceController extends Controller
             return response()->json(['success'=>'done']);
         }
         return response()->json(['error'=>$validator->errors()->all()]);
+    }
+
+    public function destroympo($multiplechoice_id)
+    {
+        $mpo = DB::table('multiplechoice_options')->where('multiplechoice_options_id', '=', $multiplechoice_id);
+        $mpo->delete();
+        return redirect('/multiplechocie')->with('success', 'Open vraag uit vragenlijst verwijderd!');
     }
 }
