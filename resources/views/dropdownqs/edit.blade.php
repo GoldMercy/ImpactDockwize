@@ -2,42 +2,36 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container">
-    <form method="GET" action="/dropdownqs/update/{{$dpq->dropdownq_id}}">
+    <form method="GET" action="/dropdownqs/update/{{$dpq->id}}">
         @csrf
-        <div class="form-row">
-            <div class="form-group col-sm-6">
+        <div class="form-group col-sm-6">
                 <label for="dropdownq_name">Hoe moet de vraag gaan heten?</label>
-                <input type="text" class="form-control" name="dropdownq_name" aria-describedby="dropdownq_name" value="{{$dpq->dropdownq_name}}">
-            </div>
+                <form method="GET" action="/dropdownqs/update/{{$dpq->id}}">
+                    <input type="text" class="form-control" name="dropdownq_name" aria-describedby="dropdownq_name" value="{{$dpq->dropdownq_name}}">
+                    <input type="hidden" id="survey_id" name="survey_id" value="{{$dpq->survey_id}}">
+                    <button type="submit" class="btn btn-primary" value="edit">Vraag aanpassen</button>
+                </form>
             </div>
             @foreach($dpqos as $dpqo)
                 <div class="form row">
                     <div class="form-group col-sm-6">
                         <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
-                        <input type="text" class="form-control" name="dropdownoption_name{{$loop->iteration}}" aria-describedby="dropdownoption_name{{$loop->iteration}}" value="{{$option->dropdownoption_name}}">
+                        <input type="text" class="form-control" name="dropdownoption_name{{$loop->iteration}}" aria-describedby="dropdownoption_name{{$loop->iteration}}" value="{{$dpqo->dropdownoption_name}}">
                     </div>
                 </div>
             @endforeach
-
         @csrf
-
         <div class="form-row">
             <div class="form-group col-sm-6">
-                <label for="openq_name">Hoe moet de vraag gaan heten?</label>
-                <form method="GET" action="/dropdownqs/update/{{$dropdownq->id}}">
-                    <input type="text" class="form-control" name="dropdownq_name" aria-describedby="dropdownq_name" value="{{$dropdownq->dropdownq_name}}">
-                    <input type="hidden" id="survey_id" name="survey_id" value="{{$dropdownq->survey_id}}">
-                    <button type="submit" class="btn btn-primary" value="edit">Vraag aanpassen</button>
-                </form>
-                <form method="GET" action="/dropdownqs/add/{{$dropdownq->id}}">
+                <form method="GET" action="/dropdownqs/add/{{$dpq->id}}">
                     <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
-                    <input type="hidden" id="dropdownq_id" name="dropdownq_id" value="{{$dropdownq->dropdownq_id}}">
-                    <input type="hidden" id="id" name="id" value="{{$dropdownq->id}}">
+                    <input type="hidden" id="dropdownq_id" name="dropdownq_id" value="{{$dpq->dropdownq_id}}">
+                    <input type="hidden" id="id" name="id" value="{{$dpq->id}}">
                     <select name="survey_id" class="form-control">
-                        @foreach($surveys as $s) @if($s->id == $dropdownq->survey_id)
-                            <option selected value="{{$s->id}}">{{$s->titel}}</option>
+                        @foreach($surs as $sur) @if($sur->id == $dpq->survey_id)
+                            <option selected value="{{$sur->id}}">{{$sur->titel}}</option>
                         @else
-                            <option value="{{$s->id}}">{{$s->titel}}</option>
+                            <option value="{{$sur->id}}">{{$sur->titel}}</option>
                         @endif
                         @endforeach
                     </select>

@@ -25,29 +25,37 @@ class ScaleQsController extends Controller
             'survey_id' => 'required'
         ]);
 
-        $scaleq = new ScaleQ;
-        $scaleq->scaleq_id = $this->getNextId();
-        $scaleq->scaleq_name = $request->scaleq_name;
-        $scaleq->survey_id = $request->survey_id;
-        $scaleq->save();
+        $sq = new ScaleQ;
+        $sq->scaleq_id = $this->getNextId();
+        $sq->scaleq_name = $request->scaleq_name;
+        $sq->survey_id = $request->survey_id;
+        $sq->save();
 
         return redirect('/scaleqs/create')->with('success', 'Vraag gemaakt!');
     }
 
     public function show($id)
     {
-        $scaleq = ScaleQ::find($id);
-        $connectedsurveys = ScaleQ::where('scaleq_id', $scaleq->scaleq_id)->get();
-        return view('scaleqs.show')->with(['scaleq' => $scaleq, 'connectedsurveys' => $connectedsurveys]);
+        $sq = ScaleQ::find($id);
+        $css = ScaleQ::where('scaleq_id', $sq->scaleq_id)->get();
+        return view('scaleqs.show')->with([
+            'sq' => $sq, 
+            'css' => $css
+        ]);
     }
 
     public function edit($id)
     {
-        $scaleq = ScaleQ::find($id);
-        $surveys = DB::table('surveys')->get();
-        $connectedsurveys = ScaleQ::where('scaleq_id', $scaleq->scaleq_id)->get();
-        $allqs = ScaleQ::where('survey_id', $id)->get();
-        return view('scaleqs.edit')->with(['scaleq' => $scaleq, 'surveys' => $surveys, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
+        $sq = ScaleQ::find($id);
+        $surs = DB::table('surveys')->get();
+        $css = ScaleQ::where('scaleq_id', $sq->scaleq_id)->get();
+        $allsqs = ScaleQ::where('survey_id', $id)->get();
+        return view('scaleqs.edit')->with([
+            'sq' => $sq, 
+            'surs' => $surs, 
+            'allsqs' => $allsqs, 
+            'css' => $css
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -56,18 +64,18 @@ class ScaleQsController extends Controller
             'scaleq_name' => 'required',
         ]);
 
-        $scaleq = ScaleQ::find($id);
-        $scaleq->scaleq_name = $request->scaleq_name;
-        $scaleq->survey_id = $request->survey_id;
-        $scaleq->save();
+        $sq = ScaleQ::find($id);
+        $sq->scaleq_name = $request->scaleq_name;
+        $sq->survey_id = $request->survey_id;
+        $sq->save();
 
         return redirect('/questions')->with('success', 'Vraag aangepast!');
     }
 
     public function delete($id)
     {
-        $scaleq = ScaleQ::find($id);
-        $scaleq->delete();
+        $sq = ScaleQ::find($id);
+        $sq->delete();
         return redirect('/questions')->with('success', 'Vraag verwijderd!');
     }
 

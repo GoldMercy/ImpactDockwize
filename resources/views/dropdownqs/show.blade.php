@@ -19,7 +19,7 @@
                     <tr>
                         <th>Vragenlijsten waar deze vraag bij hoort!</th>
                     </tr>
-                    @foreach($connectedsurveys as $cs)
+                    @foreach($css as $cs)
                         <tr>
                             <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
                         </tr>
@@ -32,7 +32,7 @@
         <a href="/questions">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
-        <a href="/dropdownqs/edit/{{$dpq->dropdownq_id}}">
+        <a href="/dropdownqs/edit/{{$dpq->id}}">
             <button type="button" class="btn btn-primary">Pas de vraag aan</button>
         </a>
     </div>
