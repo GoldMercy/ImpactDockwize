@@ -72,14 +72,14 @@ class OpenQsController extends Controller
         $oq->save();
         
            
-        return redirect('/questions')->with('success', 'Vraag aangepast!');
+        return redirect('/questions')->with('success', 'Open vraag aangepast!');
     }
 
     public function delete($id)
     {
         $oq = OpenQ::find($id);
         $oq->delete();
-        return redirect('/questions')->with('success', 'Vraag verwijderd!');
+        return redirect('/questions')->with('success', 'Vraag verwijderd uit de geselecteerde vragenlijst!');
     }
 
     public function add(Request $request)
@@ -93,7 +93,7 @@ class OpenQsController extends Controller
             'openq_name' => $name
         ]);
 
-        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+        return redirect('/questions')->with('success', 'Vraag toegevoegd aan de vragenlijst!');
     }
 
     public function getNextId(){

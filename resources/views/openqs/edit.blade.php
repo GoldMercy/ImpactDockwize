@@ -33,14 +33,17 @@
         </div>
         <hr>
         <div class="form-group">
-            <a href="/openqs/show/{{$oq->id}}">
+            <a href="/questions">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
             <div style="float:right;">
                 <a href="delete/{{$oq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button type="button" class="btn btn-danger">Verwijder deze vraag uit de geselecteerde vragenlijst</button>
                 </a>
             </div>
         </div>
+            <a href="deletealloq/{{$oq->id}}">
+                <button type="button" class="btn btn-danger">Verwijder deze vraag uit alle vragenlijsten</button>
+            </a>
     </div>
 @endsection
