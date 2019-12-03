@@ -82,10 +82,9 @@
                 <div class="form-group col-sm-3">
                     <label for="Omzet">Omzet</label>
                     <select name="Omzet" class="form-control">
-                            <option selected>€0 - €100.000</option>
-                            <option>€100.000 - €500.000</option>
-                            <option>€500.000 - €1.000.000</option>
-                            <option>> €1.000.000</option>
+                            @foreach($revenues as $revenue)
+                                <option>{{$revenue->revenue}}</option>
+                                @endforeach
                     </select>
                 </div>
             </div>

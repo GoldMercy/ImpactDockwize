@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Business;
 use App\OpenQ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,16 +15,21 @@ class AnswerController extends Controller
         $surveys = DB::table('surveys')->get();
         $answers = DB::table('answers')->get();
         $businesses = DB::table('business')->get();
+        $programs = DB::table('programs')->get();
 
 
-        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers, 'businesses' => $businesses]);
+        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers, 'businesses' => $businesses, 'programs' => $programs]);
 
 
     }
 
     public function select(Request $request){
 
-        $business = DB::table('business')->where('id', '=', $request->Ontvanger)->first();
+        $businesses = DB::table('business')->where('Programma', '=', $request->Ontvanger)->get();
+        $emails = "";
+        foreach ($businesses as $business){
+            $emails .= $business->Email.",";
+        }
 
         switch ($request->input('action')) {
             case 'survey':
@@ -31,7 +37,7 @@ class AnswerController extends Controller
                 break;
 
             case 'mail':
-                return redirect()->to('mailto:'.$business->Email.'?SUBJECT='.$business->Onderneming.'&BODY=Beste Ondernemer, zou u een vragenlijst willen invullen?: '.url('/').'/answer/survey'.$request->Vragenlijst);
+                return redirect()->to('mailto:'.$emails.'?SUBJECT=Vragenlijst Dockwize&BODY=Beste Ondernemer, zou u een vragenlijst willen invullen?: '.url('/').'/answer/survey'.$request->Vragenlijst);
         }
 
 

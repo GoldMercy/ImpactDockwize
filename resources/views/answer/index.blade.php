@@ -16,10 +16,10 @@
                                             <option value={{$survey->id}}>{{$survey->titel}}</option>
                                         @endforeach
                                     </select>
-                                    <label for="Ontvanger">Ontvanger (Optioneel)</label>
+                                    <label for="Ontvanger">Ontvanger(s) (Optioneel)</label>
                                     <select name="Ontvanger" class="form-control">
-                                        @foreach($businesses as $business)
-                                            <option value={{$business->id}}>{{$business->Onderneming}}</option>
+                                        @foreach($programs as $program)
+                                            <option value="{{$program->name}}">{{$program->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
