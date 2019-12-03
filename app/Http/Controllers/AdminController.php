@@ -70,7 +70,14 @@ class AdminController extends Controller
         $relationships = DB::table('relationships')->get();
         $organisation_types = DB::table('organisation_types')->get();
 
-        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes, 'housings' => $housings, 'relationships' => $relationships, 'organisation_types' => $organisation_types]);
+        return view('admin.edit')->with([
+            'business' => $business, 
+            'programs' => $programs, 
+            'themes' => $themes, 
+            'housings' => $housings, 
+            'relationships' => $relationships, 
+            'organisation_types' => $organisation_types
+            ]);
     }
 
     public function update(Request $request, $id)

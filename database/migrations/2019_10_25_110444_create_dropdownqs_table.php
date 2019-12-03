@@ -14,7 +14,8 @@ class CreateDropdownqsTable extends Migration
     public function up()
     {
         Schema::create('dropdownqs', function (Blueprint $table) {
-            $table->bigIncrements('dropdownq_id')->unsigned();
+            $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('dropdownq_id')->unsigned();
             $table->string('dropdownq_name');
             $table->bigInteger('survey_id')->unsigned();
             $table->timestamps();

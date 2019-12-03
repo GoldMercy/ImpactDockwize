@@ -12,5 +12,19 @@
             <button type="button" class="btn btn-primary">Pas de vraag aan</button>
         </a>
     </div>
+    <div class="form-row">
+            <div class="form-group col-sm-6">
+                <table>
+                    <tr>
+                        <th>Vragenlijsten waar deze vraag bij hoort!</th>
+                    </tr>
+                    @foreach($connectedsurveys as $cs)
+                        <tr>
+                            <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>
 </div>
 @endsection
