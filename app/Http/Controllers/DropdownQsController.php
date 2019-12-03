@@ -51,8 +51,8 @@ class DropdownQsController extends Controller
     {
         $dpq = DropdownQ::find($id);
         $dpqo = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
-        $connectedsurveys = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
-        return view('dropdownqs.show', ['dpq' => $dpq, 'dpqo' => $dpqo, 'connectedsurveys' => $connectedsurveys]);
+        $css = DropdownQ::where('dropdownq_id', $dpq->id)->get();
+        return view('dropdownqs.show', ['dpq' => $dpq, 'dpqo' => $dpqo, 'css' => $css]);
     }
 
     public function edit($id)
@@ -150,5 +150,11 @@ class DropdownQsController extends Controller
         $dpo = DB::table('dropdownqs_options')->where('dropdownoption_id', '=', $dropdownq_id);
         $dpo->delete();
         return redirect('/questions')->with('success', 'Optie voor dropdown vraag verwijderd.');
+    }
+
+    public function deletealldpq($id) {
+        DB::table('dropdownqs')->delete($id);
+
+        return redirect('/questions')->with('success', 'Alle dropdown vragen verwijderd!');
     }
 }

@@ -54,6 +54,11 @@
                     <button type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>
+            <div style="float:right;">
+                <a href="deletealldpq/{{$dpq->id}}">
+                    <button type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
+                </a>
+            </div>
         </div>
     </div>
 @endsection

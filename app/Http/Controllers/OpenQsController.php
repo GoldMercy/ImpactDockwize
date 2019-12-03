@@ -100,8 +100,8 @@ class OpenQsController extends Controller
         return $highest+1;
     }
 
-    public function deleteAlloq($id){
-        DB::table('openqs')->delete($id);
+    public function deletealloq($id){
+        DB::table('openqs')->where('openq_id', $id)->delete();
 
         return redirect('/questions')->with('success', 'Vraag uit alle vragenlijsten verwijderd!');
     }
