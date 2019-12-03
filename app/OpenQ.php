@@ -13,11 +13,11 @@ class OpenQ extends Model
     // Table Name
     protected $table = 'openqs';
     // Primary Key
-    public $primaryKey = 'openq_id';
+    public $primaryKey = 'oid';
     // Timestamps
     public $timestamps = true;
 
     protected $fillable = [
-        'openq_name', 'survey_id'
+        'openq_id', 'openq_name', 'survey_id'
     ];
 }

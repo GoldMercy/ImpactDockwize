@@ -7,6 +7,8 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\OpenQ;
 use Illuminate\Support\Facades\DB;
+use App\Exports\OpenqExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OpenQsController extends Controller
 {
@@ -67,6 +69,11 @@ class OpenQsController extends Controller
         $openq = OpenQ::find($id);
         $openq->delete();
         return redirect('/questions')->with('success', 'Vraag verwijderd!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new OpenqExport, 'openqs.xlsx');
     }
 
 /*    public function downloadPDF($id) {
