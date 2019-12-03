@@ -13,7 +13,7 @@ class RevenueSeeder extends Seeder
     {
         DB::table('revenues')->truncate();
 
-        $revenues = ['€0 - €100.000', '€100.000-€500.000', '€500.000-€1.000.000', '> €1.000.000'];
+        $revenues = ['€0 - €100.000', '€100.000 - €500.000', '€500.000 - €1.000.000', '> €1.000.000'];
 
         foreach ($revenues as $revenue) {
             DB::table('revenues')->insert([
