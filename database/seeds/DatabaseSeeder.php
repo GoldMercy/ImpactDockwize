@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
             old_business_dataTableSeeder::class,
             ScaleqsTableSeeder::class,
             DropdownqsTableSeeder::class,
-            RelationshipSeeder::class
+            OpenqsTableSeeder::class,
+            RelationshipSeeder::class,
+            RevenueSeeder::class
         ]);
     }
 }

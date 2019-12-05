@@ -26,6 +26,7 @@ Route::get('/input', 'PagesController@input');
 Route::get('/output', 'PagesController@output');
 
 Route::get('/questions', 'QuestionspageController@questions');
+Route::get('/questionsselect', 'QuestionspageController@questionsselect');
 
 Route::get('/surveys', 'SurveyController@index');
 Route::get('/surveys/create', 'SurveyController@create');

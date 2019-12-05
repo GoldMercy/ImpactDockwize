@@ -99,6 +99,18 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group col-sm-3">
+                    <label for="Omzet">Omzet</label>
+                    <select name="Omzet" class="form-control">
+                        @foreach($revenues as $revenue)
+                            @if($business->Omzet == $revenue->revenue)
+                            <option selected>{{$revenue->revenue}}</option>
+                            @else
+                                <option>{{$revenue->revenue}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div class="d-flex">
                 <div class="p-2">

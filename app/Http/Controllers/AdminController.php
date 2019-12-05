@@ -36,10 +36,11 @@ class AdminController extends Controller
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
         $housings = DB::table('housings')->get();
+        $revenues = DB::table('revenues')->get();
         $organisation_types = DB::table('organisation_types')->get();
         $relationships = DB::table('relationships')->get();
 
-        return view('admin.create', ['themes' => $themes, 'programs' => $programs, 'housings' => $housings, 'organisation_types' => $organisation_types, 'relationships' => $relationships]);
+        return view('admin.create', ['themes' => $themes, 'programs' => $programs, 'housings' => $housings, 'organisation_types' => $organisation_types, 'relationships' => $relationships, 'revenues' => $revenues]);
     }
 
     public function store(Request $request)
@@ -57,6 +58,7 @@ class AdminController extends Controller
         $business->Programma = $request->Programma;
         $business->Huisvesting = $request->Huisvesting;
         $business->Organisatievorm = $request->Organisatievorm;
+        $business->Omzet = $request->Omzet;
         $business->created_at = date('y-m-d');
         $business->save();
 
@@ -69,17 +71,11 @@ class AdminController extends Controller
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
         $housings = DB::table('housings')->get();
+        $revenues = DB::table('revenues')->get();
         $relationships = DB::table('relationships')->get();
         $organisation_types = DB::table('organisation_types')->get();
 
-        return view('admin.edit')->with([
-            'business' => $business, 
-            'programs' => $programs, 
-            'themes' => $themes, 
-            'housings' => $housings, 
-            'relationships' => $relationships, 
-            'organisation_types' => $organisation_types
-            ]);
+        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes, 'housings' => $housings, 'relationships' => $relationships, 'organisation_types' => $organisation_types, 'revenues' => $revenues]);
     }
 
     public function update(Request $request, $id)
@@ -105,6 +101,7 @@ class AdminController extends Controller
                 $business->Programma = $request->Programma;
                 $business->Huisvesting = $request->Huisvesting;
                 $business->Organisatievorm = $request->Organisatievorm;
+                $business->Omzet = $request->Omzet;
                 $business->save();
         }
                 return (redirect()->back()->with('success', 'Onderneming aangepast!'));
@@ -132,6 +129,8 @@ class AdminController extends Controller
             $business->Thema = $oldData->Thema;
             $business->Programma = $oldData->Programma;
             $business->Huisvesting = $oldData->Huisvesting;
+            $business->Organisatievorm = $oldData->Organisatievorm;
+            $business->Omzet = $oldData->Omzet;
             $business->created_at = $oldData->created_at;
             $business->save();
             OldBusinessData::find($oldData->id)->delete();
@@ -166,6 +165,8 @@ class AdminController extends Controller
         $oldBusiness->Thema = $business->Thema;
         $oldBusiness->Programma = $business->Programma;
         $oldBusiness->Huisvesting = $business->Huisvesting;
+        $oldBusiness->Organisatievorm = $business->Organisatievorm;
+        $oldBusiness->Omzet = $business->Omzet;
         $oldBusiness->created_at = $business->created_at;
         $oldBusiness->save();
 
@@ -180,6 +181,8 @@ class AdminController extends Controller
         $business->Thema = $request->Thema;
         $business->Programma = $request->Programma;
         $business->Huisvesting = $request->Huisvesting;
+        $business->Organisatievorm = $request->Organisatievorm;
+        $business->Omzet = $request->Omzet;
         $business->save();
     }
 

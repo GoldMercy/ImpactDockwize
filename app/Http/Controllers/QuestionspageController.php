@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\OpenQ;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class QuestionspageController extends Controller
@@ -51,6 +52,16 @@ class QuestionspageController extends Controller
         }
 
         return view('pages.index', ['openqs' => $viewQs, 'dropdownqs' => $viewDqs, 'scaleqs' => $viewSqs, 'multiplechoice' => $viewMqs]);
+    }
+  
+  public function questionsselect(Request $request){
+        $openqs = DB::table('openqs')->where('openq_name', 'LIKE', '%' . $request->value . '%')->get();
+        $dropdownqs = DB::table('dropdownqs')->where('dropdownq_name', 'LIKE', '%' . $request->value . '%')->get();
+        $scaleqs = DB::table('scaleqs')->where('scaleq_name', 'LIKE', '%' . $request->value . '%')->get();
+        $multiqs = DB::table('multiplechoice')->where('multiplechoice_name', 'LIKE', '%' . $request->value . '%')->get();
+
+        return view('pages.index', ['openqs' => $openqs, 'dropdownqs' => $dropdownqs, 'scaleqs' => $scaleqs, 'multiqs' => $multiqs]);
+
     }
 
     public function edit($id)
