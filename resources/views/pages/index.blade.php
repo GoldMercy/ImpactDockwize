@@ -14,11 +14,15 @@
                 </tr>
         </table>
     </div>
-
-            <div class="float-left">
-                <table class="table table-bordered">
+        <div class="float-left">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Dropdown vragen</th>
+                </tr>
+                @foreach($dropdownqs as $dq)
                     <tr>
-                        <th>Dropdown vragen</th>
+                        <td><a href="/dropdownqs/show/{{$dq->id}}">{{$dq->dropdownq_name}}</a></td>
+                        @endforeach
                     </tr>
                     @foreach($dropdownqs as $dq)
                         <tr>
@@ -27,7 +31,6 @@
                         </tr>
                 </table>
             </div>
-
             <div class="float-left">
                 <table class="table table-bordered">
                     <tr>

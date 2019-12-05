@@ -2,14 +2,14 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container">
-    <h1>{{$scaleq->scaleq_name}}</h1>
+    <h1>{{$sq->scaleq_name}}</h1>
     <div class="form-row">
             <div class="form-group col-sm-6">
                 <table>
                     <tr>
                         <th>Vragenlijsten waar deze vraag bij hoort!</th>
                     </tr>
-                    @foreach($connectedsurveys as $cs)
+                    @foreach($css as $cs)
                         <tr>
                             <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
                         </tr>
@@ -22,7 +22,7 @@
         <a href="/questions">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
-        <a href="/scaleqs/edit/{{$scaleq->id}}">
+        <a href="/scaleqs/edit/{{$sq->id}}">
             <button type="button" class="btn btn-primary">Pas de vraag aan</button>
         </a>
     </div>

@@ -14,8 +14,8 @@
             <div class="form-group col-sm-6">
                 <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
                 <select name="survey_id" class="form-control">
-                    @foreach($surveys as $s)
-                        <option value="{{$s->id}}">{{$s->titel}}</option>
+                    @foreach($surveys as $sur)
+                        <option value="{{$sur->id}}">{{$sur->titel}}</option>
                     @endforeach
                 </select>
             </div>

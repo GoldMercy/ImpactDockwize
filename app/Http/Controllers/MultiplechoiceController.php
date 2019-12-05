@@ -27,21 +27,20 @@ class MultiplechoiceController extends Controller
             'survey_id' => 'required',
         ]);
         
-        $multiplechoice = new Multiplechoice;
-        $multiplechoice->multiplechoice_id = $this->getNextId();
-        $multiplechoice->multiplechoice_name = $request->multiplechoice_name;
-        $multiplechoice->survey_id = $request->survey_id;
-        $multiplechoice->save();
-
+        $mp = new Multiplechoice;
+        $mp->multiplechoice_id = $this->getNextId();
+        $mp->multiplechoice_name = $request->multiplechoice_name;
+        $mp->survey_id = $request->survey_id;
+        $mp->save();
 
         $mp_options[] = $request->toArray();
         array_pop($mp_options[0]);
         array_shift($mp_options[0]);
         foreach ($mp_options[0] as $mp_option){
-            $multiplechoice_options = new MultiplechoiceOptions;
-            $multiplechoice_options->multiplechoice_option = $mp_option;
-            $multiplechoice_options->multiplechoice_id = $multiplechoice->multiplechoice_id;
-            $multiplechoice_options->save();
+            $mpo = new MultiplechoiceOptions;
+            $mpo->multiplechoice_option = $mp_option;
+            $mpo->multiplechoice_id = $mp->multiplechoice_id;
+            $mpo->save();
         }
 
         return redirect('/multiplechoice/create')->with('success', 'Vraag gemaakt!');
@@ -49,31 +48,30 @@ class MultiplechoiceController extends Controller
 
     public function show($id)
     {
-        $multiplechoice = Multiplechoice::find($id);
-        $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
-        $connectedsurveys = Multiplechoice::where('id', $multiplechoice->id)->get();
+        $mp = Multiplechoice::find($id);
+        $mpos = DB::table('multiplechoice_options')->where('multiplechoice_options_id', '=', $id)->get();
+        $css = Multiplechoice::where('multiplechoice_id', $mp->multiplechoice_id)->get();
         return view('multiplechoice.show')->with([
-            'multiplechoice' => $multiplechoice, 
-            'multiplechoiceoptions' => $multiplechoiceoptions, 
-            'connectedsurveys' => $connectedsurveys
+            'mp' => $mp, 
+            'mpos' => $mpos, 
+            'css' => $css, 
             ]);
     }
 
     public function edit($id)
     {
-        $surveys = DB::table('surveys')->get();
-        $multiplechoice = Multiplechoice::find($id);
-        
-        $allqs = Multiplechoice::where('survey_id', $id)->get();
-        
-        $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->id)->get();
+        $mp = Multiplechoice::find($id);
         $mpos = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
+        $surs = DB::table('surveys')->get();
+        $css = Multiplechoice::where('multiplechoice_id', $mp->multiplechoice_id)->get();
+        $allmpqs = Multiplechoice::where('survey_id', $id)->get();
+
         return view('multiplechoice.edit')->with([
-            'multiplechoice' => $multiplechoice,
-            'surveys' => $surveys,
+            'mp' => $mp,
+            'surs' => $surs,
             'mpos' => $mpos,
-            'allqs' => $allqs,
-            'connectedsurveys' => $connectedsurveys
+            'allmpqs' => $allmpqs,
+            'css' => $css
             ]);
     }
 
@@ -83,20 +81,20 @@ class MultiplechoiceController extends Controller
             'multiplechoice_name' => 'required'
         ]);
 
-        $multiplechoice = Multiplechoice::find($id);
-        $multiplechoice->multiplechoice_name = $request->multiplechoice_name;
-        $multiplechoice->survey_id = $request->survey_id;
-        $multiplechoice->save();
+        $mp = Multiplechoice::find($id);
+        $mp->multiplechoice_name = $request->multiplechoice_name;
+        $mp->survey_id = $request->survey_id;
+        $mp->save();
            
         return redirect()->back()->with('success', 'Vraag aangepast!');
     }
 
     public function delete($id)
     {
-        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id);
-        $multiplechoice = Multiplechoice::find($id);
-        $multiplechoice_options->delete();
-        $multiplechoice->delete();
+        $mpos = MultiplechoiceOptions::where('multiplechoice_id', '=', $id);
+        $mp = Multiplechoice::find($id);
+        $mpos->delete();
+        $mp->delete();
         return redirect('/input')->with('success', 'Vraag verwijderd!');
     }
 

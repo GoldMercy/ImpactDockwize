@@ -35,12 +35,12 @@ class DropdownQsController extends Controller
         $dpq->save();
 
 
-        $options[] = $request->toArray();
-        array_pop($options[0]);
-        array_shift($options[0]);
-        foreach ($options[0] as $option){
+        $dp_options[] = $request->toArray();
+        array_pop($dp_options[0]);
+        array_shift($dp_options[0]);
+        foreach ($dp_options[0] as $dp_option){
             $dpqo = new DropdownQOptions;
-            $dpqo->dropdownoption_name = $option;
+            $dpqo->dropdownoption_name = $dp_option;
             $dpqo->dropdown_id = $dpq->dropdownq_id;
             $dpqo->save();
         }
@@ -53,25 +53,28 @@ class DropdownQsController extends Controller
     {
         $dpq = DropdownQ::find($id);
         $dpqo = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
-        $connectedsurveys = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
-        return view('dropdownqs.show', ['dpq' => $dpq, 'dpqo' => $dpqo, 'connectedsurveys' => $connectedsurveys]);
+        $css = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
+        return view('dropdownqs.show')->with([
+            'dpq' => $dpq, 
+            'dpqo' => $dpqo, 
+            'css' => $css
+        ]);
     }
 
     public function edit($id)
     {
-        $surveys = DB::table('surveys')->get();
-        
         $dpq = DropdownQ::find($id);
         $dpqos = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
-        $connectedsurveys = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
-        $allqs = DropdownQ::where('dropdownq_id', $id)->get();
+        $surs = DB::table('surveys')->get();
+        $css = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
+        $alldpqs = DropdownQ::where('dropdownq_id', $id)->get();
 
         return view('dropdownqs.edit')->with([
             'dpq' => $dpq, 
             'dpqos' => $dpqos, 
-            'surveys' => $surveys, 
-            'allqs' => $allqs, 
-            'connectedsurveys' => $connectedsurveys
+            'surs' => $surs, 
+            'alldpqs' => $alldpqs, 
+            'css' => $css
         ]);
     }
 
@@ -91,11 +94,11 @@ class DropdownQsController extends Controller
 
     public function delete($id)
     {
-        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
-        $multiplechoice = Multiplechoice::find($id);
-        $multiplechoice_options->delete();
-        $multiplechoice->delete();
-        return redirect('/multiplechoice')->with('success', 'Vraag verwijderd!');
+        $dpo = DropdownQOptions::where('dropdownoption_id', '=', $id)->first();
+        $dp = DropdownQ::find($id);
+        $dpo->delete();
+        $dp->delete();
+        return redirect('/questions')->with('success', 'Vraag verwijderd!');
     }
 
     public function addMore()
@@ -146,5 +149,11 @@ class DropdownQsController extends Controller
         $dpo = DB::table('dropdownqs_options')->where('dropdownoption_id', '=', $dropdownq_id);
         $dpo->delete();
         return redirect()->back()->with('success', 'Optie voor dropdown vraag verwijderd.');
+    }
+
+    public function deletealldpq($id) {
+        DB::table('dropdownqs')->delete($id);
+
+        return redirect('/questions')->with('success', 'Alle dropdown vragen verwijderd!');
     }
 }

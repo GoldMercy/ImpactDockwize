@@ -66,7 +66,6 @@ Route::get('/openqs/edit/delete/{id}', 'OpenQsController@delete');
 Route::get('/openqs/export/', 'OpenQsController@export');
 Route::get('/openqs/edit/deletealloq/{id}', 'OpenQsController@deleteAlloq');
 
-
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/create', 'AdminController@create');
 Route::get('/admin/store', 'AdminController@store');

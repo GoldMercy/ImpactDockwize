@@ -26,37 +26,38 @@ class OpenQsController extends Controller
             'openq_name' => 'required',
             'survey_id' => 'required'
         ]);
-
-        $openq = new OpenQ;
-        $openq->openq_id = $this->getNextId();
-        $openq->openq_name = $request->openq_name;
-        $openq->survey_id = $request->survey_id;
-        $openq->save();
-
+        
+        $oq = new OpenQ;
+        $oq->openq_id = $this->getNextId();
+        $oq->openq_name = $request->openq_name;
+        $oq->survey_id = $request->survey_id;
+        $oq->save();
+      
         return redirect('/openqs/create')->with('success', 'Vraag gemaakt!');
     }
 
     public function show($id)
     {
-        $openq = OpenQ::find($id);
-        $connectedsurveys = OpenQ::where('openq_id', $openq->id)->get();
+        $oq = OpenQ::find($id);
+        $css = OpenQ::where('openq_id', $oq->openq_id)->get();
         return view('openqs.show')->with([
-            'openq' => $openq,
-            'connectedsurveys' => $connectedsurveys
+            'oq' => $oq, 
+            'css' => $css
         ]);
     }
 
     public function edit($id)
     {
-        $openq = OpenQ::find($id);
-        $surveys = DB::table('surveys')->get();
-        $connectedsurveys = OpenQ::where('openq_id', $openq->openq_id)->get();
-        $allqs = OpenQ::where('survey_id', $id)->get();
+        $oq = OpenQ::find($id);
+        $surs = DB::table('surveys')->get();
+        $css = OpenQ::where('openq_id', $oq->openq_id)->get();
+        $alloqs = OpenQ::where('survey_id', $id)->get();
+
         return view('openqs.edit')->with([
-            'openq' => $openq,
-            'surveys' => $surveys,
-            'allqs' => $allqs,
-            'connectedsurveys' => $connectedsurveys
+            'oq' => $oq, 
+            'surs' => $surs, 
+            'alloqs' => $alloqs, 
+            'css' => $css
         ]);
     }
 
@@ -67,20 +68,19 @@ class OpenQsController extends Controller
             'survey_id' => 'required'
         ]);
 
-        $openq = OpenQ::find($id);
-        $openq->openq_name = $request->openq_name;
-        $openq->survey_id = $request->survey_id;
-        $openq->save();
-
-
-        return redirect()->back()->with('success', 'Vraag aangepast!');
+        $oq = OpenQ::find($id);
+        $oq->openq_name = $request->openq_name;
+        $oq->survey_id = $request->survey_id;
+        $oq->save();
+           
+        return redirect('/questions')->with('success', 'Open vraag aangepast!');
     }
 
     public function delete($id)
     {
-        $openq = OpenQ::find($id);
-        $openq->delete();
-        return redirect('/questions')->with('success', 'Vraag uit geselecteerde vragenlijst verwijderd!');
+        $oq = OpenQ::find($id);
+        $oq->delete();
+        return redirect('/questions')->with('success', 'Vraag verwijderd uit de geselecteerde vragenlijst!');
     }
 
     public function add(Request $request)
@@ -104,11 +104,11 @@ class OpenQsController extends Controller
 
     public function getNextId(){
         $highest = OpenQ::max('openq_id');
-        return $highest+1;
+        return $highest + 1;
     }
 
-    public function deleteAlloq($id){
-        DB::table('openqs')->delete($id);
+    public function deletealloq($id){
+        DB::table('openqs')->where('openq_id', $id)->delete();
 
         return redirect('/questions')->with('success', 'Vraag uit alle vragenlijsten verwijderd!');
     }
