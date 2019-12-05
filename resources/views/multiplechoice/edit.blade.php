@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <div class="container">
     <form method="GET" action="/multiplechoice/update/{{$multiplechoice->id}}">
         @csrf
@@ -9,8 +11,6 @@
                 <label for="multiplechoice_name">Hoe moet de vraag gaan heten?</label>
                 <form method="GET" action="/multiplechoice/update/{{$multiplechoice->id}}">
                     <input type="text" class="form-control" name="multiplechoice_name" aria-describedby="multiplechoice_name" value="{{$multiplechoice->multiplechoice_name}}">
-                </div>
-                </div>
                 @foreach($mpos as $mpo)
                     <div class="form row">
                         <div class="form-group col-sm-6">
@@ -47,12 +47,16 @@
             <a href="/multiplechoice/show/{{$multiplechoice->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
+            <div style="float:right;">
                 <a href="delete/{{$multiplechoice->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
                 </a>
+            </div>
+                <div style="float:right;">
                 <a href="deleteallmpq/{{$multiplechoice->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
                 </a>
+                </div>
             </div>
         </div>
 @endsection

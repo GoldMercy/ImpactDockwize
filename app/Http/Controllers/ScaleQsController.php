@@ -45,7 +45,7 @@ class ScaleQsController extends Controller
     {
         $scaleq = ScaleQ::find($id);
         $surveys = DB::table('surveys')->get();
-        $connectedsurveys = ScaleQ::where('scaleq_id', $scaleq->scaleq_id)->get();
+        $connectedsurveys = ScaleQ::where('scaleq_id', $scaleq->id)->get();
         $allqs = ScaleQ::where('survey_id', $id)->get();
         return view('scaleqs.edit')->with(['scaleq' => $scaleq, 'surveys' => $surveys, 'allqs' => $allqs, 'connectedsurveys' => $connectedsurveys]);
     }
@@ -61,7 +61,7 @@ class ScaleQsController extends Controller
         $scaleq->survey_id = $request->survey_id;
         $scaleq->save();
 
-        return redirect('/questions')->with('success', 'Vraag aangepast!');
+        return redirect()->back()->with('success', 'Vraag aangepast!');
     }
 
     public function delete($id)
@@ -82,7 +82,7 @@ class ScaleQsController extends Controller
             'scaleq_name' => $name
         ]);
 
-        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+        return redirect()->back()->with('success', 'Vraag toegevoegd aan een vragenlijst!');
     }
 
     public function getNextId()

@@ -24,21 +24,6 @@
                 <td>{{$oq->openq_name}}</td>
             </tr>
         @endforeach
-        @foreach($dpqs as $dpq)
-            <tr>
-                <td>{{$dpq->dropdownq_name}}</td>
-            </tr>
-        @endforeach
-        @foreach($mpqs as $mpq)
-            <tr>
-                <td>{{$mpq->multiplechoice_name}}</td>
-            </tr>
-        @endforeach
-        @foreach($scaleqs as $sq)
-            <tr>
-                <td>{{$sq->scaleq_name}}</td>
-            </tr>
-        @endforeach
     </table>
     </div>
     <div class="float-left">
@@ -46,7 +31,7 @@
         <tr>
             <th>Dropdown vragen</th>
         </tr>
-        @foreach($dropdownq as $dq)
+        @foreach($dpqs as $dq)
             <tr>
                 <td>{{$dq->dropdownq_name}}</td>
             </tr>
@@ -58,7 +43,7 @@
             <tr>
                 <th>Schalen vragen</th>
             </tr>
-            @foreach($scaleq as $sq)
+            @foreach($scaleqs as $sq)
                 <tr>
                     <td>{{$sq->scaleq_name}}</td>
                 </tr>
@@ -70,7 +55,7 @@
             <tr>
                 <th>Multiple choice vragen</th>
             </tr>
-            @foreach($multiplechoiceq as $mq)
+            @foreach($mpqs as $mq)
                 <tr>
                     <td>{{$mq->multiplechoice_name}}</td>
                 </tr>
@@ -82,7 +67,7 @@
 <hr>
     <div class="float-surveys">
         <a href="/surveys">
-            <button type="button" class="btn btn-secondary">Terug</button>
+            <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
         <a href="/surveys/edit/{{$survey->id}}">
             <button type="button" class="btn btn-primary">Pas de vragenlijst aan</button>

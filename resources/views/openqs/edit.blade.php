@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <div class="container">
@@ -37,12 +36,12 @@
             </a>
             <div style="float:right;">
                 <a href="delete/{{$openq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
                 </a>
             </div>
             <div style="float:right;">
                 <a href="deletealloq/{{$openq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
                 </a>
             </div>
         </div>

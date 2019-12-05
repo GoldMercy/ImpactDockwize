@@ -77,6 +77,7 @@ Route::get('/admin/edit/deleteall/{id}', 'AdminController@deleteAll');
 Route::get('/admin/find', 'AdminController@find');
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 Route::get('/admin/windex', 'AdminController@windex');
+Route::get('/admin/export/', 'AdminController@export');
 
 Route::get('/searching','SearchController@index');
 Route::get('/search','SearchController@search');

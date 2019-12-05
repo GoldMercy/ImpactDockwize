@@ -701,22 +701,40 @@ pre code {
 }
 
 #addbtn {
-   width: 320px;
-   height: 40px;
-   border: 1px black solid;
-}
+    width: 320px;
+    height: 40px;
+    border: 1px black solid;
+  }
 
 #addbtn:hover {
-   border: 2px black solid;
-   background-color: RGB(255, 218, 0);
-   color: black;
+  border: 2px black solid;
+  background-color: RGB(255, 218, 0);
+  color: black;
 }
 
 #addbtn:active {
-   background-color: #f3ff8a;
-   color: black;
-   transform: translateY(3px);
- }
+  background-color: #f3ff8a;
+  color: black;
+  transform: translateY(3px);
+}
+
+#addbtne {
+  width: 150px;
+  height: 40px;
+  border: 1px black solid;
+}
+
+#addbtne:hover {
+  border: 2px black solid;
+  background-color: RGB(255, 218, 0);
+  color: black;
+}
+
+#addbtne:active {
+  background-color: #f3ff8a;
+  color: black;
+  transform: translateY(3px);
+}
 
 .row {
   display: flex;

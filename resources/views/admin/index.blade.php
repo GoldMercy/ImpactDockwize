@@ -4,10 +4,17 @@
 <div class="container-admin">
         <form method="get" action="/admin/windex">
             <div class="form-row align-items-end">
-                <div class="form-group col-sm-4">
+                <div class="form-group col-sm-3">
                     <a href="{{ url('/admin/create') }}">
                         <button id="addbtn" type="button" class="btn btn-primary">
                             Toevoegen
+                        </button>
+                    </a>
+                </div>
+                <div class="form-group col-sm-2">
+                    <a href="{{ url('/admin/export') }}">
+                        <button id="addbtne" type="button" class="btn btn-primary">
+                            Export
                         </button>
                     </a>
                 </div>

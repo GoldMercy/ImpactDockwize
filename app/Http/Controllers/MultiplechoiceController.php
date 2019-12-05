@@ -51,7 +51,7 @@ class MultiplechoiceController extends Controller
     {
         $multiplechoice = Multiplechoice::find($id);
         $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
-        $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->multiplechoice_id)->get();
+        $connectedsurveys = Multiplechoice::where('id', $multiplechoice->id)->get();
         return view('multiplechoice.show')->with([
             'multiplechoice' => $multiplechoice, 
             'multiplechoiceoptions' => $multiplechoiceoptions, 
@@ -66,7 +66,7 @@ class MultiplechoiceController extends Controller
         
         $allqs = Multiplechoice::where('survey_id', $id)->get();
         
-        $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->multiplechoice_id)->get();
+        $connectedsurveys = Multiplechoice::where('multiplechoice_id', $multiplechoice->id)->get();
         $mpos = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
         return view('multiplechoice.edit')->with([
             'multiplechoice' => $multiplechoice,
@@ -88,7 +88,7 @@ class MultiplechoiceController extends Controller
         $multiplechoice->survey_id = $request->survey_id;
         $multiplechoice->save();
            
-        return redirect('/input')->with('success', 'Vraag aangepast!');
+        return redirect()->back()->with('success', 'Vraag aangepast!');
     }
 
     public function delete($id)
@@ -111,7 +111,7 @@ class MultiplechoiceController extends Controller
             'multiplechoice_name' => $name
         ]);
 
-        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+        return redirect()->back()->with('success', 'Vraag toegevoegd aan een vragenlijst!');
     }
 
     public function getNextId()

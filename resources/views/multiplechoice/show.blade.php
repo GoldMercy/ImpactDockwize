@@ -29,10 +29,10 @@
         </div>
     <hr>
     <div class="form-group">
-        <a href="/multiplechoice">
+        <a href="/questions">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
-        <a href="/multiplechoice/edit/{{$multiplechoice->multiplechoice_id}}">
+        <a href="/multiplechoice/edit/{{$multiplechoice->id}}">
             <button type="button" class="btn btn-primary">Pas de kaart aan</button>
         </a>
     </div>

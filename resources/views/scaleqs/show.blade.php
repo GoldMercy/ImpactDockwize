@@ -3,15 +3,6 @@
 @section('content')
 <div class="container">
     <h1>{{$scaleq->scaleq_name}}</h1>
-    <hr>
-    <div class="form-group">
-        <a href="/questions">
-            <button type="button" class="btn btn-secondary">Ga terug</button>
-        </a>
-        <a href="/scaleqs/edit/{{$scaleq->scaleq_id}}">
-            <button type="button" class="btn btn-primary">Pas de vraag aan</button>
-        </a>
-    </div>
     <div class="form-row">
             <div class="form-group col-sm-6">
                 <table>
@@ -26,5 +17,14 @@
                 </table>
             </div>
         </div>
+    <hr>
+    <div class="form-group">
+        <a href="/questions">
+            <button type="button" class="btn btn-secondary">Ga terug</button>
+        </a>
+        <a href="/scaleqs/edit/{{$scaleq->id}}">
+            <button type="button" class="btn btn-primary">Pas de vraag aan</button>
+        </a>
+    </div>
 </div>
 @endsection
