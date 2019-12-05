@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\DropdownQ;
-use App\QOption;
+use Illuminate\Validation\Validator;
+use Illuminate\Http\Request;
 use App\Survey;
+use App\DropdownQOptions;
 use Illuminate\Support\Facades\DB;
 
 class DropdownQsController extends Controller
 {
     public function create()
     {
-        $qoptions = QOption::all();
         $surveys = Survey::all();
         return view('dropdownqs.create')->with([
-            'qoptions' => $qoptions,
             'surveys' => $surveys
             ]);
     }
@@ -27,26 +26,54 @@ class DropdownQsController extends Controller
             'survey_id' => 'required',
         ]);
         
-        $dropdownq = new DropdownQ;
-        $dropdownq->dropdownq_name = $request->dropdownq_name;
-        $dropdownq->survey_id = $request->survey_id;
-        $dropdownq->save();
+        $dpq = new DropdownQ;
+        $dpq->dropdownq_id = $this->getNextId();
+        $dpq->dropdownq_name = $request->dropdownq_name;
+        $dpq->survey_id = $request->survey_id;
+        $dpq->save();
 
-        return redirect('/dropdownqs')->with('success', 'Vraag gemaakt!');
+
+        $dp_options[] = $request->toArray();
+        array_pop($dp_options[0]);
+        array_shift($dp_options[0]);
+        foreach ($dp_options[0] as $dp_option){
+            $dpqo = new DropdownQOptions;
+            $dpqo->dropdownoption_name = $dp_option;
+            $dpqo->dropdown_id = $dpq->dropdownq_id;
+            $dpqo->save();
+        }
+
+        return redirect('/dropdownqs/create')->with('success', 'Vraag gemaakt!');
     }
+
 
     public function show($id)
     {
-        $dropdownq = DropdownQ::find($id);
-        $qoptions = QOption::where('dropdownq_fk', $id)->get();
-        return view('dropdownqs.show', ['dropdownq' => $dropdownq], ['qoptions' => $qoptions]);
+        $dpq = DropdownQ::find($id);
+        $dpqo = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
+        $css = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
+        return view('dropdownqs.show')->with([
+            'dpq' => $dpq, 
+            'dpqo' => $dpqo, 
+            'css' => $css
+        ]);
     }
 
     public function edit($id)
     {
-        $surveys = DB::table('surveys')->get();
-        $dropdownq = DropdownQ::find($id);
-        return view('dropdownqs.edit')->with(['dropdownq' => $dropdownq, 'surveys' => $surveys]);
+        $dpq = DropdownQ::find($id);
+        $dpqos = DB::table('dropdownqs_options')->where('dropdown_id', '=', $id)->get();
+        $surs = DB::table('surveys')->get();
+        $css = DropdownQ::where('dropdownq_id', $dpq->dropdownq_id)->get();
+        $alldpqs = DropdownQ::where('dropdownq_id', $id)->get();
+
+        return view('dropdownqs.edit')->with([
+            'dpq' => $dpq, 
+            'dpqos' => $dpqos, 
+            'surs' => $surs, 
+            'alldpqs' => $alldpqs, 
+            'css' => $css
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -55,19 +82,82 @@ class DropdownQsController extends Controller
             'dropdownq_name' => 'required'
         ]);
 
-        $dropdownq = DropdownQ::find($id);
-        $dropdownq->dropdownq_name = $request->dropdownq_name;
-        $dropdownq->survey_id = $request->survey_id;
-        $dropdownq->save();
-        
+        $dpq = DropdownQ::find($id);
+        $dpq->dropdownq_name = $request->dropdownq_name;
+        $dpq->survey_id = $request->survey_id;
+        $dpq->save();
            
         return redirect('/questions')->with('success', 'Vraag aangepast!');
     }
 
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function delete($id)
     {
-        $dropdownq = DropdownQ::find($id);
-        $dropdownq->delete();
+        $dpo = DropdownQOptions::where('dropdownoption_id', '=', $id)->first();
+        $dp = DropdownQ::find($id);
+        $dpo->delete();
+        $dp->delete();
         return redirect('/questions')->with('success', 'Vraag verwijderd!');
+    }
+
+    public function addMore()
+    {
+        return view("/dropdownqs/create");
+    }
+
+    public function addMorePost(Request $request)
+    {
+        $rules = [];
+
+        foreach($request->input('dropdownq_name') as $key => $value) {
+            $rules["dropdownq_name.{$key}"] = 'required';
+        }
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->passes()) {
+            foreach($request->input('name') as $key => $value) {
+                Multiplechoice::create(['dropdownq_name'=>$value]);
+            }
+            return response()->json(['success'=>'done']);
+        }
+        return response()->json(['error'=>$validator->errors()->all()]);
+    }
+
+    public function add(Request $request)
+    {
+        $dropdownq = DropdownQ::find($request['id']);
+        $name = $dropdownq->dropdownq_name;
+
+        DropdownQ::create([
+            'survey_id' => $request['survey_id'],
+            'dropdownq_id' => $dropdownq->dropdownq_id,
+            'dropdownq_name' => $name
+        ]);
+
+        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+    }
+
+    public function getNextId(){
+        $highest = DropdownQ::max('dropdownq_id');
+        return $highest+1;
+    }
+
+    public function destroydpo($dropdownq_id)
+    {
+        $dpo = DB::table('dropdownqs_options')->where('dropdownoption_id', '=', $dropdownq_id);
+        $dpo->delete();
+        return redirect('/questions')->with('success', 'Optie voor dropdown vraag verwijderd.');
+    }
+
+    public function deletealldpq($id) {
+        DB::table('dropdownqs')->delete($id);
+
+        return redirect('/questions')->with('success', 'Alle dropdown vragen verwijderd!');
     }
 }

@@ -14,7 +14,8 @@ class CreateMultiplechoiceTable extends Migration
     public function up()
     {
         Schema::create('multiplechoice', function (Blueprint $table) {
-            $table->bigIncrements('multiplechoice_id')->unsigned();
+            $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('multiplechoice_id')->unsigned();
             $table->string('multiplechoice_name');
             $table->bigInteger('survey_id')->unsigned();
             $table->foreign('survey_id')->references('id')->on('surveys');

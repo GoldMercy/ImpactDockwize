@@ -17,9 +17,24 @@
         <tr>
             <th>Vragen die bij deze vragenlijst horen</th>
         </tr>
-        @foreach($openqs as $oq)
+        @foreach($oqs as $oq)
             <tr>
                 <td>{{$oq->openq_name}}</td>
+            </tr>
+        @endforeach
+        @foreach($dpqs as $dpq)
+            <tr>
+                <td>{{$dpq->dropdownq_name}}</td>
+            </tr>
+        @endforeach
+        @foreach($mpqs as $mpq)
+            <tr>
+                <td>{{$mpq->multiplechoice_name}}</td>
+            </tr>
+        @endforeach
+        @foreach($scaleqs as $sq)
+            <tr>
+                <td>{{$sq->scaleq_name}}</td>
             </tr>
         @endforeach
     </table>

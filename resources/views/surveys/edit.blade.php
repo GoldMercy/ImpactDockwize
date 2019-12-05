@@ -14,6 +14,50 @@
                 <input type="text" class="form-control" name="beschrijving" value="{{$survey->beschrijving}}">
             </div>
         </div>
+        @foreach($oqs as $oq)
+            <div class="form row">
+                <div class="form-group col-sm-6">
+                    <label for="openq_name{{$loop->iteration}}">Open vraag {{$loop->iteration}}</label>
+                    <input type="text" class="form-control" name="openq_name{{$loop->iteration}}" aria-describedby="openq_name{{$loop->iteration}}" value="{{$oq->openq_name}}">
+                    <a href="destroyoq/{{$oq->id}}">
+                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                    </a> 
+                </div>
+            </div>
+        @endforeach
+        @foreach($scaleqs as $sq)
+            <div class="form row">
+                <div class="form-group col-sm-6">
+                    <label for="scaleq_name{{$loop->iteration}}">Schalenvraag {{$loop->iteration}}</label>
+                    <input type="text" class="form-control" name="scaleq_name{{$loop->iteration}}" aria-describedby="scaleq_name{{$loop->iteration}}" value="{{$sq->scaleq_name}}">
+                    <a href="destroysq/{{$sq->id}}">
+                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                    </a>
+                </div>
+            </div>
+        @endforeach
+        @foreach($dpqs as $dpq)
+            <div class="form row">
+                <div class="form-group col-sm-6">
+                    <label for="dropdownq_name{{$loop->iteration}}">Dropdown vraag {{$loop->iteration}}</label>
+                    <input type="text" class="form-control" name="dropdownq_name{{$loop->iteration}}" aria-describedby="dropdownq_name{{$loop->iteration}}" value="{{$dpq->dropdownq_name}}">
+                    <a href="destroydpq/{{$dpq->id}}">
+                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                    </a>
+                </div>
+            </div>
+        @endforeach
+        @foreach($mpqs as $mpq)
+            <div class="form row">
+                <div class="form-group col-sm-6">
+                    <label for="multiplechoice_name{{$loop->iteration}}">Multiplechoice vraag {{$loop->iteration}}</label>
+                    <input type="text" class="form-control" name="multiplechoice_name{{$loop->iteration}}" aria-describedby="multiplechoice_name{{$loop->iteration}}" value="{{$mpq->multiplechoice_name}}">
+                    <a href="destroympq/{{$mpq->id}}">
+                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                    </a>
+                </div>
+            </div>
+        @endforeach
         <hr>
         <div class="form-group">
             <a href="/surveys/show/{{$survey->id}}">

@@ -25,25 +25,38 @@ class OpenQsController extends Controller
             'survey_id' => 'required'
         ]);
         
-        $openq = new OpenQ;
-        $openq->openq_name = $request->openq_name;
-        $openq->survey_id = $request->survey_id;
-        $openq->save();
+        $oq = new OpenQ;
+        $oq->openq_id = $this->getNextId();
+        $oq->openq_name = $request->openq_name;
+        $oq->survey_id = $request->survey_id;
+        $oq->save();
 
         return redirect('/openqs/create')->with('success', 'Vraag gemaakt!');
     }
 
     public function show($id)
     {
-        $openq = OpenQ::find($id);
-        return view('openqs.show')->with('openq', $openq);
+        $oq = OpenQ::find($id);
+        $css = OpenQ::where('openq_id', $oq->openq_id)->get();
+        return view('openqs.show')->with([
+            'oq' => $oq, 
+            'css' => $css
+        ]);
     }
 
     public function edit($id)
     {
-        $surveys = DB::table('surveys')->get();
-        $openq = OpenQ::find($id);
-        return view('openqs.edit')->with(['openq' => $openq, 'surveys' => $surveys]);
+        $oq = OpenQ::find($id);
+        $surs = DB::table('surveys')->get();
+        $css = OpenQ::where('openq_id', $oq->openq_id)->get();
+        $alloqs = OpenQ::where('survey_id', $id)->get();
+
+        return view('openqs.edit')->with([
+            'oq' => $oq, 
+            'surs' => $surs, 
+            'alloqs' => $alloqs, 
+            'css' => $css
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -53,34 +66,44 @@ class OpenQsController extends Controller
             'survey_id' => 'required'
         ]);
 
-        $openq = OpenQ::find($id);
-        $openq->openq_name = $request->openq_name;
-        $openq->survey_id = $request->survey_id;
-        $openq->save();
+        $oq = OpenQ::find($id);
+        $oq->openq_name = $request->openq_name;
+        $oq->survey_id = $request->survey_id;
+        $oq->save();
         
            
-        return redirect('/questions')->with('success', 'Vraag aangepast!');
+        return redirect('/questions')->with('success', 'Open vraag aangepast!');
     }
 
     public function delete($id)
     {
-        $openq = OpenQ::find($id);
-        $openq->delete();
-        return redirect('/questions')->with('success', 'Vraag verwijderd!');
+        $oq = OpenQ::find($id);
+        $oq->delete();
+        return redirect('/questions')->with('success', 'Vraag verwijderd uit de geselecteerde vragenlijst!');
     }
 
-/*    public function downloadPDF($id) {
-        $question = Question::find($id);
-        $pdf = PDF::loadView('pdf', compact('question'));
+    public function add(Request $request)
+    {
+        $openq = OpenQ::find($request['id']);
+        $name = $openq->openq_name;
 
-        return $pdf->download('test.pdf');
-    }*/
+        OpenQ::create([
+            'survey_id' => $request['survey_id'],
+            'openq_id' => $openq->openq_id,
+            'openq_name' => $name
+        ]);
 
-//    public function pdfexport($id){
-//        $question = Question::find($id);
-//        $pdf = PDF::loadView('pdf', compact('question'));
-//
-//        $fileName = $question->Titel;
-//        return $pdf->stream($fileName . 'pdf')->with($question, 'question');
-//    }
+        return redirect('/questions')->with('success', 'Vraag toegevoegd aan de vragenlijst!');
+    }
+
+    public function getNextId(){
+        $highest = OpenQ::max('openq_id');
+        return $highest + 1;
+    }
+
+    public function deletealloq($id){
+        DB::table('openqs')->where('openq_id', $id)->delete();
+
+        return redirect('/questions')->with('success', 'Vraag uit alle vragenlijsten verwijderd!');
+    }
 }
