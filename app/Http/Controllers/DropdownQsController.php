@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\DropdownQ;
+use App\Multiplechoice;
+use App\MultiplechoiceOptions;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 use App\Survey;
@@ -87,15 +89,9 @@ class DropdownQsController extends Controller
         $dpq->survey_id = $request->survey_id;
         $dpq->save();
            
-        return redirect('/questions')->with('success', 'Vraag aangepast!');
+        return redirect()->back()->with('success', 'Vraag aangepast!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function delete($id)
     {
         $dpo = DropdownQOptions::where('dropdownoption_id', '=', $id)->first();
@@ -140,7 +136,7 @@ class DropdownQsController extends Controller
             'dropdownq_name' => $name
         ]);
 
-        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+        return redirect()->back()->with('success', 'Vraag toegevoegd aan een vragenlijst!');
     }
 
     public function getNextId(){
@@ -152,7 +148,7 @@ class DropdownQsController extends Controller
     {
         $dpo = DB::table('dropdownqs_options')->where('dropdownoption_id', '=', $dropdownq_id);
         $dpo->delete();
-        return redirect('/questions')->with('success', 'Optie voor dropdown vraag verwijderd.');
+        return redirect()->back()->with('success', 'Optie voor dropdown vraag verwijderd.');
     }
 
     public function deletealldpq($id) {

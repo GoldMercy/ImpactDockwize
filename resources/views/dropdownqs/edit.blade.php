@@ -26,7 +26,7 @@
                     <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="dropdownoption_name{{$loop->iteration}}" aria-describedby="dropdownoption_name{{$loop->iteration}}" value="{{$dpqo->dropdownoption_name}}">
                     <a href="destroydpo/{{$dpq->id}}">
-                        <button type="button" class="btn btn-danger">Optie van vraag verwijderen.</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Optie van vraag verwijderen.</button>
                     </a> 
                 </div>
             </div>
@@ -69,10 +69,9 @@
             <a href="/dropdownqs/show/{{$dpq->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
-                <button type="submit" class="btn btn-primary">Vraag aanpassen</button>
             <div style="float:right;">
                 <a href="delete/{{$dpq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>
             <div style="float:right;">

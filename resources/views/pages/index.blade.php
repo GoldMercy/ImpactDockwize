@@ -38,9 +38,13 @@
                         <td><a href="/dropdownqs/show/{{$dq->id}}">{{$dq->dropdownq_name}}</a></td>
                         @endforeach
                     </tr>
-            </table>
-        </div>
-
+                    @foreach($dropdownqs as $dq)
+                        <tr>
+                            <td><a href="/dropdownqs/show/{{$dq->id}}">{{$dq->dropdownq_name}}</a></td>
+                            @endforeach
+                        </tr>
+                </table>
+            </div>
             <div class="float-left">
                 <table class="table table-bordered">
                     <tr>
