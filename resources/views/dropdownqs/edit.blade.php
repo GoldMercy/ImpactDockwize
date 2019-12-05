@@ -2,15 +2,9 @@
 @extends('layouts.sidebar')
 @section('content')
 <div class="container">
-<<<<<<< HEAD
-    <form method="GET" action="/dropdownqs/update/{{$dpq->dropdownq_id}}">
-        <div class="form-row">
-            <div class="form-group col-sm-6">
-=======
     <form method="GET" action="/dropdownqs/update/{{$dpq->id}}">
         @csrf
         <div class="form-group col-sm-6">
->>>>>>> cdbe801e2177e0bf85f74a157debd56e6409aa8f
                 <label for="dropdownq_name">Hoe moet de vraag gaan heten?</label>
                 <form method="GET" action="/dropdownqs/update/{{$dpq->id}}">
                     <input type="text" class="form-control" name="dropdownq_name" aria-describedby="dropdownq_name" value="{{$dpq->dropdownq_name}}">
@@ -20,7 +14,6 @@
             </div>
         </div>
             @foreach($dpqos as $dpqo)
-<<<<<<< HEAD
             <div class="form row">
                 <div class="form-group col-sm-6">
                     <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
@@ -31,15 +24,6 @@
                 </div>
             </div>
         @endforeach
-=======
-                <div class="form row">
-                    <div class="form-group col-sm-6">
-                        <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
-                        <input type="text" class="form-control" name="dropdownoption_name{{$loop->iteration}}" aria-describedby="dropdownoption_name{{$loop->iteration}}" value="{{$dpqo->dropdownoption_name}}">
-                    </div>
-                </div>
-            @endforeach
->>>>>>> cdbe801e2177e0bf85f74a157debd56e6409aa8f
         @csrf
         <div class="form-row">
             <div class="form-group col-sm-6">
@@ -48,13 +32,8 @@
                     <input type="hidden" id="dropdownq_id" name="dropdownq_id" value="{{$dpq->dropdownq_id}}">
                     <input type="hidden" id="id" name="id" value="{{$dpq->id}}">
                     <select name="survey_id" class="form-control">
-<<<<<<< HEAD
-                        @foreach($surveys as $s) @if($s->id == $dpq->survey_id)
-                            <option selected value="{{$s->id}}">{{$s->titel}}</option>
-=======
                         @foreach($surs as $sur) @if($sur->id == $dpq->survey_id)
                             <option selected value="{{$sur->id}}">{{$sur->titel}}</option>
->>>>>>> cdbe801e2177e0bf85f74a157debd56e6409aa8f
                         @else
                             <option value="{{$sur->id}}">{{$sur->titel}}</option>
                         @endif
