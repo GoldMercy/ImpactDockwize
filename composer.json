@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "ext-gd": "*",
         "barryvdh/laravel-dompdf": "^0.8.5",
         "consoletvs/charts": "6.*",
         "dompdf/dompdf": "^0.8.3",
@@ -18,7 +19,9 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^6.0.3",
-        "nicolaslopezj/searchable": "1.*"
+        "maatwebsite/excel": "^3.1",
+        "nicolaslopezj/searchable": "1.*",
+        "phpoffice/phpspreadsheet": "^1.10"
     },
     "require-dev": {
         "facade/ignition": "^1.4",

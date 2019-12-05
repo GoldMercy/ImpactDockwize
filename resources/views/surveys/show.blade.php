@@ -13,39 +13,64 @@
         </tr>
     </table>
     <br>
-    <table>
+    <div class="clearfix">
+    <div class="float-left">
+    <table class="table-surveys">
         <tr>
-            <th>Vragen die bij deze vragenlijst horen</th>
+            <th>Open vragen</th>
         </tr>
         @foreach($oqs as $oq)
             <tr>
                 <td>{{$oq->openq_name}}</td>
             </tr>
         @endforeach
-        @foreach($dpqs as $dpq)
+    </table>
+    </div>
+    <div class="float-left">
+    <table class="table-surveys">
+        <tr>
+            <th>Dropdown vragen</th>
+        </tr>
+        @foreach($dpqs as $dq)
             <tr>
-                <td>{{$dpq->dropdownq_name}}</td>
-            </tr>
-        @endforeach
-        @foreach($mpqs as $mpq)
-            <tr>
-                <td>{{$mpq->multiplechoice_name}}</td>
-            </tr>
-        @endforeach
-        @foreach($scaleqs as $sq)
-            <tr>
-                <td>{{$sq->scaleq_name}}</td>
+                <td>{{$dq->dropdownq_name}}</td>
             </tr>
         @endforeach
     </table>
-    <hr>
-    <div class="form-group">
+    </div>
+    <div class="float-left">
+        <table class="table-surveys">
+            <tr>
+                <th>Schalen vragen</th>
+            </tr>
+            @foreach($scaleqs as $sq)
+                <tr>
+                    <td>{{$sq->scaleq_name}}</td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+    <div class="float-left">
+        <table class="table-surveys">
+            <tr>
+                <th>Multiple choice vragen</th>
+            </tr>
+            @foreach($mpqs as $mq)
+                <tr>
+                    <td>{{$mq->multiplechoice_name}}</td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+</div>
+</div>
+<hr>
+    <div class="float-surveys">
         <a href="/surveys">
-            <button type="button" class="btn btn-secondary">Terug</button>
+            <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
         <a href="/surveys/edit/{{$survey->id}}">
             <button type="button" class="btn btn-primary">Pas de vragenlijst aan</button>
         </a>
     </div>
-</div>
 @endsection

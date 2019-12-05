@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\DropdownQ;
+use App\Multiplechoice;
 use App\OpenQ;
 use App\ScaleQ;
-use App\Multiplechoice;
 use App\MultiplechoiceOptions;
-use App\DropdownQ;
 use App\DropdownQOptions;
 use App\Survey;
 use Illuminate\Http\Request;
@@ -42,7 +42,7 @@ class SurveyController extends Controller
         $survey->beschrijving = $request->beschrijving;
         $survey->save();
 
-        return (redirect('/surveys'));
+        return (redirect('/surveys/create')->with('success', 'Vragenlijst aangemaakt!'));
     }
 
     public function show($id)
@@ -91,7 +91,7 @@ class SurveyController extends Controller
         $survey->beschrijving = $request->beschrijving;
         $survey->save();
 
-        return(redirect('/surveys')->with('success', 'Vragenlijst aangepast!'));
+        return redirect()->back()->with('success', 'Vragenlijst aangepast!');
     }
 
     public function destroy($id)
@@ -105,14 +105,14 @@ class SurveyController extends Controller
     {
         $oq = DB::table('openqs')->where('id', '=', $openq_id);
         $oq->delete();
-        return redirect('/surveys')->with('success', 'Open vraag uit vragenlijst verwijderd!');
+        return redirect()->back()->with('success', 'Open vraag uit vragenlijst verwijderd!');
     }
 
     public function destroysq($scaleq_id)
     {
         $sq = DB::table('scaleqs')->where('id', '=', $scaleq_id);
         $sq->delete();
-        return redirect('/surveys')->with('success', 'Schalen vraag uit vragenlijst verwijderd!');
+        return redirect()->back()->with('success', 'Schalen vraag uit vragenlijst verwijderd!');
     }
 
     public function destroydpq($dropdownq_id)
@@ -121,7 +121,7 @@ class SurveyController extends Controller
         $dpqo = DropdownQOptions::where('dropdown_id', '=', $dropdownq_id)->first();
         $dpq->delete();
         $dpqo->delete();
-        return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
+        return redirect()->back()->with('success', 'Vraag uit vragenlijst verwijderd!');
     }
 
     public function destroympq($multiplechoice_id)
@@ -130,7 +130,7 @@ class SurveyController extends Controller
         $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id)->first();
         $mpqo->delete();
         $mpq->delete();
-        
-        return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
+
+        return redirect()->back()->with('success', 'Vraag uit vragenlijst verwijderd!');
     }
 }

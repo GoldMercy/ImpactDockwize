@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Business;
+use App\Exports\BusinessExport;
 use App\OldBusinessData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -58,7 +60,7 @@ class AdminController extends Controller
         $business->created_at = date('y-m-d');
         $business->save();
 
-        return(redirect('/admin'));
+        return(redirect()->back());
     }
 
     public function edit($id)
@@ -85,6 +87,7 @@ class AdminController extends Controller
         switch ($request->input('action')) {
             case 'archive':
                 $this->archive($request, $id);
+                return(redirect()->back()->with('success', 'Nieuw meetpunt opgeslagen!'));
                 break;
 
             case 'edit':
@@ -104,13 +107,14 @@ class AdminController extends Controller
                 $business->Organisatievorm = $request->Organisatievorm;
                 $business->save();
         }
-                return (redirect('/admin'));
+                return (redirect()->back()->with('success', 'Onderneming aangepast!'));
     }
 
     public function delete($id){
         $oldDataCheck = DB::table('old_business_data')->where('business_id', $id)->doesntExist();
         if($oldDataCheck == true) {
             DB::table('business')->delete($id);
+            return(redirect('/admin')->with('success', 'Onderneming verwijderd!'));
         }
         else{
             $oldData = DB::table('old_business_data')->where('business_id', $id)->latest()->first();
@@ -131,8 +135,9 @@ class AdminController extends Controller
             $business->created_at = $oldData->created_at;
             $business->save();
             OldBusinessData::find($oldData->id)->delete();
+
+            return(redirect('/admin')->with('success', 'Onderneming volledig verwijderd!'));
         }
-       return(redirect('/admin'));
     }
 
     public function deleteAll($id){
@@ -176,5 +181,10 @@ class AdminController extends Controller
         $business->Programma = $request->Programma;
         $business->Huisvesting = $request->Huisvesting;
         $business->save();
+    }
+
+    public function export()
+    {
+        return Excel::download(new BusinessExport(), 'Business.xlsx');
     }
 }

@@ -103,7 +103,7 @@
             <div class="d-flex">
                 <div class="p-2">
             <a href="/admin">
-                <button type="button" class="btn btn-secondary">Terug</button>
+                <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
                 </div>
                 <div class="p-2">
@@ -114,12 +114,12 @@
                 </div>
                 <div class="ml-auto p-2">
                     <a href="delete/{{$business->id}}">
-                        <button type="button" class="btn btn-danger">Verwijderen</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
                     </a>
                 </div>
                 <div class="p-2">
                     <a href="deleteall/{{$business->id}}">
-                        <button type="button" class="btn btn-danger">Verwijder alles</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder alles</button>
                     </a>
                 </div>
             </div>

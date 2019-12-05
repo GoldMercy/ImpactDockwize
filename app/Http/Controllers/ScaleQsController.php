@@ -69,7 +69,7 @@ class ScaleQsController extends Controller
         $sq->survey_id = $request->survey_id;
         $sq->save();
 
-        return redirect('/questions')->with('success', 'Vraag aangepast!');
+        return redirect()->back()->with('success', 'Vraag aangepast!');
     }
 
     public function delete($id)
@@ -90,7 +90,7 @@ class ScaleQsController extends Controller
             'scaleq_name' => $name
         ]);
 
-        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+        return redirect()->back()->with('success', 'Vraag toegevoegd aan een vragenlijst!');
     }
 
     public function getNextId()
