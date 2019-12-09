@@ -47,16 +47,8 @@
             <a href="/multiplechoice/show/{{$mp->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
-<<<<<<< HEAD
-                <a href="delete/{{$multiplechoice->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
-                </a>
-                <a href="deleteallmpq/{{$multiplechoice->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
-=======
                 <a href="delete/{{$mp->id}}">
                     <button type="button" class="btn btn-danger">Verwijderen</button>
->>>>>>> cdbe801e2177e0bf85f74a157debd56e6409aa8f
                 </a>
             </div>
         </div>
