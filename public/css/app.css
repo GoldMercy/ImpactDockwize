@@ -701,22 +701,40 @@ pre code {
 }
 
 #addbtn {
-   width: 320px;
-   height: 40px;
-   border: 1px black solid;
-}
+    width: 320px;
+    height: 40px;
+    border: 1px black solid;
+  }
 
 #addbtn:hover {
-   border: 2px black solid;
-   background-color: RGB(255, 218, 0);
-   color: black;
+  border: 2px black solid;
+  background-color: RGB(255, 218, 0);
+  color: black;
 }
 
 #addbtn:active {
-   background-color: #f3ff8a;
-   color: black;
-   transform: translateY(3px);
- }
+  background-color: #f3ff8a;
+  color: black;
+  transform: translateY(3px);
+}
+
+#addbtne {
+  width: 150px;
+  height: 40px;
+  border: 1px black solid;
+}
+
+#addbtne:hover {
+  border: 2px black solid;
+  background-color: RGB(255, 218, 0);
+  color: black;
+}
+
+#addbtne:active {
+  background-color: #f3ff8a;
+  color: black;
+  transform: translateY(3px);
+}
 
 .row {
   display: flex;
@@ -1722,6 +1740,31 @@ pre code {
   color: #212529;
 }
 
+.table-surveys {
+  width: 250px;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.table-surveys th,
+.table-surveys td {
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+.table-admin {
+  width: 1200px;
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.table-admin th,
+.table-admin td {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
 .table th,
 .table td {
   padding: 0.75rem;
@@ -2205,6 +2248,30 @@ select.form-control[multiple] {
 textarea.form-control {
   height: auto;
 }
+
+.clearfix:after{
+/*  content: ".";*/
+/*  display: block;
+  clear: both;
+  visibility: hidden;*/
+  margin-left: 200px;
+}
+/*
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+* + html .clearfix { !* für IE7 *!
+  display: inline-block;
+}
+
+* html .clearfix { !* für IE6 *!
+  height: 1%;
+}*/
 
 .form-group {
   margin-bottom: 1rem;
@@ -8007,6 +8074,10 @@ button.bg-dark:focus {
 
 .float-none {
   float: none !important;
+}
+
+.float-surveys {
+  margin-left: 200px;
 }
 
 @media (min-width: 576px) {

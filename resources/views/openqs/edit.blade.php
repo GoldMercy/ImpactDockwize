@@ -1,10 +1,9 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<div class="container">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <div class="container">
         @csrf
         <div class="form-row">
             <div class="form-group col-sm-6">
@@ -35,15 +34,15 @@
         <div class="form-group">
             <a href="/questions">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
-            </a>
+            </a>            
             <div style="float:right;">
                 <a href="delete/{{$oq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder deze vraag uit de geselecteerde vragenlijst</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder deze vraag uit de geselecteerde vragenlijst</button>
                 </a>
             </div>
         </div>
             <a href="deletealloq/{{$oq->id}}">
-                <button type="button" class="btn btn-danger">Verwijder deze vraag uit alle vragenlijsten</button>
+                <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder deze vraag uit alle vragenlijsten</button>
             </a>
     </div>
 @endsection

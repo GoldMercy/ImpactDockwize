@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
+use App\Business;
 use App\OpenQ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -13,16 +14,33 @@ class AnswerController extends Controller
 
         $surveys = DB::table('surveys')->get();
         $answers = DB::table('answers')->get();
+        $businesses = DB::table('business')->get();
+        $programs = DB::table('programs')->get();
 
 
-        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers]);
+        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers, 'businesses' => $businesses, 'programs' => $programs]);
 
 
     }
 
     public function select(Request $request){
 
-        return redirect()->action('AnswerController@survey', ['id'=>$request->Vragenlijst]);
+        $businesses = DB::table('business')->where('Programma', '=', $request->Ontvanger)->get();
+        $emails = "";
+        foreach ($businesses as $business){
+            $emails .= $business->Email.",";
+        }
+
+        switch ($request->input('action')) {
+            case 'survey':
+                return redirect()->action('AnswerController@survey', ['id' => $request->Vragenlijst]);
+                break;
+
+            case 'mail':
+                return redirect()->to('mailto:'.$emails.'?SUBJECT=Vragenlijst Dockwize&BODY=Beste Ondernemer, zou u een vragenlijst willen invullen?: '.url('/').'/answer/survey'.$request->Vragenlijst);
+        }
+
+
     }
 
     public function survey($id){

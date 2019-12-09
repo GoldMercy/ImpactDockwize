@@ -20,7 +20,7 @@
                     <label for="openq_name{{$loop->iteration}}">Open vraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="openq_name{{$loop->iteration}}" aria-describedby="openq_name{{$loop->iteration}}" value="{{$oq->openq_name}}">
                     <a href="destroyoq/{{$oq->id}}">
-                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
                     </a> 
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <label for="scaleq_name{{$loop->iteration}}">Schalenvraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="scaleq_name{{$loop->iteration}}" aria-describedby="scaleq_name{{$loop->iteration}}" value="{{$sq->scaleq_name}}">
                     <a href="destroysq/{{$sq->id}}">
-                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
                     </a>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     <label for="dropdownq_name{{$loop->iteration}}">Dropdown vraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="dropdownq_name{{$loop->iteration}}" aria-describedby="dropdownq_name{{$loop->iteration}}" value="{{$dpq->dropdownq_name}}">
                     <a href="destroydpq/{{$dpq->id}}">
-                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
                     </a>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <label for="multiplechoice_name{{$loop->iteration}}">Multiplechoice vraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="multiplechoice_name{{$loop->iteration}}" aria-describedby="multiplechoice_name{{$loop->iteration}}" value="{{$mpq->multiplechoice_name}}">
                     <a href="destroympq/{{$mpq->id}}">
-                        <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
                     </a>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                 <button type="submit" class="btn btn-primary">Vragenlijst aanpassen</button>
             <div style="float:right;">
                 <a href="destroy/{{$survey->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>
         </div>

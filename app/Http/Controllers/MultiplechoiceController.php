@@ -61,7 +61,7 @@ class MultiplechoiceController extends Controller
         $mp->survey_id = $request->survey_id;
         $mp->save();
            
-        return redirect('/input')->with('success', 'Vraag aangepast!');
+        return redirect()->back()->with('success', 'Vraag aangepast!');
     }
 
     public function delete($id)
@@ -111,12 +111,14 @@ class MultiplechoiceController extends Controller
             'multiplechoice_name' => $name
         ]);
 
+
         MultiplechoiceOptions::create([
             'multiplechoice_id' => $multiplechoice->multiplechoice_id,
             'multiplechoice_option' => $random->multiplechoice_option
         ]);
 
-        return redirect('/questions')->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+        return redirect()->back()->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+
     }
 
     public function getNextId()

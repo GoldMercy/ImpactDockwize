@@ -33,8 +33,12 @@
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
                 <a href="delete/{{$sq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
+
+            <div style="float:right;">
+                <a href="deleteallsq/{{$sq->id}}">
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
             </div>
         </div>
     </div>
