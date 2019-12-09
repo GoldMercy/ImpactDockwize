@@ -49,16 +49,11 @@
             <a href="/multiplechoice/show/{{$mp->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
-            <div style="float:right;">
-                <a href="delete/{{$multiplechoice->id}}">
-                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
-                </a>
-            </div>
                 <div style="float:right;">
-                <a href="deleteallmpq/{{$multiplechoice->id}}">
+                <a href="deleteallmpq/{{$mp->id}}">
                     <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
                 <a href="delete/{{$mp->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
                 </div>
             </div>
