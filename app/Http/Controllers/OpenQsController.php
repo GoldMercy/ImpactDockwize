@@ -68,19 +68,4 @@ class OpenQsController extends Controller
         $openq->delete();
         return redirect('/questions')->with('success', 'Vraag verwijderd!');
     }
-
-/*    public function downloadPDF($id) {
-        $question = Question::find($id);
-        $pdf = PDF::loadView('pdf', compact('question'));
-
-        return $pdf->download('test.pdf');
-    }*/
-
-//    public function pdfexport($id){
-//        $question = Question::find($id);
-//        $pdf = PDF::loadView('pdf', compact('question'));
-//
-//        $fileName = $question->Titel;
-//        return $pdf->stream($fileName . 'pdf')->with($question, 'question');
-//    }
 }
