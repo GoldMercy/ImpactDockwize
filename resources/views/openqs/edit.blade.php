@@ -37,18 +37,8 @@
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
             <div style="float:right;">
-<<<<<<< HEAD
-                <a href="delete/{{$openq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder vraag uit geselecteerde vragenlijst.</button>
-                </a>
-            </div>
-            <div style="float:right;">
-                <a href="deletealloq/{{$openq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
-=======
                 <a href="delete/{{$oq->id}}">
                     <button type="button" class="btn btn-danger">Verwijder deze vraag uit de geselecteerde vragenlijst</button>
->>>>>>> cdbe801e2177e0bf85f74a157debd56e6409aa8f
                 </a>
             </div>
         </div>
