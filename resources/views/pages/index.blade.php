@@ -38,11 +38,6 @@
                         <td><a href="/dropdownqs/show/{{$dq->id}}">{{$dq->dropdownq_name}}</a></td>
                         @endforeach
                     </tr>
-                    @foreach($dropdownqs as $dq)
-                        <tr>
-                            <td><a href="/dropdownqs/show/{{$dq->id}}">{{$dq->dropdownq_name}}</a></td>
-                            @endforeach
-                        </tr>
                 </table>
             </div>
             <div class="float-left">
@@ -66,19 +61,6 @@
                 @foreach($multiplechoice as $mq)
                     <tr>
                         <td><a href="/multiplechoice/show/{{$mq->id}}">{{$mq->multiplechoice_name}}</a></td>
-                        @endforeach
-                    </tr>
-            </table>
-        </div>
-
-        <div class="float-left">
-            <table class="table table-bordered">
-                <tr>
-                    <th>Multiplechoice vragen</th>
-                </tr>
-                @foreach($multiqs as $mq)
-                    <tr>
-                        <td><a href="/multiplechoice/show/{{$mq->multiplechoice_id}}">{{$mq->multiplechoice_name}}</a></td>
                         @endforeach
                     </tr>
             </table>
