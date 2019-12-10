@@ -122,7 +122,7 @@ class DropdownQsController extends Controller
 
         if ($validator->passes()) {
             foreach($request->input('name') as $key => $value) {
-                Multiplechoice::create(['dropdownq_name'=>$value]);
+                DropdownQ::create(['dropdownq_name'=>$value]);
             }
             return response()->json(['success'=>'done']);
         }
@@ -146,5 +146,12 @@ class DropdownQsController extends Controller
     public function getNextId(){
         $highest = DropdownQ::max('dropdownq_id');
         return $highest+1;
+    }
+
+    public function deletealldpq($dropdownq_id) {
+        DB::table('dropdownqs_options')->where('dropdown_id', '=', $dropdownq_id)->delete();
+        DB::table('dropdownqs')->where('dropdownq_id', '=', $dropdownq_id)->delete();
+
+        return redirect('/questions')->with('success', 'Alle instanties van deze vraag en de opties verwijderd!');
     }
 }

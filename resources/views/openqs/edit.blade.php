@@ -42,7 +42,7 @@
                 </a>
             </div>
         </div>
-            <a href="deletealloq/{{$oq->id}}">
+            <a href="deletealloq/{{$oq->openq_id}}">
                 <button type="button" class="btn btn-danger">Verwijder deze vraag uit alle vragenlijsten</button>
             </a>
     </div>

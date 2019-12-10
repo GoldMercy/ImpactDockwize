@@ -50,6 +50,9 @@
                     <button type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>
+            <a href="deletealldpq/{{$dpq->dropdownq_id}}">
+                <button type="button" class="btn btn-danger">Verwijder deze vraag en de bijbehorende opties uit alle vragenlijsten</button>
+            </a>
         </div>
     </div>
 @endsection

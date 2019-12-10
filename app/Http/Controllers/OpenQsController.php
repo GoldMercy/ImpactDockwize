@@ -101,5 +101,9 @@ class OpenQsController extends Controller
         return $highest + 1;
     }
 
+    public function deletealloq($openq_id) {
+        DB::table('openqs')->where('openq_id', '=', $openq_id)->delete();
 
+        return redirect('/questions')->with('success', 'Alle instanties van deze vraag verwijderd!');
+    }
 }

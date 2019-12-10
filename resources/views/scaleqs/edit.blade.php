@@ -36,6 +36,10 @@
                     <button type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>
+            <a href="deleteallsq/{{$sq->scaleq_id}}">
+                <button type="button" class="btn btn-danger">Verwijder deze vraag uit alle vragenlijsten</button>
+            </a>
         </div>
+
     </div>
 @endsection

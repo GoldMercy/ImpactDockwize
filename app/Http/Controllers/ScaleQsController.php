@@ -98,4 +98,10 @@ class ScaleQsController extends Controller
         $highest = ScaleQ::max('scaleq_id');
         return $highest + 1;
     }
+
+    public function deleteallsq($scaleq_id) {
+        DB::table('scaleqs')->where('scaleq_id', '=', $scaleq_id)->delete();
+
+        return redirect('/questions')->with('success', 'Alle instanties van deze vraag verwijderd!');
+    }
 }

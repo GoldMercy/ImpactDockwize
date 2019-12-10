@@ -51,5 +51,8 @@
                     <button type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
             </div>
+            <a href="deleteallmpq/{{$mp->multiplechoice_id}}">
+                <button type="button" class="btn btn-danger">Verwijder deze vraag en de bijbehorende opties uit alle vragenlijsten</button>
+            </a>
         </div>
 @endsection

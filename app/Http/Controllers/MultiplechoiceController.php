@@ -149,4 +149,11 @@ class MultiplechoiceController extends Controller
         $mpo->delete();
         return redirect('/multiplechocie')->with('success', 'Open vraag uit vragenlijst verwijderd!');
     }
+
+    public function deleteallmpq($multiplechoice_id) {
+        DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $multiplechoice_id)->delete();
+        DB::table('multiplechoice')->where('multiplechoice_id', '=', $multiplechoice_id)->delete();
+
+        return redirect('/questions')->with('success', 'Alle instanties van deze vraag en de opties verwijderd!');
+    }
 }
