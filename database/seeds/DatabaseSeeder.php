@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             OpenqsTableSeeder::class,
             RelationshipSeeder::class,
             RevenueSeeder::class
+
         ]);
     }
 }
