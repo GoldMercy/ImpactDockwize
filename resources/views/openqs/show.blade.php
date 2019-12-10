@@ -9,11 +9,11 @@
                     <tr>
                         <th>Vragenlijsten waar deze vraag bij hoort:</th>
                     </tr>
-                    @foreach($css as $cs)
+                    {{--  @foreach($css as $cs)
                         <tr>
                             <td>{{App\Survey::find($cs->survey_id)->titel}}</td>
                         </tr>
-                    @endforeach
+                    @endforeach  --}}
                 </table>
             </div>
         </div>

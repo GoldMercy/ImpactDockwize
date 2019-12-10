@@ -35,10 +35,10 @@ Route::get('/surveys/edit/{id}', 'SurveyController@edit');
 Route::get('/surveys/show/{id}', 'SurveyController@show');
 Route::get('/surveys/update/{id}', 'SurveyController@update');
 Route::get('/surveys/edit/destroy/{id}', 'SurveyController@destroy');
-Route::get('/surveys/edit/destroyoq/{id}', 'SurveyController@destroyoq');
-Route::get('/surveys/edit/destroysq/{id}', 'SurveyController@destroysq');
-Route::get('/surveys/edit/destroydpq/{id}', 'SurveyController@destroydpq');
-Route::get('/surveys/edit/destroympq/{id}', 'SurveyController@destroympq');
+Route::get('/surveys/edit/disconnectoq/{id}', 'SurveyController@disconnectoq');
+Route::get('/surveys/edit/disconnectsq/{id}', 'SurveyController@disconnectsq');
+Route::get('/surveys/edit/disconnectdpq/{id}', 'SurveyController@disconnectdpq');
+Route::get('/surveys/edit/disconnectmpq/{id}', 'SurveyController@disconnectmpq');
 
 Route::get('/scaleqs/create', 'ScaleQsController@create');
 Route::get('/store', 'ScaleQsController@store');

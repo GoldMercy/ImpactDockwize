@@ -101,36 +101,38 @@ class SurveyController extends Controller
         return redirect('/surveys')->with('success', 'Vragenlijst verwijderd!');
     }
 
-    public function destroyoq($openq_id)
+    public function disconnectoq($id)
     {
-        $oq = DB::table('openqs')->where('id', '=', $openq_id);
-        $oq->delete();
-        return redirect('/surveys')->with('success', 'Open vraag uit vragenlijst verwijderd!');
+        $oq = OpenQ::find($id);
+        $oq->survey_id = null;
+        $oq->save();
+
+        return redirect('/surveys')->with('success', 'Open vraag van de vragenlijst ontkoppelt!');
     }
 
-    public function destroysq($scaleq_id)
+    public function disconnectsq($scaleq_id)
     {
         $sq = DB::table('scaleqs')->where('id', '=', $scaleq_id);
         $sq->delete();
-        return redirect('/surveys')->with('success', 'Schalen vraag uit vragenlijst verwijderd!');
+        return redirect('/surveys')->with('success', 'Schalen vraag van de vragenlijst ontkoppelt!');
     }
 
-    public function destroydpq($dropdownq_id)
+    public function disconnectdpq($dropdownq_id)
     {
         $dpq = DropdownQ::where('survey_id', '=', $dropdownq_id)->get();
         $dpqo = DropdownQOptions::where('dropdown_id', '=', $dropdownq_id)->first();
         $dpq->delete();
         $dpqo->delete();
-        return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
+        return redirect('/surveys')->with('success', 'Vraag van de vragenlijst ontkoppelt!');
     }
 
-    public function destroympq($multiplechoice_id)
+    public function disconnectmpq($multiplechoice_id)
     {
         $mpq = DB::table('multiplechoice')->where('survey_id', '=', $multiplechoice_id);
         $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id)->first();
         $mpqo->delete();
         $mpq->delete();
         
-        return redirect('/surveys')->with('success', 'Vraag uit vragenlijst verwijderd!');
+        return redirect('/surveys')->with('success', 'Vraag van de vragenlijst ontkoppelt!');
     }
 }

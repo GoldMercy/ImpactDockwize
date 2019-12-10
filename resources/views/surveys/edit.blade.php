@@ -19,7 +19,7 @@
                 <div class="form-group col-sm-6">
                     <label for="openq_name{{$loop->iteration}}">Open vraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="openq_name{{$loop->iteration}}" aria-describedby="openq_name{{$loop->iteration}}" value="{{$oq->openq_name}}">
-                    <a href="destroyoq/{{$oq->id}}">
+                    <a href="disconnectoq/{{$oq->openq_id}}">
                         <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
                     </a> 
                 </div>
@@ -30,7 +30,7 @@
                 <div class="form-group col-sm-6">
                     <label for="scaleq_name{{$loop->iteration}}">Schalenvraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="scaleq_name{{$loop->iteration}}" aria-describedby="scaleq_name{{$loop->iteration}}" value="{{$sq->scaleq_name}}">
-                    <a href="destroysq/{{$sq->id}}">
+                    <a href="disconnectsq/{{$sq->id}}">
                         <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
                     </a>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="form-group col-sm-6">
                     <label for="dropdownq_name{{$loop->iteration}}">Dropdown vraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="dropdownq_name{{$loop->iteration}}" aria-describedby="dropdownq_name{{$loop->iteration}}" value="{{$dpq->dropdownq_name}}">
-                    <a href="destroydpq/{{$dpq->id}}">
+                    <a href="disconnectdpq/{{$dpq->id}}">
                         <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
                     </a>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="form-group col-sm-6">
                     <label for="multiplechoice_name{{$loop->iteration}}">Multiplechoice vraag {{$loop->iteration}}</label>
                     <input type="text" class="form-control" name="multiplechoice_name{{$loop->iteration}}" aria-describedby="multiplechoice_name{{$loop->iteration}}" value="{{$mpq->multiplechoice_name}}">
-                    <a href="destroympq/{{$mpq->id}}">
+                    <a href="disconnectmpq/{{$mpq->id}}">
                         <button type="button" class="btn btn-danger">Vraag uit vragenlijst verwijderen.</button>
                     </a>
                 </div>
