@@ -20,37 +20,12 @@ class MultiplechoiceController extends Controller
         ]);
     }
 
-    public function store(Request $request)
-    {
-        $this->validate($request, [
-            'multiplechoice_name' => 'required',
-            'survey_id' => 'required',
-        ]);
-        
-        $mp = new Multiplechoice;
-        $mp->multiplechoice_id = $this->getNextId();
-        $mp->multiplechoice_name = $request->multiplechoice_name;
-        $mp->survey_id = $request->survey_id;
-        $mp->save();
-
-        $mp_options[] = $request->toArray();
-        array_pop($mp_options[0]);
-        array_shift($mp_options[0]);
-        foreach ($mp_options[0] as $mp_option){
-            $mpo = new MultiplechoiceOptions;
-            $mpo->multiplechoice_option = $mp_option;
-            $mpo->multiplechoice_id = $mp->multiplechoice_id;
-            $mpo->save();
-        }
-
-        return redirect('/multiplechoice/create')->with('success', 'Vraag gemaakt!');
-    }
-
     public function show($id)
     {
         $mp = Multiplechoice::find($id);
-        $mpos = DB::table('multiplechoice_options')->where('multiplechoice_options_id', '=', $id)->get();
+        $mpos = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->get();
         $css = Multiplechoice::where('multiplechoice_id', $mp->multiplechoice_id)->get();
+
         return view('multiplechoice.show')->with([
             'mp' => $mp, 
             'mpos' => $mpos, 
@@ -61,7 +36,7 @@ class MultiplechoiceController extends Controller
     public function edit($id)
     {
         $mp = Multiplechoice::find($id);
-        $mpos = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
+        $mpos = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->get();
         $surs = DB::table('surveys')->get();
         $css = Multiplechoice::where('multiplechoice_id', $mp->multiplechoice_id)->get();
         $allmpqs = Multiplechoice::where('survey_id', $id)->get();
@@ -98,10 +73,37 @@ class MultiplechoiceController extends Controller
         return redirect('/input')->with('success', 'Vraag verwijderd!');
     }
 
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'multiplechoice_name' => 'required',
+            'survey_id' => 'required',
+        ]);
+        
+        $mp = new Multiplechoice;
+        $mp->multiplechoice_id = $this->getNextId();
+        $mp->multiplechoice_name = $request->multiplechoice_name;
+        $mp->survey_id = $request->survey_id;
+        $mp->save();
+
+        $mp_options[] = $request->toArray();
+        array_pop($mp_options[0]);
+        array_shift($mp_options[0]);
+        foreach ($mp_options[0] as $mp_option){
+            $mpo = new MultiplechoiceOptions;
+            $mpo->multiplechoice_option = $mp_option;
+            $mpo->multiplechoice_id = $mp->multiplechoice_id;
+            $mpo->save();
+        }
+
+        return redirect('/multiplechoice/create')->with('success', 'Vraag gemaakt!');
+    }
+
     public function add(Request $request)
     {
         $multiplechoice = Multiplechoice::find($request['id']);
         $name = $multiplechoice->multiplechoice_name;
+        $random = MultiplechoiceOptions::all();
 
         Multiplechoice::create([
             'survey_id' => $request['survey_id'],
@@ -109,7 +111,14 @@ class MultiplechoiceController extends Controller
             'multiplechoice_name' => $name
         ]);
 
+
+        MultiplechoiceOptions::create([
+            'multiplechoice_id' => $multiplechoice->multiplechoice_id,
+            'multiplechoice_option' => $random->multiplechoice_option
+        ]);
+
         return redirect()->back()->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+
     }
 
     public function getNextId()
@@ -147,11 +156,5 @@ class MultiplechoiceController extends Controller
         $mpo = DB::table('multiplechoice_options')->where('multiplechoice_options_id', '=', $multiplechoice_id);
         $mpo->delete();
         return redirect('/questions')->with('success', 'Optie voor multiplechoice vraag verwijderd.');
-    }
-
-    public function deleteAlloq($id){
-        DB::table('multiplechoice')->delete($id);
-
-        return redirect('/questions')->with('success', 'Vraag uit alle vragenlijsten verwijderd!');
     }
 }

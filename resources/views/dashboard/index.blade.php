@@ -2,8 +2,13 @@
 @extends('layouts.sidebar')
 @section('content')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/6.0.6/highcharts.js" charset="utf-8"></script>
-{!! $housingchart->script() !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+{!! $housingchart->script() !!}
+{!! $programmachart->script() !!}
+{!! $progroupchart->script() !!}
+{!! $orgtypechart->script() !!}
+{!! $themachart->script() !!}
 <script>
 $(document).ready(function(){
     //hides dropdown content
@@ -31,7 +36,8 @@ $(document).ready(function(){
         </select>       
     </div>
     <div id="algemeen" class="department_content">
-        <h1>Dit is content voor algemene zaken.</h1>
+        {!! $orgtypechart->container() !!}
+        {!! $themachart->container() !!}
     </div>
     <div id="impuls" class="department_content">
         <h1>Dit is content voor Impuls.</h1>
@@ -40,7 +46,8 @@ $(document).ready(function(){
         {!! $housingchart->container() !!}
     </div>
     <div id="programmas" class="department_content">
-        <h1>Dit is content voor programma's.</h1>
+        {!! $programmachart->container() !!}
+        {!! $progroupchart->container() !!}
     </div>
 </div>
 

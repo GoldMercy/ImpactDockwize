@@ -12,13 +12,16 @@
                 </form>
             </div>
             @foreach($dpqos as $dpqo)
-                <div class="form row">
-                    <div class="form-group col-sm-6">
-                        <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
-                        <input type="text" class="form-control" name="dropdownoption_name{{$loop->iteration}}" aria-describedby="dropdownoption_name{{$loop->iteration}}" value="{{$dpqo->dropdownoption_name}}">
-                    </div>
+            <div class="form row">
+                <div class="form-group col-sm-6">
+                    <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
+                    <input type="text" class="form-control" name="dropdownoption_name{{$loop->iteration}}" aria-describedby="dropdownoption_name{{$loop->iteration}}" value="{{$dpqo->dropdownoption_name}}">
+                    <a href="destroydpo/{{$dpq->id}}">
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Optie van vraag verwijderen.</button>
+                    </a>
                 </div>
-            @endforeach
+            </div>
+        @endforeach
         @csrf
         <div class="form-row">
             <div class="form-group col-sm-6">

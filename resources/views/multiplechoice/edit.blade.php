@@ -54,8 +54,9 @@
                 <div style="float:right;">
                 <a href="deleteallmpq/{{$mp->id}}">
                     <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
+                </a>
                 <a href="delete/{{$mp->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
                 </div>
             </div>
