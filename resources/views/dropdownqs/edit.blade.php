@@ -12,14 +12,18 @@
                     <button type="submit" class="btn btn-primary" value="edit">Vraag aanpassen</button>
                 </form>
             </div>
+        </div>
             @foreach($dpqos as $dpqo)
-                <div class="form row">
-                    <div class="form-group col-sm-6">
-                        <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
-                        <input type="text" class="form-control" name="dropdownoption_name{{$loop->iteration}}" aria-describedby="dropdownoption_name{{$loop->iteration}}" value="{{$dpqo->dropdownoption_name}}">
-                    </div>
+            <div class="form row">
+                <div class="form-group col-sm-6">
+                    <label for="dropdownoption_name{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
+                    <input type="text" class="form-control" name="dropdownoption_name{{$loop->iteration}}" aria-describedby="dropdownoption_name{{$loop->iteration}}" value="{{$dpqo->dropdownoption_name}}">
+                    <a href="destroydpo/{{$dpq->id}}">
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Optie van vraag verwijderen.</button>
+                    </a> 
                 </div>
-            @endforeach
+            </div>
+        @endforeach
         @csrf
         <div class="form-row">
             <div class="form-group col-sm-6">
@@ -44,10 +48,14 @@
             <a href="/dropdownqs/show/{{$dpq->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
-                <button type="submit" class="btn btn-primary">Vraag aanpassen</button>
             <div style="float:right;">
                 <a href="delete/{{$dpq->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
+                </a>
+            </div>
+            <div style="float:right;">
+                <a href="deletealldpq/{{$dpq->id}}">
+                    <button type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
                 </a>
             </div>
         </div>

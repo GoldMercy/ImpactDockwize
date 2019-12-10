@@ -7,6 +7,8 @@ use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use App\OpenQ;
 use Illuminate\Support\Facades\DB;
+use App\Exports\OpenqExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OpenQsController extends Controller
 {
@@ -15,7 +17,7 @@ class OpenQsController extends Controller
         $surveys = Survey::all();
         return view('openqs.create')->with([
             'surveys' => $surveys
-            ]);
+        ]);
     }
 
     public function store(Request $request)
@@ -30,7 +32,7 @@ class OpenQsController extends Controller
         $oq->openq_name = $request->openq_name;
         $oq->survey_id = $request->survey_id;
         $oq->save();
-
+      
         return redirect('/openqs/create')->with('success', 'Vraag gemaakt!');
     }
 
@@ -70,7 +72,6 @@ class OpenQsController extends Controller
         $oq->openq_name = $request->openq_name;
         $oq->survey_id = $request->survey_id;
         $oq->save();
-        
            
         return redirect('/questions')->with('success', 'Open vraag aangepast!');
     }
@@ -93,7 +94,12 @@ class OpenQsController extends Controller
             'openq_name' => $name
         ]);
 
-        return redirect('/questions')->with('success', 'Vraag toegevoegd aan de vragenlijst!');
+        return redirect()->back()->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new OpenqExport, 'openqs.xlsx');
     }
 
     public function getNextId(){
@@ -101,5 +107,9 @@ class OpenQsController extends Controller
         return $highest + 1;
     }
 
+    public function deletealloq($id){
+        $deletealloq = OpenQ::where('id', $id)->delete();
 
+        return redirect('/questions')->with('success', 'Vraag uit alle vragenlijsten verwijderd!');
+    }
 }

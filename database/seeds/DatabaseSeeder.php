@@ -20,10 +20,12 @@ class DatabaseSeeder extends Seeder
             BusinessTableSeeder::class,
             SurveysTableSeeder::class,
             old_business_dataTableSeeder::class,
-            // ScaleqsTableSeeder::class,
-            // DropdownqsTableSeeder::class,
-            // OpenqsTableSeeder::class,
-            RelationshipSeeder::class
+            ScaleqsTableSeeder::class,
+            DropdownqsTableSeeder::class,
+            OpenqsTableSeeder::class,
+            RelationshipSeeder::class,
+            RevenueSeeder::class
+
         ]);
     }
 }

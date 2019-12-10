@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Business;
+use App\Exports\BusinessExport;
 use App\OldBusinessData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -34,10 +36,11 @@ class AdminController extends Controller
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
         $housings = DB::table('housings')->get();
+        $revenues = DB::table('revenues')->get();
         $organisation_types = DB::table('organisation_types')->get();
         $relationships = DB::table('relationships')->get();
 
-        return view('admin.create', ['themes' => $themes, 'programs' => $programs, 'housings' => $housings, 'organisation_types' => $organisation_types, 'relationships' => $relationships]);
+        return view('admin.create', ['themes' => $themes, 'programs' => $programs, 'housings' => $housings, 'organisation_types' => $organisation_types, 'relationships' => $relationships, 'revenues' => $revenues]);
     }
 
     public function store(Request $request)
@@ -55,10 +58,11 @@ class AdminController extends Controller
         $business->Programma = $request->Programma;
         $business->Huisvesting = $request->Huisvesting;
         $business->Organisatievorm = $request->Organisatievorm;
+        $business->Omzet = $request->Omzet;
         $business->created_at = date('y-m-d');
         $business->save();
 
-        return(redirect('/admin'));
+        return(redirect()->back());
     }
 
     public function edit($id)
@@ -67,10 +71,11 @@ class AdminController extends Controller
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
         $housings = DB::table('housings')->get();
+        $revenues = DB::table('revenues')->get();
         $relationships = DB::table('relationships')->get();
         $organisation_types = DB::table('organisation_types')->get();
 
-        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes, 'housings' => $housings, 'relationships' => $relationships, 'organisation_types' => $organisation_types]);
+        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes, 'housings' => $housings, 'relationships' => $relationships, 'organisation_types' => $organisation_types, 'revenues' => $revenues]);
     }
 
     public function update(Request $request, $id)
@@ -78,6 +83,7 @@ class AdminController extends Controller
         switch ($request->input('action')) {
             case 'archive':
                 $this->archive($request, $id);
+                return(redirect()->back()->with('success', 'Nieuw meetpunt opgeslagen!'));
                 break;
 
             case 'edit':
@@ -95,15 +101,17 @@ class AdminController extends Controller
                 $business->Programma = $request->Programma;
                 $business->Huisvesting = $request->Huisvesting;
                 $business->Organisatievorm = $request->Organisatievorm;
+                $business->Omzet = $request->Omzet;
                 $business->save();
         }
-                return (redirect('/admin'));
+                return (redirect()->back()->with('success', 'Onderneming aangepast!'));
     }
 
     public function delete($id){
         $oldDataCheck = DB::table('old_business_data')->where('business_id', $id)->doesntExist();
         if($oldDataCheck == true) {
             DB::table('business')->delete($id);
+            return(redirect('/admin')->with('success', 'Onderneming verwijderd!'));
         }
         else{
             $oldData = DB::table('old_business_data')->where('business_id', $id)->latest()->first();
@@ -121,11 +129,14 @@ class AdminController extends Controller
             $business->Thema = $oldData->Thema;
             $business->Programma = $oldData->Programma;
             $business->Huisvesting = $oldData->Huisvesting;
+            $business->Organisatievorm = $oldData->Organisatievorm;
+            $business->Omzet = $oldData->Omzet;
             $business->created_at = $oldData->created_at;
             $business->save();
             OldBusinessData::find($oldData->id)->delete();
+
+            return(redirect('/admin')->with('success', 'Onderneming volledig verwijderd!'));
         }
-       return(redirect('/admin'));
     }
 
     public function deleteAll($id){
@@ -154,6 +165,8 @@ class AdminController extends Controller
         $oldBusiness->Thema = $business->Thema;
         $oldBusiness->Programma = $business->Programma;
         $oldBusiness->Huisvesting = $business->Huisvesting;
+        $oldBusiness->Organisatievorm = $business->Organisatievorm;
+        $oldBusiness->Omzet = $business->Omzet;
         $oldBusiness->created_at = $business->created_at;
         $oldBusiness->save();
 
@@ -168,6 +181,13 @@ class AdminController extends Controller
         $business->Thema = $request->Thema;
         $business->Programma = $request->Programma;
         $business->Huisvesting = $request->Huisvesting;
+        $business->Organisatievorm = $request->Organisatievorm;
+        $business->Omzet = $request->Omzet;
         $business->save();
+    }
+
+    public function export()
+    {
+        return Excel::download(new BusinessExport(), 'Business.xlsx');
     }
 }

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <div class="container">
     <form method="GET" action="/multiplechoice/update/{{$mp->id}}">
         @csrf
@@ -47,9 +49,13 @@
             <a href="/multiplechoice/show/{{$mp->id}}">
                 <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
+                <div style="float:right;">
+                <a href="deleteallmpq/{{$mp->id}}">
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder vraag uit alle vragenlijsten.</button>
                 <a href="delete/{{$mp->id}}">
-                    <button type="button" class="btn btn-danger">Verwijderen</button>
+                    <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
                 </a>
+                </div>
             </div>
         </div>
 @endsection
