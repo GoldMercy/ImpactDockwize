@@ -126,8 +126,8 @@ class SurveyController extends Controller
 
     public function destroympq($multiplechoice_id)
     {
-        $mpq = DB::table('multiplechoice')->where('survey_id', '=', $multiplechoice_id);
-        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id)->first();
+        $mpq = DB::table('multiplechoice')->where('id', '=', $multiplechoice_id);
+        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id);
         $mpqo->delete();
         $mpq->delete();
 
