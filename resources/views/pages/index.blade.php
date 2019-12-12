@@ -58,7 +58,7 @@
                 <tr>
                     <th>Meerkeuze vragen</th>
                 </tr>
-                @foreach($multiplechoice as $mq)
+                @foreach($multiqs as $mq)
                     <tr>
                         <td><a href="/multiplechoice/show/{{$mq->id}}">{{$mq->multiplechoice_name}}</a></td>
                         @endforeach

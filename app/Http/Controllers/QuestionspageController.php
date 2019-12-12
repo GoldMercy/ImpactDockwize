@@ -17,7 +17,7 @@ class QuestionspageController extends Controller
         $openqs = DB::table('openqs')->get() ;
         $dropdownqs = DB::table('dropdownqs')->get() ;
         $scaleqs = DB::table('scaleqs')->get();
-        $multiplechoice = DB::table('multiplechoice')->get();
+        $multiqs = DB::table('multiplechoice')->get();
         $usedIds = array();
         $viewQs = array();
         $useddqIds = array();
@@ -44,14 +44,14 @@ class QuestionspageController extends Controller
                 array_push($usedSqs, $sq->scaleq_id);
             }
         }
-        foreach($multiplechoice as $mq){
+        foreach($multiqs as $mq){
             if (!in_array($mq->multiplechoice_id, $usedMqs)){
                 array_push($viewMqs, $mq);
                 array_push($usedMqs, $mq->multiplechoice_id);
             }
         }
 
-        return view('pages.index', ['openqs' => $viewQs, 'dropdownqs' => $viewDqs, 'scaleqs' => $viewSqs, 'multiplechoice' => $viewMqs]);
+        return view('pages.index', ['openqs' => $viewQs, 'dropdownqs' => $viewDqs, 'scaleqs' => $viewSqs, '$multiqs' => $viewMqs]);
     }
   
   public function questionsselect(Request $request){

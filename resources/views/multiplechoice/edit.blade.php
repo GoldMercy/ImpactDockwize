@@ -22,8 +22,10 @@
                         </div>
                     </div>
                 @endforeach
+                <form method="GET" action="/multiplechoice/update/{{$mp->id}}">
                     <input type="hidden" id="survey_id" name="survey_id" value="{{$mp->survey_id}}">
                     <button type="submit" class="btn btn-primary" value="edit">Vraag aanpassen</button>
+                </form>
                 <form method="GET" action="/multiplechoice/add/{{$mp->id}}">
                     <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
                     <input type="hidden" id="multiplechoice_id" name="multiplechoice_id" value="{{$mp->multiplechoice_id}}">

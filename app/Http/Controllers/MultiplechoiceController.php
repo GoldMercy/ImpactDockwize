@@ -70,7 +70,7 @@ class MultiplechoiceController extends Controller
         $mp = Multiplechoice::find($id);
         $mpos->delete();
         $mp->delete();
-        return redirect('/input')->with('success', 'Vraag verwijderd!');
+        return redirect('/questions')->with('success', 'Vraag verwijderd!');
     }
 
     public function store(Request $request)
