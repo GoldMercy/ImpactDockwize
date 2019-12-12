@@ -1,11 +1,12 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <div class="container">
     <form method="GET" action="/dropdownqs/store">
+        <h1>Voeg een dropdown vraag toe!</h1>
+        <br>
         <div class="form-row">
             <div class="form-group col-sm-6">
                 <label for="dropdownq_name">Hoe heet de dropdown vraag?</label>

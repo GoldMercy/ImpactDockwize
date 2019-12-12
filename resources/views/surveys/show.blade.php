@@ -63,9 +63,8 @@
         </table>
     </div>
 </div>
-</div>
 <hr>
-    <div class="float-surveys">
+    <div class="form-group">
         <a href="/surveys">
             <button type="button" class="btn btn-secondary">Ga terug</button>
         </a>
@@ -73,4 +72,5 @@
             <button type="button" class="btn btn-primary">Pas de vragenlijst aan</button>
         </a>
     </div>
+</div>
 @endsection

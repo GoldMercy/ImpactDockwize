@@ -50,10 +50,10 @@ class AnswerController extends Controller
         $openqs = DB::table('openqs')->where('survey_id', '=', $id)->get();
         $scaleqs = DB::table('scaleqs')->where('survey_id', '=', $id)->get();
         $dropdownqs = DB::table('dropdownqs')->where('survey_id', '=', $id)->get();
-        $qoptions = DB::table('qoptions')->get();
+        $qoptions = DB::table('dropdownqs_options')->get();
         $multiplechoiceqs = DB::table('multiplechoice')->where('survey_id', '=', $id)->get();
         $multiplechoiceoptions = DB::table('multiplechoice_options')->get();
-        return view('answer/survey', ['survey' => $survey, 'openqs' => $openqs, 'scaleqs' => $scaleqs, 'businesses' => $businesses, 'dropdownqs' => $dropdownqs, 'qoptions' => $qoptions,
+        return view('answer/survey', ['survey' => $survey, 'openqs' => $openqs, 'scaleqs' => $scaleqs, 'businesses' => $businesses, 'dropdownqs' => $dropdownqs, 'dropdownqs_options' => $qoptions,
         'multiplechoiceqs' => $multiplechoiceqs, 'multiplechoiceoptions' => $multiplechoiceoptions]);
     }
 

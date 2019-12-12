@@ -11,7 +11,7 @@ use App\Housing;
 use App\Business;
 
 class DashboardController extends Controller
-{    
+{
     public function housingchart() {
 
     }
@@ -32,11 +32,11 @@ class DashboardController extends Controller
         $mw_data = Business::whereIn('Programma', ['Maatwerk: Lead', 'Maatwerk: Lead kwalificeren', 'Maatwerk: Prospect', 'Maatwerk: Deelnemer', 'Maatwerk: Alumnus'])->count();
         $chl_data = Business::whereIn('Programma', ['Challenge: Lead', 'Challenge: Lead kwalificeren', 'Challenge: Prospect', 'Challenge: Deelnemer', 'Challenge: Alumnus'])->count();
         $vdp_data = Business::whereIn('Programma', ['Validatieprogramma: Lead', 'Validatieprogramma: Lead kwalificeren', 'Validatieprogramma: Prospect', 'Validatieprogramma: Deelnemer', 'Validatieprogramma: Alumnus'])->count();
-        $geen_data = Business::where('Programma', 'Geen')->count();
+        $geenp_data = Business::where('Programma', 'Geen')->count();
         $pk_koud = Business::where('Programma', 'Parkeerplaats Koud')->count();
         $pk_warm = Business::where('Programma', 'Parkeerplaats Warm')->count();
         $lead_gen = Business::where('Programma', 'Lead genereren')->count();
-        
+
         // Collect data for programma group chart
         $prog_lead = Business::whereIn('Programma', ['Bootcamp: Lead', 'Kickstart: Lead', 'Accelerator: Lead', 'Scale up light: Lead', 'Scale up: Lead', 'Maatwerk: Lead', 'Challenge: Lead', 'Validatieprogramma: Lead'])->count();
         $prog_leadk = Business::whereIn('Programma', ['Bootcamp: Lead kwalificeren', 'Kickstart: Lead kwalificeren', 'Accelerator: Lead kwalificeren', 'Scale up light: Lead kwalificeren', 'Scale up: Lead kwalificeren', 'Maatwerk: Lead kwalificeren', 'Challenge: Lead kwalificeren', 'Validatieprogramma: Lead kwalificeren'])->count();
@@ -74,16 +74,16 @@ class DashboardController extends Controller
 
         $themachart = new HighchartsChart;
         $themachart->labels(['Circulair & Biobased', 'Water & Energie', 'Social Impact', 'Industrie & Maintenance', 'Teschnisch Innovatief', 'Haven & Logistiek', 'Agro, Food & Landbouw', 'ICT/app/platform', 'Energie & Offshore', 'Logistiek & Maintenance', 'Zorg en Gezondheid', 'Toerisme en vrijetijd', 'Haven & Maritiem', 'Chemie en Bioindustrie', 'Biobased', 'Zakelijke dienstverlening en overheid', 'Overig'])
-        ->height(350)->width(400)            
+        ->height(350)->width(400)
         ->dataset('Organisatievorm', 'bar', [$circbio, $watener, $socimp, $indusmain, $techinn, $havlog, $agrofoodlb, $ict, $eneroffshore, $logmain, $zorggezon, $toervrije, $havmari, $chembio, $biobased, $dienstover, $overig])
         ->options([
             'color' => 'navy',
         ]);
-        
+
         // Initiate and customize housing chart
         $housingchart = new HighchartsChart;
         $housingchart->labels(['Flex', 'Loodsunit', 'Kantoor', 'Geen'])->height(175)->width(350)
-            ->dataset('Huisvesting', 'bar', [$flex_data, $loods_data, $kantoor_data, $geen_data])          
+            ->dataset('Huisvesting', 'bar', [$flex_data, $loods_data, $kantoor_data, $geen_data])
             ->options([
                 'color' => 'navy',
             ]);
@@ -91,15 +91,15 @@ class DashboardController extends Controller
         // Initiate and customize programma chart
         $programmachart = new HighchartsChart;
         $programmachart->labels(['Bootcamp', ' Kickstart', 'Accelerator', ' Scale up light', 'Scale up', 'Maatwerk', 'Challenge', 'Validatieprogramma', ' Parkeerplaats Koud', 'Parkeerplaats Warm', 'Lead genereren', 'Geen'])
-        ->height(350)->width(400)            
-        ->dataset('Programmas', 'bar', [$btcmp_data, $kick_data, $accel_data, $sul_data, $su_data, $mw_data, $chl_data, $vdp_data, $geen_data, $pk_koud, $pk_warm, $lead_gen])
+        ->height(350)->width(400)
+        ->dataset('Programmas', 'bar', [$btcmp_data, $kick_data, $accel_data, $sul_data, $su_data, $mw_data, $chl_data, $vdp_data, $geenp_data, $pk_koud, $pk_warm, $lead_gen])
         ->options([
             'color' => 'navy',
         ]);
 
         $progroupchart = new HighchartsChart;
         $progroupchart->labels(['Lead', 'Lead kwalificeren', 'Prospect', 'Deelnemer', 'Alumnus', 'Geen'])
-        ->height(350)->width(400)            
+        ->height(350)->width(400)
         ->dataset('Programma fase', 'bar', [$prog_lead, $prog_leadk, $prog_pros, $prog_deel, $prog_alum])
         ->options([
             'color' => 'navy',
@@ -107,7 +107,7 @@ class DashboardController extends Controller
 
         $orgtypechart = new HighchartsChart;
         $orgtypechart->labels(['Student starter', 'Idee eigenaar', 'Startup', 'Scaleup', 'MKB onderneming', 'Grootbedrijf', 'Overhuidsinstelling'])
-        ->height(350)->width(400)            
+        ->height(350)->width(400)
         ->dataset('Organisatievorm', 'bar', [$student_start, $idee_eig, $startup, $scaleup, $mkb, $grootb, $overheidin])
         ->options([
             'color' => 'navy',
@@ -118,7 +118,7 @@ class DashboardController extends Controller
         $businesses = DB::table('business')->get();
 
         return view('dashboard/index')->with([
-            'businesses' => $businesses, 
+            'businesses' => $businesses,
             'housingchart' => $housingchart,
             'programmachart' => $programmachart,
             'progroupchart' => $progroupchart,

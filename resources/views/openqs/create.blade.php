@@ -4,6 +4,8 @@
 <div class="container">
     <form method="GET" action="/openqs/store">
         @csrf
+        <h1>Voeg een open vraag toe!</h1>
+        <br>
         <div class="form-row">
             <div class="form-group col-sm-6">
                 <label for="openq_name">Hoe heet de vraag?</label>

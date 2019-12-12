@@ -119,15 +119,15 @@ class SurveyController extends Controller
     {
         $dpq = DropdownQ::where('survey_id', '=', $dropdownq_id)->get();
         $dpqo = DropdownQOptions::where('dropdown_id', '=', $dropdownq_id)->first();
-        $dpq->delete();
         $dpqo->delete();
+        $dpq->delete();
         return redirect()->back()->with('success', 'Vraag uit vragenlijst verwijderd!');
     }
 
     public function destroympq($multiplechoice_id)
     {
-        $mpq = DB::table('multiplechoice')->where('survey_id', '=', $multiplechoice_id);
-        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id)->first();
+        $mpq = DB::table('multiplechoice')->where('id', '=', $multiplechoice_id);
+        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id);
         $mpqo->delete();
         $mpq->delete();
 

@@ -4,6 +4,8 @@
 <div class="container">
     <form method="GET" action="/store">
         @csrf
+        <h1>Voeg een schalenvraag toe!</h1>
+        <br>
         <div class="form-row">
             <div class="form-group col-sm-6">
                 <label for="scaleq_name">Hoe heet de vraag?</label>

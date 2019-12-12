@@ -1,8 +1,6 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <div class="container">
         @csrf
         <div class="form-row">

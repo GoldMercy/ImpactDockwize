@@ -4,6 +4,8 @@
 <div class="container">
     <form method="GET" action="/surveys/store">
         @csrf
+        <h1>Maak een vragenlijst!</h1>
+        <br>
         <div class="form-group">
             <div class="form-group col-sm-6">
                 <label for="titel">Titel</label>
