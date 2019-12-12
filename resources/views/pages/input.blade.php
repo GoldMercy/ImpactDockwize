@@ -28,8 +28,6 @@
             <br>
             <li><a href="/dropdownqs/create"><button class='btn btn-primary' id='addbtn'>Voeg een dropdownvraag toe!</button></a></li>
             <br>
-            <li><a href="/qoptions/create"><button class='btn btn-primary' id='addbtn'>Voeg een opties voor vragen toe!</button></a></li> 
-            <br>
             <li><a href="/surveys/create"><button class='btn btn-primary' id='addbtn'>Voeg een vragenlijst toe!</button></a></li>
             <br>
             <li><a href="/multiplechoice/create"><button class='btn btn-primary' id='addbtn'>Voeg een multiplechoice vraag toe!</button></a></li>

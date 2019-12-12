@@ -35,13 +35,19 @@ Route::get('/surveys/edit/{id}', 'SurveyController@edit');
 Route::get('/surveys/show/{id}', 'SurveyController@show');
 Route::get('/surveys/update/{id}', 'SurveyController@update');
 Route::get('/surveys/edit/destroy/{id}', 'SurveyController@destroy');
+Route::get('/surveys/edit/destroyoq/{id}', 'SurveyController@destroyoq');
+Route::get('/surveys/edit/destroysq/{id}', 'SurveyController@destroysq');
+Route::get('/surveys/edit/destroydpq/{id}', 'SurveyController@destroydpq');
+Route::get('/surveys/edit/destroympq/{id}', 'SurveyController@destroympq');
 
 Route::get('/scaleqs/create', 'ScaleQsController@create');
 Route::get('/store', 'ScaleQsController@store');
 Route::get('/scaleqs/edit/{id}', 'ScaleQsController@edit');
 Route::get('/scaleqs/show/{id}', 'ScaleQsController@show');
 Route::get('/scaleqs/update/{id}', 'ScaleQsController@update');
+Route::get('/scaleqs/add/{id}', 'ScaleQsController@add');
 Route::get('/scaleqs/edit/delete/{id}', 'ScaleQsController@delete');
+Route::get('/scaleqs/edit/deleteallsq/{id}', 'ScaleQsController@deleteAllsq');
 
 Route::get('/cards', 'CardsController@index');
 Route::get('/cards/create', 'CardsController@create');
@@ -56,7 +62,10 @@ Route::get('/openqs/store', 'OpenQsController@store');
 Route::get('/openqs/edit/{id}', 'OpenQsController@edit');
 Route::get('/openqs/show/{id}', 'OpenQsController@show');
 Route::get('/openqs/update/{id}', 'OpenQsController@update');
+Route::get('/openqs/add/{id}', 'OpenQsController@add');
 Route::get('/openqs/edit/delete/{id}', 'OpenQsController@delete');
+Route::get('/openqs/export/', 'OpenQsController@export');
+Route::get('/openqs/edit/deletealloq/{id}', 'OpenQsController@deleteAlloq');
 
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/create', 'AdminController@create');
@@ -68,6 +77,7 @@ Route::get('/admin/edit/deleteall/{id}', 'AdminController@deleteAll');
 Route::get('/admin/find', 'AdminController@find');
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 Route::get('/admin/windex', 'AdminController@windex');
+Route::get('/admin/export/', 'AdminController@export');
 
 Route::get('/searching','SearchController@index');
 Route::get('/search','SearchController@search');
@@ -83,15 +93,20 @@ Route::get('/dropdownqs/store', 'DropdownQsController@store');
 Route::get('/dropdownqs/edit/{id}', 'DropdownQsController@edit');
 Route::get('/dropdownqs/show/{id}', 'DropdownQsController@show');
 Route::get('/dropdownqs/update/{id}', 'DropdownQsController@update');
+Route::get('/dropdownqs/add/{id}', 'DropdownQsController@add');
 Route::get('/dropdownqs/edit/delete/{id}', 'DropdownQsController@delete');
+Route::get('/dropdownqs/edit/deletealldpq/{id}', 'DropdownQsController@deleteAlldpq');
+Route::get('/dropdownqs/edit/destroydpo/{id}', 'DropdownQsController@destroydpo');
 
-Route::get('/multiplechoice', 'MultiplechoiceController@index');
 Route::get('/multiplechoice/create', 'MultiplechoiceController@create');
 Route::get('/multiplechoice/store', 'MultiplechoiceController@store');
 Route::get('/multiplechoice/edit/{id}', 'MultiplechoiceController@edit');
 Route::get('/multiplechoice/show/{id}', 'MultiplechoiceController@show');
 Route::get('/multiplechoice/update/{id}', 'MultiplechoiceController@update');
+Route::get('/multiplechoice/add/{id}', 'MultiplechoiceController@add');
 Route::get('/multiplechoice/edit/delete/{id}', 'MultiplechoiceController@delete');
+Route::get('/multiplechoice/edit/destroympo/{id}', 'MultiplechoiceController@destroympo');
+Route::get('/multiplechoice/edit/deleteallmpq/{id}', 'MultiplechoiceController@deleteAllmpq');
 
 Route::get('/qoptions/create', 'QOptionsController@create');
 Route::get('/qoptions/store', 'QOptionsController@store');
