@@ -26,8 +26,8 @@
                                     <label for="Ontvanger2">En/of</label>
                                     <select name="Ontvanger2" class="form-control">
                                         <option selected>nvt.</option>
-                                        @foreach($housings as $housing)
-                                            <option value="{{$housing->housing_name}}">{{$housing->housing_name}}</option>
+                                        @foreach($org_types as $org_type)
+                                            <option value="{{$org_type->organisation_type}}">{{$org_type->organisation_type}}</option>
                                         @endforeach
                                     </select>
                                 </div>
