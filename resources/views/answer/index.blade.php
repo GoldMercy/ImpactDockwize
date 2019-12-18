@@ -18,8 +18,16 @@
                                     </select>
                                     <label for="Ontvanger">Ontvanger(s) (Optioneel)</label>
                                     <select name="Ontvanger" class="form-control">
+                                        <option selected>nvt.</option>
                                         @foreach($programs as $program)
                                             <option value="{{$program->name}}">{{$program->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <label for="Ontvanger2">En/of</label>
+                                    <select name="Ontvanger2" class="form-control">
+                                        <option selected>nvt.</option>
+                                        @foreach($org_types as $org_type)
+                                            <option value="{{$org_type->organisation_type}}">{{$org_type->organisation_type}}</option>
                                         @endforeach
                                     </select>
                                 </div>

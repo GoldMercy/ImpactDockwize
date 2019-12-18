@@ -11,7 +11,7 @@
         <div class="form-group col-sm-2">
             <button type="submit" class="btn btn-primary">Zoeken</button>
             <a href="/questions">
-                <button type="submit" class="btn btn-primary">Toon Alles</button>
+                <button type="button" class="btn btn-primary">Toon Alles</button>
             </a>
         </div>
     </div>

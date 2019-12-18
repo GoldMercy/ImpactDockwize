@@ -18,14 +18,22 @@ class AnswerController extends Controller
         $answers = DB::table('answers')->get();
         $businesses = DB::table('business')->get();
         $programs = DB::table('programs')->get();
+        $org_types = DB::table('organisation_types')->get();
 
-        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers, 'businesses' => $businesses, 'programs' => $programs]);
-
+        return view('answer/index', ['surveys' => $surveys, 'answers' => $answers, 'businesses' => $businesses, 'programs' => $programs, 'org_types' => $org_types]);
     }
 
     public function select(Request $request){
 
-        $businesses = DB::table('business')->where('Programma', '=', $request->Ontvanger)->get();
+        if($request->Ontvanger == 'nvt.'){
+            $businesses = DB::table('business')->where('Organisatievorm', '=', $request->Ontvanger2)->get();
+        }
+        elseif ($request->Ontvanger2 == 'nvt.'){
+            $businesses = DB::table('business')->where('Programma', '=', $request->Ontvanger)->get();
+        }
+        else{
+            $businesses = DB::table('business')->where('Programma', '=', $request->Ontvanger)->where('Organisatievorm', '=', $request->Ontvanger2)->get();
+        }
         $emails = "";
         foreach ($businesses as $business){
             $emails .= $business->Email.",";
