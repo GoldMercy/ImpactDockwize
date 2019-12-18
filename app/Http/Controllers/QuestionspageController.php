@@ -51,7 +51,7 @@ class QuestionspageController extends Controller
             }
         }
 
-        return view('pages.index', ['openqs' => $viewQs, 'dropdownqs' => $viewDqs, 'scaleqs' => $viewSqs, '$multiqs' => $viewMqs]);
+        return view('pages.index', ['openqs' => $viewQs, 'dropdownqs' => $viewDqs, 'scaleqs' => $viewSqs, 'multiqs' => $viewMqs]);
     }
   
   public function questionsselect(Request $request){

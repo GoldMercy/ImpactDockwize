@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Answer;
 use App\Business;
+use App\Exports\AnswerExport;
 use App\OpenQ;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AnswerController extends Controller
 {
@@ -17,9 +19,7 @@ class AnswerController extends Controller
         $businesses = DB::table('business')->get();
         $programs = DB::table('programs')->get();
 
-
         return view('answer/index', ['surveys' => $surveys, 'answers' => $answers, 'businesses' => $businesses, 'programs' => $programs]);
-
 
     }
 
@@ -39,8 +39,6 @@ class AnswerController extends Controller
             case 'mail':
                 return redirect()->to('mailto:'.$emails.'?SUBJECT=Vragenlijst Dockwize&BODY=Beste Ondernemer, zou u een vragenlijst willen invullen?: '.url('/').'/answer/survey'.$request->Vragenlijst);
         }
-
-
     }
 
     public function survey($id){
@@ -80,5 +78,15 @@ class AnswerController extends Controller
         $scaleqs = DB::table('scaleqs')->get();
 
         return view('answer/show', ['answer' => $answer, 'openqs' => $openqs, 'scaleqs' => $scaleqs]);
+    }
+
+    public function export()
+    {
+        $export = new AnswerExport([
+            [1, 2, 3],
+            [4, 5, 6]
+        ]);
+
+        return Excel::download($export, 'Answers.xlsx');
     }
 }

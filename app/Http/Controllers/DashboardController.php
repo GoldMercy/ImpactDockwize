@@ -75,7 +75,7 @@ class DashboardController extends Controller
         $themachart = new HighchartsChart;
         $themachart->labels(['Circulair & Biobased', 'Water & Energie', 'Social Impact', 'Industrie & Maintenance', 'Teschnisch Innovatief', 'Haven & Logistiek', 'Agro, Food & Landbouw', 'ICT/app/platform', 'Energie & Offshore', 'Logistiek & Maintenance', 'Zorg en Gezondheid', 'Toerisme en vrijetijd', 'Haven & Maritiem', 'Chemie en Bioindustrie', 'Biobased', 'Zakelijke dienstverlening en overheid', 'Overig'])
         ->height(350)->width(400)
-        ->dataset('Organisatievorm', 'bar', [$circbio, $watener, $socimp, $indusmain, $techinn, $havlog, $agrofoodlb, $ict, $eneroffshore, $logmain, $zorggezon, $toervrije, $havmari, $chembio, $biobased, $dienstover, $overig])
+        ->dataset('Thema', 'bar', [$circbio, $watener, $socimp, $indusmain, $techinn, $havlog, $agrofoodlb, $ict, $eneroffshore, $logmain, $zorggezon, $toervrije, $havmari, $chembio, $biobased, $dienstover, $overig])
         ->options([
             'color' => 'navy',
         ]);

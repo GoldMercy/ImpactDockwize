@@ -14,7 +14,7 @@ class CreateDropdownQsOptionsTable extends Migration
     public function up()
     {
         Schema::create('dropdownqs_options', function (Blueprint $table) {
-            $table->bigIncrements('dropdownoption_id')->unsigned();
+            $table->bigIncrements('id')->unsigned();
             $table->string('dropdownoption_name');
             $table->bigInteger('dropdown_id')->unsigned()->nullable();
             $table->foreign('dropdown_id')->references('id')->on('dropdownqs')->onDelete('cascade');;

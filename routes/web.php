@@ -121,4 +121,5 @@ Route::get('/answer/survey{id}', 'AnswerController@survey');
 Route::get('/answer/submit', 'AnswerController@submit');
 Route::get('/answer/answerIndex', 'AnswerController@answerIndex');
 Route::get('/answer/show/{id}', 'AnswerController@show');
+Route::get('/answer/export/', 'AnswerController@export');
 
