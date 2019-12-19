@@ -9,6 +9,7 @@ use App\ScaleQ;
 use App\MultiplechoiceOptions;
 use App\DropdownQOptions;
 use App\Survey;
+use App\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -48,6 +49,8 @@ class SurveyController extends Controller
     public function show($id)
     {
         $survey = Survey::find($id);
+        $business = Business::all();
+
         $oqs = DB::table('openqs')->where('survey_id', '=', $id)->get();
         $dpqs = DB::table('dropdownqs')->where('survey_id', '=', $id)->get();
         $mpqs = DB::table('multiplechoice')->where('survey_id', '=', $id)->get();
@@ -58,7 +61,8 @@ class SurveyController extends Controller
             'oqs' => $oqs,
             'dpqs' => $dpqs,
             'mpqs' => $mpqs,
-            'scaleqs' => $scaleqs
+            'scaleqs' => $scaleqs,
+            'business' => $business
             ]);
     }
 
@@ -101,6 +105,14 @@ class SurveyController extends Controller
         return redirect('/surveys')->with('success', 'Vragenlijst verwijderd!');
     }
 
+    public function updatesur (Request $request, $id) {
+        $survey = Survey::find($id);
+        $survey->business_id = $request->business_id;
+        $survey->save();
+
+        return redirect('/surveys')->with('success', 'Bedrijf gekoppeld aan vragenlijst!');
+    }
+    
     public function destroyoq($openq_id)
     {
         $oq = DB::table('openqs')->where('id', '=', $openq_id);

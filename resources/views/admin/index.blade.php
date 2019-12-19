@@ -65,7 +65,7 @@
             <div>
                 <tr>
                     <td id="ad-td">
-                        <a href="/admin/edit/{{$business->id}}">
+                        <a href="/admin/show/{{$business->id}}">
                 {{ $business->Onderneming }}
                         </a>
                     </td>

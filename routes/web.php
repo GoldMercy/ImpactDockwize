@@ -68,6 +68,7 @@ Route::get('/openqs/export/', 'OpenQsController@export');
 Route::get('/openqs/edit/deletealloq/{id}', 'OpenQsController@deleteAlloq');
 
 Route::get('/admin', 'AdminController@index');
+Route::get('/admin/show/{id}', 'AdminController@show');
 Route::get('/admin/create', 'AdminController@create');
 Route::get('/admin/store', 'AdminController@store');
 Route::get('/admin/edit/{id}', 'AdminController@edit');
@@ -75,6 +76,15 @@ Route::get('/admin/update/{id}', 'AdminController@update');
 Route::get('/admin/edit/delete/{id}', 'AdminController@delete');
 Route::get('/admin/edit/deleteall/{id}', 'AdminController@deleteAll');
 Route::get('/admin/find', 'AdminController@find');
+Route::get('/admin/storestatus', 'AdminController@storestatus');
+
+Route::get('/surveys/updatesur/{id}', 'SurveyController@updatesur');
+
+Route::get('/admin/updatesurstat/{id}', 'AdminController@updatesurstat');
+
+Route::get('/surstat/addstat', 'SurveyStatusController@addstat');
+Route::get('/surstat/create', 'SurveyStatusController@create');
+
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 Route::get('/admin/windex', 'AdminController@windex');
 Route::get('/admin/export/', 'AdminController@export');

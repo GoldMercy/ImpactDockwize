@@ -91,6 +91,7 @@ document.getElementById("sidebarbutton").style.marginLeft = "0";
     <a href="{{ url('/input') }}">Input</a>
     <a href="{{ url('/output') }}">Output</a>
     <a href="{{ url('/admin') }}">Admin</a>
+    <a href="{{ url('/surstat/create') }}">Maak koppeling</a>
     <a href="{{ url('/searching') }}">History</a>
     <a href="{{ route('logout') }}" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();"> {{ __('Logout') }}</a>

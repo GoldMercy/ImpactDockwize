@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @extends('layouts.sidebar')
 @section('content')
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<br>
 <div class="container">
         <form method="GET" action="/admin/update/{{$business->id}}">
             @csrf
@@ -14,7 +16,7 @@
                 <input type="text" class="form-control" name="Onderneming" placeholder="Naam Onderneming" value="{{$business->Onderneming}}">
             </div>
             </div>
-            <div class="form-row">
+            <div class="form-row">  
             <div class="form-group col-sm-3">
                 <label for="Telefoonnummer">Telefoonnummer</label>
                 <input type="text" class="form-control" name="Telefoonnummer" placeholder="Telefoonnummer" value="{{$business->Telefoonnummer}}">
@@ -112,6 +114,7 @@
                     </select>
                 </div>
             </div>
+            <hr>
             <div class="d-flex">
                 <div class="p-2">
             <a href="/admin">
@@ -135,9 +138,6 @@
                     </a>
                 </div>
             </div>
-
         </form>
 </div>
-
-
 @endsection

@@ -14,7 +14,7 @@ class CreateBusinessTable extends Migration
     public function up()
     {
         Schema::create('business', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->string('Ondernemer')->nullable();
             $table->string('Onderneming')->nullable();
             $table->string('Telefoonnummer')->nullable();

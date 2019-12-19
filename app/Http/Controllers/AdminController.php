@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Business;
 use App\Exports\BusinessExport;
 use App\OldBusinessData;
+use App\Survey;
+use App\SurveyStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
@@ -28,7 +30,7 @@ class AdminController extends Controller
     {
         $businesses = DB::table('business')->paginate(10);
 
-        return view('admin.index', ['businesses' => $businesses]);
+        return view('admin.index')->with('businesses', $businesses);
     }
 
     public function create()
@@ -67,15 +69,25 @@ class AdminController extends Controller
 
     public function edit($id)
     {
-        $business = DB::table('business')->find($id);
+        $business = Business::find($id);
         $themes = DB::table('themes')->get();
         $programs = DB::table('programs')->get();
         $housings = DB::table('housings')->get();
-        $revenues = DB::table('revenues')->get();
+        $surveys = DB::table('surveys')->where('business_id', $id)->get();
+        $surstats = DB::table('survey_statuses')->get();
         $relationships = DB::table('relationships')->get();
         $organisation_types = DB::table('organisation_types')->get();
 
-        return view('admin.edit', ['business' => $business, 'programs' => $programs, 'themes' => $themes, 'housings' => $housings, 'relationships' => $relationships, 'organisation_types' => $organisation_types, 'revenues' => $revenues]);
+        return view('admin.edit')->with([
+            'business' => $business, 
+            'surveys' => $surveys, 
+            'surstats' => $surstats, 
+            'programs' => $programs, 
+            'themes' => $themes, 
+            'housings' => $housings,
+            'relationships' => $relationships,
+            'organisation_types' => $organisation_types
+            ]);
     }
 
     public function update(Request $request, $id)
@@ -137,13 +149,14 @@ class AdminController extends Controller
 
             return(redirect('/admin')->with('success', 'Onderneming volledig verwijderd!'));
         }
+       return(redirect('/admin')->with('success', 'Bedrijf verwijderd!'));
     }
 
     public function deleteAll($id){
         DB::table('business')->delete($id);
         DB::table('old_business_data')->where('business_id', $id)->delete();
 
-        return(redirect('/admin'));
+        return(redirect('/admin')->with('success', 'Alle data verwijderd!'));
     }
 
     /**
@@ -186,6 +199,17 @@ class AdminController extends Controller
         $business->save();
     }
 
+    public function show(Request $request, $id) {
+        $business = Business::find($id);
+        $surveys = Survey::where('business_id', '=',  $id);
+        $surstats = SurveyStatus::where('business_name', $business->Onderneming)->get();
+
+        return view('admin.show')->with([
+            'business' => $business,
+            'surveys' => $surveys,
+            'surstats' => $surstats,
+            ]);
+    }
     public function export()
     {
         return Excel::download(new BusinessExport(), 'Business.xlsx');
