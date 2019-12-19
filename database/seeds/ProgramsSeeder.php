@@ -13,7 +13,7 @@ class ProgramsSeeder extends Seeder
     {
         DB::table('programs')->truncate();
 
-        $programs = ['Bootcamp: Lead', 'Bootcamp: Lead kwalificeren', 'Bootcamp, Prospect', 'Bootcamp: Deelnemer', 'Bootcamp: Alumnus',
+        $programs = ['Bootcamp: Lead', 'Bootcamp: Lead kwalificeren', 'Bootcamp: Prospect', 'Bootcamp: Deelnemer', 'Bootcamp: Alumnus',
         'Kickstart: Lead', 'Kickstart: Lead kwalificeren', 'Kickstart: Prospect', 'Kickstart: Deelnemer', 'Kickstart: Alumnus',
         'Accelerator: Lead', 'Accelerator: Lead kwalificeren', 'Accelerator: Prospect', 'Accelerator: Deelnemer', 'Accelerator: Alumnus',
         'Scale up light: Lead', 'Scale up light: Lead kwalificeren', 'Scale up light: Lead - geen programma', 'Scale up light: Prospect',

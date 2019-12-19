@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class AdminSeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -10,19 +10,13 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {       
         $this->call([
-/*            UsersTableSeeder::class,*/
+            UsersTableSeeder::class,
             ThemesSeeder::class,
             ProgramsSeeder::class,
             HousingSeeder::class,
             OrganisationTypeSeeder::class,
-            // BusinessTableSeeder::class,
-            // SurveysTableSeeder::class,
-            // old_business_dataTableSeeder::class,
-            // ScaleqsTableSeeder::class,
-            // DropdownqsTableSeeder::class,
-            // OpenqsTableSeeder::class,
             RelationshipSeeder::class
         ]);
     }

@@ -33,7 +33,7 @@
                                 <div class="form-group col-sm-8">
                                     <label for="{{$dropdownq->dropdownq_name}}">{{$dropdownq->dropdownq_name}}</label>
                                     <select class="form-control" name="{{$dropdownq->dropdownq_name}}">
-                                        {{$qoptionsx = $qoptions->where('dropdownq_fk', '=', $dropdownq->dropdownq_id)}}
+                                        {{$qoptionsx = $dropdownqs_options->where('dropdownq_fk', '=', $dropdownq->dropdownq_id)}}
                                     @foreach($qoptionsx as $qoption)
                                         <option>{{$qoption->option_name}}</option>
                                         @endforeach
@@ -45,7 +45,7 @@
                                     <label for="{{$multiq->multiplechoice_name}}">{{$multiq->multiplechoice_name}}</label><br>
                                         <?php $multioptions = $multiplechoiceoptions->where('multiplechoice_id', '=', $multiq->multiplechoice_id) ?>
                                         @foreach($multioptions as $multioption)
-                                        <input type="checkbox" name="{{$multiq->multiplechoice_name}} Antwoord {{$loop->iteration}}" value={{$multioption->multiplechoice_option}}>{{$multioption->multiplechoice_option}}<br>
+                                        <input type="checkbox" name="{{$multiq->multiplechoice_name}} Antwoord {{$loop->iteration}}" value="{{$multioption->multiplechoice_option}}">{{$multioption->multiplechoice_option}}<br>
                                             @endforeach
                                 </div>
                             @endforeach

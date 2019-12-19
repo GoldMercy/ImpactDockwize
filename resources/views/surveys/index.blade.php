@@ -17,11 +17,16 @@
         </div>
     @endif
     <hr>
+    <div class="form-group">
+        <a href="/input">
+            <button type="button" class="btn btn-secondary">Ga terug</button>
+        </a>
         <a href="/surveys/create">
             <button class='btn btn-primary'>Voeg een vragenlijst toe!</button>
         </a>
         <div class="row justify-content-center">
             {{$survey->links()}}
         </div>
+    </div>
 </div>
 @endsection

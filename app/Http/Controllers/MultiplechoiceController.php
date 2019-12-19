@@ -5,26 +5,72 @@ namespace App\Http\Controllers;
 use App\Multiplechoice;
 use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
-use App\DropdownQ;
-use App\QOption;
 use App\Survey;
 use App\MultiplechoiceOptions;
 use Illuminate\Support\Facades\DB;
 
 class MultiplechoiceController extends Controller
 {
-    public function index()
-    {
-        $multiplechoice = DB::table('multiplechoice')->paginate(20);
-        return view('multiplechoice.index')->with('multiplechoice', $multiplechoice);;
-    }
 
     public function create()
     {
         $surveys = Survey::all();
         return view('multiplechoice.create')->with([
             'surveys' => $surveys
+        ]);
+    }
+
+    public function show($id)
+    {
+        $mp = Multiplechoice::find($id);
+        $mpos = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->get();
+        $css = Multiplechoice::where('multiplechoice_id', $mp->multiplechoice_id)->get();
+
+        return view('multiplechoice.show')->with([
+            'mp' => $mp, 
+            'mpos' => $mpos, 
+            'css' => $css, 
             ]);
+    }
+
+    public function edit($id)
+    {
+        $mp = Multiplechoice::find($id);
+        $mpos = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->get();
+        $surs = DB::table('surveys')->get();
+        $css = Multiplechoice::where('multiplechoice_id', $mp->multiplechoice_id)->get();
+        $allmpqs = Multiplechoice::where('survey_id', $id)->get();
+
+        return view('multiplechoice.edit')->with([
+            'mp' => $mp,
+            'surs' => $surs,
+            'mpos' => $mpos,
+            'allmpqs' => $allmpqs,
+            'css' => $css
+            ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'multiplechoice_name' => 'required'
+        ]);
+
+        $mp = Multiplechoice::find($id);
+        $mp->multiplechoice_name = $request->multiplechoice_name;
+        $mp->survey_id = $request->survey_id;
+        $mp->save();
+           
+        return redirect()->back()->with('success', 'Vraag aangepast!');
+    }
+
+    public function delete($id)
+    {
+        $mpos = MultiplechoiceOptions::where('multiplechoice_id', '=', $id);
+        $mp = Multiplechoice::find($id);
+        $mpos->delete();
+        $mp->delete();
+        return redirect('/questions')->with('success', 'Vraag verwijderd!');
     }
 
     public function store(Request $request)
@@ -34,68 +80,51 @@ class MultiplechoiceController extends Controller
             'survey_id' => 'required',
         ]);
         
-        $multiplechoice = new Multiplechoice;
-        $multiplechoice->multiplechoice_name = $request->multiplechoice_name;
-        $multiplechoice->survey_id = $request->survey_id;
-        $multiplechoice->save();
+        $mp = new Multiplechoice;
+        $mp->multiplechoice_id = $this->getNextId();
+        $mp->multiplechoice_name = $request->multiplechoice_name;
+        $mp->survey_id = $request->survey_id;
+        $mp->save();
 
-
-        $options[] = $request->toArray();
-        array_pop($options[0]);
-        array_shift($options[0]);
-        foreach ($options[0] as $option){
-            $multiplechoice_options = new MultiplechoiceOptions;
-            $multiplechoice_options->multiplechoice_option = $option;
-            $multiplechoice_options->multiplechoice_id = $multiplechoice->multiplechoice_id;
-            $multiplechoice_options->save();
+        $mp_options[] = $request->toArray();
+        array_pop($mp_options[0]);
+        array_shift($mp_options[0]);
+        foreach ($mp_options[0] as $mp_option){
+            $mpo = new MultiplechoiceOptions;
+            $mpo->multiplechoice_option = $mp_option;
+            $mpo->multiplechoice_id = $mp->multiplechoice_id;
+            $mpo->save();
         }
 
-        return redirect('/multiplechoice')->with('success', 'Vraag gemaakt!');
+        return redirect('/multiplechoice/create')->with('success', 'Vraag gemaakt!');
     }
 
-
-    public function show($id)
+    public function add(Request $request)
     {
-        $multiplechoice = Multiplechoice::find($id);
-        $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
-        return view('multiplechoice.show', ['multiplechoice' => $multiplechoice], ['multiplechoiceoptions' => $multiplechoiceoptions]);
-    }
+        $multiplechoice = Multiplechoice::find($request['id']);
+        $name = $multiplechoice->multiplechoice_name;
+        $random = MultiplechoiceOptions::all();
 
-    public function edit($id)
-    {
-        $surveys = DB::table('surveys')->get();
-        $multiplechoice = Multiplechoice::find($id);
-        $multiplechoiceoptions = DB::table('multiplechoice_options')->where('multiplechoice_id', '=', $id)->get();
-        return view('multiplechoice.edit')->with(['multiplechoice' => $multiplechoice, 'surveys' => $surveys, 'options' => $multiplechoiceoptions]);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $this->validate($request, [
-            'multiplechoice_name' => 'required'
+        Multiplechoice::create([
+            'survey_id' => $request['survey_id'],
+            'multiplechoice_id' => $multiplechoice->multiplechoice_id,
+            'multiplechoice_name' => $name
         ]);
 
-        $multiplechoice = Multiplechoice::find($id);
-        $multiplechoice->multiplechoice_name = $request->multiplechoice_name;
-        $multiplechoice->survey_id = $request->survey_id;
-        $multiplechoice->save();
-           
-        return redirect('/multiplechoice')->with('success', 'Vraag aangepast!');
+
+        MultiplechoiceOptions::create([
+            'multiplechoice_id' => $multiplechoice->multiplechoice_id,
+            'multiplechoice_option' => $random->multiplechoice_option
+        ]);
+
+        return redirect()->back()->with('success', 'Vraag toegevoegd aan een vragenlijst!');
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function delete($id)
+    public function getNextId()
     {
-        $multiplechoice_options = MultiplechoiceOptions::where('multiplechoice_id', '=', $id)->first();
-        $multiplechoice = Multiplechoice::find($id);
-        $multiplechoice_options->delete();
-        $multiplechoice->delete();
-        return redirect('/multiplechoice')->with('success', 'Vraag verwijderd!');
+        $highest = Multiplechoice::max('multiplechoice_id');
+        return $highest + 1;
     }
 
     public function addMore()
@@ -120,5 +149,12 @@ class MultiplechoiceController extends Controller
             return response()->json(['success'=>'done']);
         }
         return response()->json(['error'=>$validator->errors()->all()]);
+    }
+
+    public function destroympo($multiplechoice_id)
+    {
+        $mpo = DB::table('multiplechoice_options')->where('multiplechoice_options_id', '=', $multiplechoice_id);
+        $mpo->delete();
+        return redirect('/questions')->with('success', 'Optie voor multiplechoice vraag verwijderd.');
     }
 }

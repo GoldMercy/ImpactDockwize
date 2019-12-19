@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\DropdownQ;
+use App\Multiplechoice;
 use App\OpenQ;
+use App\ScaleQ;
+use App\MultiplechoiceOptions;
+use App\DropdownQOptions;
 use App\Survey;
 use App\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use PDF;
 
 class SurveyController extends Controller
 {
@@ -39,21 +43,44 @@ class SurveyController extends Controller
         $survey->beschrijving = $request->beschrijving;
         $survey->save();
 
-        return (redirect('/surveys'));
+        return (redirect('/surveys/create')->with('success', 'Vragenlijst aangemaakt!'));
     }
 
     public function show($id)
     {
         $survey = Survey::find($id);
-        $openqs = OpenQ::where('survey_id', $id)->get();
         $business = Business::all();
-        return view('surveys.show', ['survey' => $survey, 'openqs' => $openqs, 'business' => $business]);
+
+        $oqs = DB::table('openqs')->where('survey_id', '=', $id)->get();
+        $dpqs = DB::table('dropdownqs')->where('survey_id', '=', $id)->get();
+        $mpqs = DB::table('multiplechoice')->where('survey_id', '=', $id)->get();
+        $scaleqs = DB::table('scaleqs')->where('survey_id', '=', $id)->get();
+
+        return view('surveys.show')->with([
+            'survey' => $survey,
+            'oqs' => $oqs,
+            'dpqs' => $dpqs,
+            'mpqs' => $mpqs,
+            'scaleqs' => $scaleqs,
+            'business' => $business
+            ]);
     }
 
     public function edit($id)
     {
         $survey = Survey::find($id);
-        return view('surveys.edit')->with('survey', $survey);
+        $oqs = DB::table('openqs')->where('survey_id', '=', $id)->get();
+        $dpqs = DB::table('dropdownqs')->where('survey_id', '=', $id)->get();
+        $mpqs = DB::table('multiplechoice')->where('survey_id', '=', $id)->get();
+        $scaleqs = DB::table('scaleqs')->where('survey_id', '=', $id)->get();
+
+        return view('surveys.edit')->with([
+            'survey' => $survey,
+            'oqs' => $oqs,
+            'dpqs' => $dpqs,
+            'mpqs' => $mpqs,
+            'scaleqs' => $scaleqs
+            ]);
     }
 
     public function update(Request $request, $id)
@@ -68,7 +95,7 @@ class SurveyController extends Controller
         $survey->beschrijving = $request->beschrijving;
         $survey->save();
 
-        return(redirect('/surveys')->with('success', 'Vragenlijst aangepast!'));
+        return redirect()->back()->with('success', 'Vragenlijst aangepast!');
     }
 
     public function destroy($id)
@@ -86,4 +113,36 @@ class SurveyController extends Controller
         return redirect('/surveys')->with('success', 'Bedrijf gekoppeld aan vragenlijst!');
     }
     
+    public function destroyoq($openq_id)
+    {
+        $oq = DB::table('openqs')->where('id', '=', $openq_id);
+        $oq->delete();
+        return redirect()->back()->with('success', 'Open vraag uit vragenlijst verwijderd!');
+    }
+
+    public function destroysq($scaleq_id)
+    {
+        $sq = DB::table('scaleqs')->where('id', '=', $scaleq_id);
+        $sq->delete();
+        return redirect()->back()->with('success', 'Schalen vraag uit vragenlijst verwijderd!');
+    }
+
+    public function destroydpq($dropdownq_id)
+    {
+        $dpq = DropdownQ::where('survey_id', '=', $dropdownq_id)->get();
+        $dpqo = DropdownQOptions::where('dropdown_id', '=', $dropdownq_id)->first();
+        $dpqo->delete();
+        $dpq->delete();
+        return redirect()->back()->with('success', 'Vraag uit vragenlijst verwijderd!');
+    }
+
+    public function destroympq($multiplechoice_id)
+    {
+        $mpq = DB::table('multiplechoice')->where('id', '=', $multiplechoice_id);
+        $mpqo = MultiplechoiceOptions::where('multiplechoice_id', '=', $multiplechoice_id);
+        $mpqo->delete();
+        $mpq->delete();
+
+        return redirect()->back()->with('success', 'Vraag uit vragenlijst verwijderd!');
+    }
 }

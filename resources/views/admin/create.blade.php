@@ -79,6 +79,14 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group col-sm-3">
+                    <label for="Omzet">Omzet</label>
+                    <select name="Omzet" class="form-control">
+                            @foreach($revenues as $revenue)
+                                <option>{{$revenue->revenue}}</option>
+                                @endforeach
+                    </select>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-1">

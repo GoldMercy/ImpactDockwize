@@ -101,12 +101,24 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group col-sm-3">
+                    <label for="Omzet">Omzet</label>
+                    <select name="Omzet" class="form-control">
+                        @foreach($revenues as $revenue)
+                            @if($business->Omzet == $revenue->revenue)
+                            <option selected>{{$revenue->revenue}}</option>
+                            @else
+                                <option>{{$revenue->revenue}}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <hr>
             <div class="d-flex">
                 <div class="p-2">
             <a href="/admin">
-                <button type="button" class="btn btn-secondary">Terug</button>
+                <button type="button" class="btn btn-secondary">Ga terug</button>
             </a>
                 </div>
                 <div class="p-2">
@@ -117,12 +129,12 @@
                 </div>
                 <div class="ml-auto p-2">
                     <a href="delete/{{$business->id}}">
-                        <button type="button" class="btn btn-danger">Verwijderen</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijderen</button>
                     </a>
                 </div>
                 <div class="p-2">
                     <a href="deleteall/{{$business->id}}">
-                        <button type="button" class="btn btn-danger">Verwijder alles</button>
+                        <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Verwijder alles</button>
                     </a>
                 </div>
             </div>
