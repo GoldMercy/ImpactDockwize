@@ -21,7 +21,7 @@ class BusinessTableSeeder extends Seeder
             'Telefoonnummer' => $faker->phoneNumber,
             'Email' => $faker->email,
             'Plaats' => $faker->city,
-            'Idee' => $faker->realText(50),
+            'Idee' => $faker->realText(500),
             'Jaar' => $faker->year,
             'created_at' => '2019-11-07',
         ]);

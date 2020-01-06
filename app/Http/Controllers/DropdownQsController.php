@@ -41,7 +41,7 @@ class DropdownQsController extends Controller
         foreach ($dp_options[0] as $dp_option){
             $dpqo = new DropdownQOptions;
             $dpqo->dropdownoption_name = $dp_option;
-            $dpqo->dropdown_id = $dpq->dropdownq_id;
+            $dpqo->dropdown_id = $dpq->id;
             $dpqo->save();
         }
 
@@ -146,7 +146,7 @@ class DropdownQsController extends Controller
 
     public function destroydpo($dropdownq_id)
     {
-        $dpo = DB::table('dropdownqs_options')->where('dropdownoption_id', '=', $dropdownq_id);
+        $dpo = DB::table('dropdownqs_options')->where('id', '=', $dropdownq_id);
         $dpo->delete();
         return redirect()->back()->with('success', 'Optie voor dropdown vraag verwijderd.');
     }

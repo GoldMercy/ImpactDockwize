@@ -8,6 +8,8 @@
                 <label for="multiplechoice_name">Hoe moet de vraag gaan heten?</label>
                 <form method="GET" action="/multiplechoice/update/{{$mp->id}}">
                     <input type="text" class="form-control" name="multiplechoice_name" aria-describedby="multiplechoice_name" value="{{$mp->multiplechoice_name}}">
+                    <input type="hidden" id="survey_id" name="survey_id" value="{{$mp->survey_id}}">
+                    <button type="submit" class="btn btn-primary" value="edit">Vraag aanpassen</button>
                 </form>
                 </div>
                 </div>
@@ -17,15 +19,11 @@
                             <label for="multiplechoice_option{{$loop->iteration}}">Optie {{$loop->iteration}}</label>
                             <input type="text" class="form-control" name="multiplechoice_option{{$loop->iteration}}" aria-describedby="multiplechoice_option{{$loop->iteration}}" value="{{$mpo->multiplechoice_option}}">
                             <a href="destroympo/{{$mp->id}}">
-                                <button type="button" class="btn btn-danger">Optie van vraag verwijderen.</button>
+                                <button onclick="return confirm('Are you sure?')" type="button" class="btn btn-danger">Optie van vraag verwijderen.</button>
                             </a>
                         </div>
                     </div>
                 @endforeach
-                <form method="GET" action="/multiplechoice/update/{{$mp->id}}">
-                    <input type="hidden" id="survey_id" name="survey_id" value="{{$mp->survey_id}}">
-                    <button type="submit" class="btn btn-primary" value="edit">Vraag aanpassen</button>
-                </form>
                 <form method="GET" action="/multiplechoice/add/{{$mp->id}}">
                     <label for="survey_id">Bij welke vragenlijst hoort de vraag?</label>
                     <input type="hidden" id="multiplechoice_id" name="multiplechoice_id" value="{{$mp->multiplechoice_id}}">
