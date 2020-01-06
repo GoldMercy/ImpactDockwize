@@ -88,6 +88,7 @@ Route::get('/surstat/create', 'SurveyStatusController@create');
 Route::get('/admin/edit/archive/{id}', 'AdminController@archive');
 Route::get('/admin/windex', 'AdminController@windex');
 Route::get('/admin/export/', 'AdminController@export');
+Route::get('/admin/graph/{id}', 'AdminController@graph');
 
 Route::get('/searching','SearchController@index');
 Route::get('/search','SearchController@search');

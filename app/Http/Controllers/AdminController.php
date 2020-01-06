@@ -10,6 +10,7 @@ use App\SurveyStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Charts\HighchartsChart;
 
 class AdminController extends Controller
 {
@@ -196,6 +197,7 @@ class AdminController extends Controller
         $business->Huisvesting = $request->Huisvesting;
         $business->Organisatievorm = $request->Organisatievorm;
         $business->Omzet = $request->Omzet;
+        $business->created_at = date('Y-m-d');
         $business->save();
     }
 
@@ -213,5 +215,45 @@ class AdminController extends Controller
     public function export()
     {
         return Excel::download(new BusinessExport(), 'Business.xlsx');
+    }
+
+    public function graph($id){
+        $revenue = DB::table('old_business_data')->where('business_id', $id)->orderBy('created_at', 'asc')->get();
+        $business = DB::table('business')->find($id);
+
+        $omzet = [];
+        $dates = [];
+        foreach ($revenue as $rev){
+            if($rev->Omzet == '€0 - €100.000'){
+                $avgrev = 50000;
+            }
+            elseif($rev->Omzet == '€100.000 - €500.000'){
+                $avgrev = 300000;
+            }
+            elseif($rev->Omzet == '€500.000 - €1.000.000'){
+                $avgrev = 750000;
+            }
+            elseif($rev->Omzet == '> €1.000.000'){
+                $avgrev = 1000000;
+            }
+            else{
+                $avgrev = (int)$rev->Omzet;
+            }
+            array_push($omzet, $avgrev);
+            array_push($dates, date('d-m-Y', strtotime($rev->created_at)));
+        }
+
+        $revenuechart = new HighchartsChart;
+        $revenuechart->height(700)->width(800)->labels($dates)
+            ->dataset('Omzet', 'line', $omzet)
+            ->options([
+                'color' => 'navy',
+            ]);
+        $revenuechart->dataset('Werknemers', 'line', [1,3,9]);
+
+        return view('admin/graph')->with([
+            'revenuechart' => $revenuechart,
+            'business' => $business,
+        ]);
     }
 }
