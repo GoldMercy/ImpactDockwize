@@ -92,7 +92,7 @@ class MultiplechoiceController extends Controller
         foreach ($mp_options[0] as $mp_option){
             $mpo = new MultiplechoiceOptions;
             $mpo->multiplechoice_option = $mp_option;
-            $mpo->multiplechoice_id = $mp->multiplechoice_id;
+            $mpo->multiplechoice_id = $mp->id;
             $mpo->save();
         }
 
@@ -153,8 +153,8 @@ class MultiplechoiceController extends Controller
 
     public function destroympo($multiplechoice_id)
     {
-        $mpo = DB::table('multiplechoice_options')->where('multiplechoice_options_id', '=', $multiplechoice_id);
+        $mpo = DB::table('multiplechoice_options')->where('id', '=', $multiplechoice_id);
         $mpo->delete();
-        return redirect('/questions')->with('success', 'Optie voor multiplechoice vraag verwijderd.');
+        return redirect()->back()->with('success', 'Optie voor multiplechoice vraag verwijderd.');
     }
 }

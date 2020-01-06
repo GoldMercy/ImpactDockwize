@@ -33,9 +33,9 @@
                                 <div class="form-group col-sm-8">
                                     <label for="{{$dropdownq->dropdownq_name}}">{{$dropdownq->dropdownq_name}}</label>
                                     <select class="form-control" name="{{$dropdownq->dropdownq_name}}">
-                                        {{$qoptionsx = $dropdownqs_options->where('dropdownq_fk', '=', $dropdownq->dropdownq_id)}}
-                                    @foreach($qoptionsx as $qoption)
-                                        <option>{{$qoption->option_name}}</option>
+                                        {{$qoptions = $dropdownqs_options->where('dropdown_id', '=', $dropdownq->dropdownq_id)}}
+                                    @foreach($qoptions as $qoption)
+                                        <option>{{$qoption->dropdownoption_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
