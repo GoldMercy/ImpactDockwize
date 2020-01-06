@@ -53,6 +53,7 @@
                         <th id="ad-md" >E-mail</th>
 {{--                        <th id="ad-md" >Plaats</th>--}}
                         <th id="ad-md" >Idee</th>
+                        <th id="ad-md">Omzet Grafiek</th>
 {{--                        <th id="ad-md" >Jaar</th>--}}
 {{--                        <th id="ad-md"scope="col">Relatie</th>
                         <th id="ad-md"scope="col">Thema</th>
@@ -83,6 +84,11 @@
                     </td>--}}
                     <td id="ad-td">
                 {{ $business->Idee }}
+                    </td>
+                    <td id="ad-td">
+                <a href="/admin/graph/{{$business->id}}">
+                    Bekijk Omzet
+                </a>
                     </td>
  {{--                   <td id="ad-td">
                 {{ $business->Jaar }}
