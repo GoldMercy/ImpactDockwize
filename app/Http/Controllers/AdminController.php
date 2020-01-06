@@ -78,6 +78,7 @@ class AdminController extends Controller
         $surstats = DB::table('survey_statuses')->get();
         $relationships = DB::table('relationships')->get();
         $organisation_types = DB::table('organisation_types')->get();
+        $revenues = DB::table('revenues')->get();
 
         return view('admin.edit')->with([
             'business' => $business, 
@@ -87,7 +88,8 @@ class AdminController extends Controller
             'themes' => $themes, 
             'housings' => $housings,
             'relationships' => $relationships,
-            'organisation_types' => $organisation_types
+            'organisation_types' => $organisation_types,
+            'revenues' => $revenues
             ]);
     }
 
