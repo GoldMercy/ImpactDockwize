@@ -251,7 +251,6 @@ class AdminController extends Controller
             ->options([
                 'color' => 'navy',
             ]);
-        $revenuechart->dataset('Werknemers', 'line', [1,3,9]);
 
         return view('admin/graph')->with([
             'revenuechart' => $revenuechart,
